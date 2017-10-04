@@ -34,3 +34,8 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.3")]
 [assembly: AssemblyFileVersion("1.0.0.3")]
+
+
+// nuget spec
+// nuget pack Core.UsuallyCommon.csproj
+// nuget push Core.UsuallyCommon.1.0.0.0.nupkg
