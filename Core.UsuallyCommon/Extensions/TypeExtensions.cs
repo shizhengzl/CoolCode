@@ -16,5 +16,14 @@ namespace Core.UsuallyCommon
             return result;
         }
 
+
+        public static Int32 ToInt32(this object obj)
+        {
+            Int32 result = 0;
+            if (obj == null)
+                return result;
+            bool isparse = Int32.TryParse(obj.ToStringExtension(),out result);
+            return result;
+        }
     }
 }
