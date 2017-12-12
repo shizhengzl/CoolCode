@@ -20,6 +20,10 @@ namespace Core.EntityFramework
 
         public DbSet<GeneratorSnippet> GeneratorSnippet { get; set; }
 
+        public DbSet<Core.UsuallyCommon.Database.Column> Column { get; set; }
+
+        public DbSet<GeneratorSQL> GeneratorSQL { get; set; }
+
         public GeneratorContext() : base("GeneratorContext")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<GeneratorContext, Configuration>());

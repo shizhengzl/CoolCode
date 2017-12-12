@@ -18,22 +18,23 @@ namespace Core.EntityFramework.GeneratorClass
 
         public string GeneratorPath { get; set; }
 
-        public string IsMergin { get; set; }
+        public bool IsMergin { get; set; }
 
-        public string IsEnabled { get; set; }
+        public bool IsEnabled { get; set; }
 
         public bool AutoFind { get; set; }
-
-        public bool SnippetLanguageType { get; set; }
 
         public bool IsAppend { get; set; }
 
         public string AppendLocation { get; set; }
 
-        public string SnippetPath { get; set; }
+        public bool IsSelectColumn { get; set; }
+
+        public string Context { get; set; }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; } 
+        public long Id { get; set; }
         public long FatherId { get; set; }
     }
 }

@@ -33,6 +33,46 @@
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPageGenerator = new System.Windows.Forms.TabPage();
             this.pGeneratorMain = new System.Windows.Forms.Panel();
+            this.tabControlMainSeeting = new System.Windows.Forms.TabControl();
+            this.tstartgenerator = new System.Windows.Forms.TabPage();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.GeneratorText = new Kevin.SyntaxTextBox.SyntaxTextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.dataSourceGrids = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.treesnippet = new System.Windows.Forms.TreeView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.treeSource = new System.Windows.Forms.TreeView();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tooldatasource = new System.Windows.Forms.ToolStripButton();
+            this.toolSourceClear = new System.Windows.Forms.ToolStripButton();
+            this.toolGenerator = new System.Windows.Forms.ToolStripButton();
+            this.tSnippet = new System.Windows.Forms.TabPage();
+            this.pfrom = new System.Windows.Forms.Panel();
+            this.tform = new System.Windows.Forms.TabControl();
+            this.tfrom = new System.Windows.Forms.TabPage();
+            this.SnippetIsSelectColumn = new System.Windows.Forms.CheckBox();
+            this.SnippetContext = new Kevin.SyntaxTextBox.SyntaxTextBox();
+            this.SnippetIsAppend = new System.Windows.Forms.CheckBox();
+            this.SnippetPath = new Common.TreeComboBox();
+            this.btnsnippetsave = new System.Windows.Forms.Button();
+            this.SnippetAutoFind = new System.Windows.Forms.CheckBox();
+            this.SnippetIsEnabled = new System.Windows.Forms.CheckBox();
+            this.SnippetIsMergin = new System.Windows.Forms.CheckBox();
+            this.SnippetFileName = new System.Windows.Forms.TextBox();
+            this.SnippetName = new System.Windows.Forms.TextBox();
+            this.lGeneratorFloder = new System.Windows.Forms.Label();
+            this.lFileName = new System.Windows.Forms.Label();
+            this.lName = new System.Windows.Forms.Label();
+            this.tSQL = new System.Windows.Forms.TabPage();
+            this.ptopsnippet = new System.Windows.Forms.Panel();
+            this.datasnippet = new System.Windows.Forms.DataGridView();
+            this.toolsnippet = new System.Windows.Forms.ToolStrip();
+            this.toolsnippetinsert = new System.Windows.Forms.ToolStripButton();
+            this.toolsnippetupdate = new System.Windows.Forms.ToolStripButton();
+            this.toolsnippetdelete = new System.Windows.Forms.ToolStripButton();
+            this.toolsnippetrefresh = new System.Windows.Forms.ToolStripButton();
             this.pGeneratorLeft = new System.Windows.Forms.Panel();
             this.pGeneratorTree = new System.Windows.Forms.Panel();
             this.treedb = new System.Windows.Forms.TreeView();
@@ -43,10 +83,6 @@
             this.tabPageVariables = new System.Windows.Forms.TabPage();
             this.dataVariables = new System.Windows.Forms.DataGridView();
             this.tabPageDataType = new System.Windows.Forms.TabPage();
-            this.imageListcollection = new System.Windows.Forms.ImageList(this.components);
-            this.pSnippet = new System.Windows.Forms.Panel();
-            this.ptop = new System.Windows.Forms.Panel();
-            this.pdsnippet = new System.Windows.Forms.Panel();
             this.ContentMenuSnippet = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CMS新建模板 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMS修改 = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,23 +90,26 @@
             this.CMS启用 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMS禁用 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMS看生成代码 = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeViewSnippet = new System.Windows.Forms.TreeView();
-            this.tabControlMainSeeting = new System.Windows.Forms.TabControl();
-            this.tGenerator = new System.Windows.Forms.TabPage();
-            this.tSnippet = new System.Windows.Forms.TabPage();
-            this.cIsFind = new System.Windows.Forms.CheckBox();
-            this.cLanguage = new System.Windows.Forms.ComboBox();
-            this.cIsEnabled = new System.Windows.Forms.CheckBox();
-            this.cIsMerge = new System.Windows.Forms.CheckBox();
-            this.tFileName = new System.Windows.Forms.TextBox();
-            this.tName = new System.Windows.Forms.TextBox();
-            this.lGeneratorFloder = new System.Windows.Forms.Label();
-            this.lLanguage = new System.Windows.Forms.Label();
-            this.lFileName = new System.Windows.Forms.Label();
-            this.lName = new System.Windows.Forms.Label();
+            this.imageListcollection = new System.Windows.Forms.ImageList(this.components);
             this.tabMain.SuspendLayout();
             this.tabPageGenerator.SuspendLayout();
             this.pGeneratorMain.SuspendLayout();
+            this.tabControlMainSeeting.SuspendLayout();
+            this.tstartgenerator.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSourceGrids)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.tSnippet.SuspendLayout();
+            this.pfrom.SuspendLayout();
+            this.tform.SuspendLayout();
+            this.tfrom.SuspendLayout();
+            this.ptopsnippet.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datasnippet)).BeginInit();
+            this.toolsnippet.SuspendLayout();
             this.pGeneratorLeft.SuspendLayout();
             this.pGeneratorTree.SuspendLayout();
             this.tooldb.SuspendLayout();
@@ -78,11 +117,7 @@
             this.tabSettings.SuspendLayout();
             this.tabPageVariables.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataVariables)).BeginInit();
-            this.pSnippet.SuspendLayout();
-            this.pdsnippet.SuspendLayout();
             this.ContentMenuSnippet.SuspendLayout();
-            this.tabControlMainSeeting.SuspendLayout();
-            this.tSnippet.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMain
@@ -111,12 +146,431 @@
             // pGeneratorMain
             // 
             this.pGeneratorMain.Controls.Add(this.tabControlMainSeeting);
-            this.pGeneratorMain.Controls.Add(this.pSnippet);
             this.pGeneratorMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pGeneratorMain.Location = new System.Drawing.Point(288, 3);
             this.pGeneratorMain.Name = "pGeneratorMain";
             this.pGeneratorMain.Size = new System.Drawing.Size(1051, 658);
             this.pGeneratorMain.TabIndex = 1;
+            // 
+            // tabControlMainSeeting
+            // 
+            this.tabControlMainSeeting.Controls.Add(this.tstartgenerator);
+            this.tabControlMainSeeting.Controls.Add(this.tSnippet);
+            this.tabControlMainSeeting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlMainSeeting.Location = new System.Drawing.Point(0, 0);
+            this.tabControlMainSeeting.Name = "tabControlMainSeeting";
+            this.tabControlMainSeeting.SelectedIndex = 0;
+            this.tabControlMainSeeting.Size = new System.Drawing.Size(1051, 658);
+            this.tabControlMainSeeting.TabIndex = 3;
+            // 
+            // tstartgenerator
+            // 
+            this.tstartgenerator.Controls.Add(this.panel5);
+            this.tstartgenerator.Controls.Add(this.panel4);
+            this.tstartgenerator.Controls.Add(this.panel1);
+            this.tstartgenerator.Location = new System.Drawing.Point(4, 22);
+            this.tstartgenerator.Name = "tstartgenerator";
+            this.tstartgenerator.Padding = new System.Windows.Forms.Padding(3);
+            this.tstartgenerator.Size = new System.Drawing.Size(1043, 632);
+            this.tstartgenerator.TabIndex = 2;
+            this.tstartgenerator.Text = "Start Generator";
+            this.tstartgenerator.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.GeneratorText);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(290, 252);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(750, 377);
+            this.panel5.TabIndex = 2;
+            // 
+            // GeneratorText
+            // 
+            this.GeneratorText.AcceptsTab = true;
+            this.GeneratorText.CaseSensitive = false;
+            this.GeneratorText.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
+    "Assemblies\\li9lxckp01\\csharp.xml";
+            this.GeneratorText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GeneratorText.FilterAutoComplete = true;
+            this.GeneratorText.Location = new System.Drawing.Point(0, 0);
+            this.GeneratorText.MaxUndoRedoSteps = 50;
+            this.GeneratorText.Name = "GeneratorText";
+            this.GeneratorText.Size = new System.Drawing.Size(750, 377);
+            this.GeneratorText.TabIndex = 0;
+            this.GeneratorText.Text = "";
+            this.GeneratorText.WordWrap = false;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.dataSourceGrids);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(290, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(750, 249);
+            this.panel4.TabIndex = 1;
+            // 
+            // dataSourceGrids
+            // 
+            this.dataSourceGrids.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dataSourceGrids.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataSourceGrids.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataSourceGrids.Location = new System.Drawing.Point(0, 0);
+            this.dataSourceGrids.Name = "dataSourceGrids";
+            this.dataSourceGrids.RowTemplate.Height = 23;
+            this.dataSourceGrids.Size = new System.Drawing.Size(750, 249);
+            this.dataSourceGrids.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(287, 626);
+            this.panel1.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.treesnippet);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 249);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(287, 377);
+            this.panel3.TabIndex = 1;
+            // 
+            // treesnippet
+            // 
+            this.treesnippet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treesnippet.Location = new System.Drawing.Point(0, 0);
+            this.treesnippet.Name = "treesnippet";
+            this.treesnippet.Size = new System.Drawing.Size(287, 377);
+            this.treesnippet.TabIndex = 0;
+            this.treesnippet.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treesnippet_NodeMouseClick);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.treeSource);
+            this.panel2.Controls.Add(this.toolStrip1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(287, 249);
+            this.panel2.TabIndex = 0;
+            // 
+            // treeSource
+            // 
+            this.treeSource.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeSource.Location = new System.Drawing.Point(0, 25);
+            this.treeSource.Name = "treeSource";
+            this.treeSource.Size = new System.Drawing.Size(287, 224);
+            this.treeSource.TabIndex = 1;
+            this.treeSource.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeSource_NodeMouseClick);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tooldatasource,
+            this.toolSourceClear,
+            this.toolGenerator});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(287, 25);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tooldatasource
+            // 
+            this.tooldatasource.Image = ((System.Drawing.Image)(resources.GetObject("tooldatasource.Image")));
+            this.tooldatasource.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tooldatasource.Name = "tooldatasource";
+            this.tooldatasource.Size = new System.Drawing.Size(96, 22);
+            this.tooldatasource.Text = "Add Source";
+            // 
+            // toolSourceClear
+            // 
+            this.toolSourceClear.Image = ((System.Drawing.Image)(resources.GetObject("toolSourceClear.Image")));
+            this.toolSourceClear.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolSourceClear.Name = "toolSourceClear";
+            this.toolSourceClear.Size = new System.Drawing.Size(58, 22);
+            this.toolSourceClear.Text = "Clear";
+            this.toolSourceClear.Click += new System.EventHandler(this.toolSourceClear_Click);
+            // 
+            // toolGenerator
+            // 
+            this.toolGenerator.Image = ((System.Drawing.Image)(resources.GetObject("toolGenerator.Image")));
+            this.toolGenerator.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolGenerator.Name = "toolGenerator";
+            this.toolGenerator.Size = new System.Drawing.Size(87, 22);
+            this.toolGenerator.Text = "Generator";
+            this.toolGenerator.Click += new System.EventHandler(this.toolGenerator_Click);
+            // 
+            // tSnippet
+            // 
+            this.tSnippet.Controls.Add(this.pfrom);
+            this.tSnippet.Controls.Add(this.ptopsnippet);
+            this.tSnippet.Location = new System.Drawing.Point(4, 22);
+            this.tSnippet.Name = "tSnippet";
+            this.tSnippet.Padding = new System.Windows.Forms.Padding(3);
+            this.tSnippet.Size = new System.Drawing.Size(1043, 632);
+            this.tSnippet.TabIndex = 3;
+            this.tSnippet.Text = "SnippetSetting";
+            this.tSnippet.UseVisualStyleBackColor = true;
+            // 
+            // pfrom
+            // 
+            this.pfrom.Controls.Add(this.tform);
+            this.pfrom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pfrom.Location = new System.Drawing.Point(3, 259);
+            this.pfrom.Name = "pfrom";
+            this.pfrom.Size = new System.Drawing.Size(1037, 370);
+            this.pfrom.TabIndex = 1;
+            // 
+            // tform
+            // 
+            this.tform.Controls.Add(this.tfrom);
+            this.tform.Controls.Add(this.tSQL);
+            this.tform.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tform.Location = new System.Drawing.Point(0, 0);
+            this.tform.Name = "tform";
+            this.tform.SelectedIndex = 0;
+            this.tform.Size = new System.Drawing.Size(1037, 370);
+            this.tform.TabIndex = 0;
+            // 
+            // tfrom
+            // 
+            this.tfrom.Controls.Add(this.SnippetIsSelectColumn);
+            this.tfrom.Controls.Add(this.SnippetContext);
+            this.tfrom.Controls.Add(this.SnippetIsAppend);
+            this.tfrom.Controls.Add(this.SnippetPath);
+            this.tfrom.Controls.Add(this.btnsnippetsave);
+            this.tfrom.Controls.Add(this.SnippetAutoFind);
+            this.tfrom.Controls.Add(this.SnippetIsEnabled);
+            this.tfrom.Controls.Add(this.SnippetIsMergin);
+            this.tfrom.Controls.Add(this.SnippetFileName);
+            this.tfrom.Controls.Add(this.SnippetName);
+            this.tfrom.Controls.Add(this.lGeneratorFloder);
+            this.tfrom.Controls.Add(this.lFileName);
+            this.tfrom.Controls.Add(this.lName);
+            this.tfrom.Location = new System.Drawing.Point(4, 22);
+            this.tfrom.Name = "tfrom";
+            this.tfrom.Padding = new System.Windows.Forms.Padding(3);
+            this.tfrom.Size = new System.Drawing.Size(1029, 344);
+            this.tfrom.TabIndex = 0;
+            this.tfrom.Text = "SnippetForm";
+            this.tfrom.UseVisualStyleBackColor = true;
+            // 
+            // SnippetIsSelectColumn
+            // 
+            this.SnippetIsSelectColumn.AutoSize = true;
+            this.SnippetIsSelectColumn.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SnippetIsSelectColumn.Location = new System.Drawing.Point(396, 125);
+            this.SnippetIsSelectColumn.Name = "SnippetIsSelectColumn";
+            this.SnippetIsSelectColumn.Size = new System.Drawing.Size(92, 25);
+            this.SnippetIsSelectColumn.TabIndex = 50;
+            this.SnippetIsSelectColumn.Text = "选择列";
+            this.SnippetIsSelectColumn.UseVisualStyleBackColor = true;
+            // 
+            // SnippetContext
+            // 
+            this.SnippetContext.AcceptsTab = true;
+            this.SnippetContext.CaseSensitive = false;
+            this.SnippetContext.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
+    "Assemblies\\li9lxckp01\\csharp.xml";
+            this.SnippetContext.FilterAutoComplete = true;
+            this.SnippetContext.Location = new System.Drawing.Point(23, 176);
+            this.SnippetContext.MaxUndoRedoSteps = 50;
+            this.SnippetContext.Name = "SnippetContext";
+            this.SnippetContext.Size = new System.Drawing.Size(503, 138);
+            this.SnippetContext.TabIndex = 49;
+            this.SnippetContext.Text = "";
+            this.SnippetContext.WordWrap = false;
+            // 
+            // SnippetIsAppend
+            // 
+            this.SnippetIsAppend.AutoSize = true;
+            this.SnippetIsAppend.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SnippetIsAppend.Location = new System.Drawing.Point(319, 125);
+            this.SnippetIsAppend.Name = "SnippetIsAppend";
+            this.SnippetIsAppend.Size = new System.Drawing.Size(71, 25);
+            this.SnippetIsAppend.TabIndex = 48;
+            this.SnippetIsAppend.Text = "追加";
+            this.SnippetIsAppend.UseVisualStyleBackColor = true;
+            // 
+            // SnippetPath
+            // 
+            this.SnippetPath.Location = new System.Drawing.Point(149, 88);
+            this.SnippetPath.MaxDropDownItems = 12;
+            this.SnippetPath.Name = "SnippetPath";
+            this.SnippetPath.Size = new System.Drawing.Size(377, 21);
+            this.SnippetPath.TabIndex = 47;
+            // 
+            // btnsnippetsave
+            // 
+            this.btnsnippetsave.Location = new System.Drawing.Point(497, 126);
+            this.btnsnippetsave.Name = "btnsnippetsave";
+            this.btnsnippetsave.Size = new System.Drawing.Size(75, 23);
+            this.btnsnippetsave.TabIndex = 46;
+            this.btnsnippetsave.Text = "Save";
+            this.btnsnippetsave.UseVisualStyleBackColor = true;
+            this.btnsnippetsave.Click += new System.EventHandler(this.btnsnippetsave_Click);
+            // 
+            // SnippetAutoFind
+            // 
+            this.SnippetAutoFind.AutoSize = true;
+            this.SnippetAutoFind.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SnippetAutoFind.Location = new System.Drawing.Point(199, 125);
+            this.SnippetAutoFind.Name = "SnippetAutoFind";
+            this.SnippetAutoFind.Size = new System.Drawing.Size(113, 25);
+            this.SnippetAutoFind.TabIndex = 45;
+            this.SnippetAutoFind.Text = "自动查找";
+            this.SnippetAutoFind.UseVisualStyleBackColor = true;
+            // 
+            // SnippetIsEnabled
+            // 
+            this.SnippetIsEnabled.AutoSize = true;
+            this.SnippetIsEnabled.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SnippetIsEnabled.Location = new System.Drawing.Point(126, 127);
+            this.SnippetIsEnabled.Name = "SnippetIsEnabled";
+            this.SnippetIsEnabled.Size = new System.Drawing.Size(71, 25);
+            this.SnippetIsEnabled.TabIndex = 44;
+            this.SnippetIsEnabled.Text = "启用";
+            this.SnippetIsEnabled.UseVisualStyleBackColor = true;
+            // 
+            // SnippetIsMergin
+            // 
+            this.SnippetIsMergin.AutoSize = true;
+            this.SnippetIsMergin.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SnippetIsMergin.Location = new System.Drawing.Point(52, 125);
+            this.SnippetIsMergin.Name = "SnippetIsMergin";
+            this.SnippetIsMergin.Size = new System.Drawing.Size(71, 25);
+            this.SnippetIsMergin.TabIndex = 43;
+            this.SnippetIsMergin.Text = "合并";
+            this.SnippetIsMergin.UseVisualStyleBackColor = true;
+            // 
+            // SnippetFileName
+            // 
+            this.SnippetFileName.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SnippetFileName.Location = new System.Drawing.Point(148, 44);
+            this.SnippetFileName.Name = "SnippetFileName";
+            this.SnippetFileName.Size = new System.Drawing.Size(378, 31);
+            this.SnippetFileName.TabIndex = 42;
+            // 
+            // SnippetName
+            // 
+            this.SnippetName.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SnippetName.Location = new System.Drawing.Point(148, 9);
+            this.SnippetName.Name = "SnippetName";
+            this.SnippetName.Size = new System.Drawing.Size(378, 31);
+            this.SnippetName.TabIndex = 41;
+            // 
+            // lGeneratorFloder
+            // 
+            this.lGeneratorFloder.AutoSize = true;
+            this.lGeneratorFloder.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lGeneratorFloder.Location = new System.Drawing.Point(48, 89);
+            this.lGeneratorFloder.Name = "lGeneratorFloder";
+            this.lGeneratorFloder.Size = new System.Drawing.Size(94, 21);
+            this.lGeneratorFloder.TabIndex = 40;
+            this.lGeneratorFloder.Text = "文件夹：";
+            // 
+            // lFileName
+            // 
+            this.lFileName.AutoSize = true;
+            this.lFileName.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lFileName.Location = new System.Drawing.Point(7, 48);
+            this.lFileName.Name = "lFileName";
+            this.lFileName.Size = new System.Drawing.Size(136, 21);
+            this.lFileName.TabIndex = 39;
+            this.lFileName.Text = "文件规则名：";
+            // 
+            // lName
+            // 
+            this.lName.AutoSize = true;
+            this.lName.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lName.Location = new System.Drawing.Point(27, 12);
+            this.lName.Name = "lName";
+            this.lName.Size = new System.Drawing.Size(115, 21);
+            this.lName.TabIndex = 38;
+            this.lName.Text = "模版名称：";
+            // 
+            // tSQL
+            // 
+            this.tSQL.Location = new System.Drawing.Point(4, 22);
+            this.tSQL.Name = "tSQL";
+            this.tSQL.Padding = new System.Windows.Forms.Padding(3);
+            this.tSQL.Size = new System.Drawing.Size(1029, 344);
+            this.tSQL.TabIndex = 1;
+            this.tSQL.Text = "SQL";
+            this.tSQL.UseVisualStyleBackColor = true;
+            // 
+            // ptopsnippet
+            // 
+            this.ptopsnippet.Controls.Add(this.datasnippet);
+            this.ptopsnippet.Controls.Add(this.toolsnippet);
+            this.ptopsnippet.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ptopsnippet.Location = new System.Drawing.Point(3, 3);
+            this.ptopsnippet.Name = "ptopsnippet";
+            this.ptopsnippet.Size = new System.Drawing.Size(1037, 256);
+            this.ptopsnippet.TabIndex = 0;
+            // 
+            // datasnippet
+            // 
+            this.datasnippet.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.datasnippet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datasnippet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.datasnippet.Location = new System.Drawing.Point(0, 25);
+            this.datasnippet.Name = "datasnippet";
+            this.datasnippet.RowTemplate.Height = 23;
+            this.datasnippet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datasnippet.Size = new System.Drawing.Size(1037, 231);
+            this.datasnippet.TabIndex = 1;
+            // 
+            // toolsnippet
+            // 
+            this.toolsnippet.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolsnippetinsert,
+            this.toolsnippetupdate,
+            this.toolsnippetdelete,
+            this.toolsnippetrefresh});
+            this.toolsnippet.Location = new System.Drawing.Point(0, 0);
+            this.toolsnippet.Name = "toolsnippet";
+            this.toolsnippet.Size = new System.Drawing.Size(1037, 25);
+            this.toolsnippet.TabIndex = 0;
+            this.toolsnippet.Text = "toolStrip1";
+            // 
+            // toolsnippetinsert
+            // 
+            this.toolsnippetinsert.Image = ((System.Drawing.Image)(resources.GetObject("toolsnippetinsert.Image")));
+            this.toolsnippetinsert.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolsnippetinsert.Name = "toolsnippetinsert";
+            this.toolsnippetinsert.Size = new System.Drawing.Size(52, 22);
+            this.toolsnippetinsert.Text = "Add";
+            // 
+            // toolsnippetupdate
+            // 
+            this.toolsnippetupdate.Image = ((System.Drawing.Image)(resources.GetObject("toolsnippetupdate.Image")));
+            this.toolsnippetupdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolsnippetupdate.Name = "toolsnippetupdate";
+            this.toolsnippetupdate.Size = new System.Drawing.Size(71, 22);
+            this.toolsnippetupdate.Text = "Update";
+            // 
+            // toolsnippetdelete
+            // 
+            this.toolsnippetdelete.Image = ((System.Drawing.Image)(resources.GetObject("toolsnippetdelete.Image")));
+            this.toolsnippetdelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolsnippetdelete.Name = "toolsnippetdelete";
+            this.toolsnippetdelete.Size = new System.Drawing.Size(65, 22);
+            this.toolsnippetdelete.Text = "Delete";
+            // 
+            // toolsnippetrefresh
+            // 
+            this.toolsnippetrefresh.Image = ((System.Drawing.Image)(resources.GetObject("toolsnippetrefresh.Image")));
+            this.toolsnippetrefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolsnippetrefresh.Name = "toolsnippetrefresh";
+            this.toolsnippetrefresh.Size = new System.Drawing.Size(72, 22);
+            this.toolsnippetrefresh.Text = "Refresh";
             // 
             // pGeneratorLeft
             // 
@@ -139,12 +593,15 @@
             // 
             // treedb
             // 
+            this.treedb.CheckBoxes = true;
             this.treedb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treedb.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.treedb.Location = new System.Drawing.Point(0, 0);
             this.treedb.Name = "treedb";
             this.treedb.Size = new System.Drawing.Size(285, 633);
             this.treedb.TabIndex = 0;
+            this.treedb.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treedb_AfterCheck);
+            this.treedb.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treedb_NodeMouseClick);
             // 
             // tooldb
             // 
@@ -220,43 +677,6 @@
             this.tabPageDataType.Text = "DataType";
             this.tabPageDataType.UseVisualStyleBackColor = true;
             // 
-            // imageListcollection
-            // 
-            this.imageListcollection.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListcollection.ImageStream")));
-            this.imageListcollection.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListcollection.Images.SetKeyName(0, "DataBaseAddress.png");
-            this.imageListcollection.Images.SetKeyName(1, "DataBase.png");
-            this.imageListcollection.Images.SetKeyName(2, "Floder.png");
-            this.imageListcollection.Images.SetKeyName(3, "Table.png");
-            this.imageListcollection.Images.SetKeyName(4, "refersh.png");
-            // 
-            // pSnippet
-            // 
-            this.pSnippet.Controls.Add(this.pdsnippet);
-            this.pSnippet.Controls.Add(this.ptop);
-            this.pSnippet.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pSnippet.Location = new System.Drawing.Point(0, 0);
-            this.pSnippet.Name = "pSnippet";
-            this.pSnippet.Size = new System.Drawing.Size(247, 658);
-            this.pSnippet.TabIndex = 0;
-            // 
-            // ptop
-            // 
-            this.ptop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ptop.Location = new System.Drawing.Point(0, 0);
-            this.ptop.Name = "ptop";
-            this.ptop.Size = new System.Drawing.Size(247, 288);
-            this.ptop.TabIndex = 0;
-            // 
-            // pdsnippet
-            // 
-            this.pdsnippet.Controls.Add(this.treeViewSnippet);
-            this.pdsnippet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pdsnippet.Location = new System.Drawing.Point(0, 288);
-            this.pdsnippet.Name = "pdsnippet";
-            this.pdsnippet.Size = new System.Drawing.Size(247, 370);
-            this.pdsnippet.TabIndex = 1;
-            // 
             // ContentMenuSnippet
             // 
             this.ContentMenuSnippet.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -311,153 +731,23 @@
             this.CMS看生成代码.Size = new System.Drawing.Size(136, 22);
             this.CMS看生成代码.Text = "看生成代码";
             // 
-            // treeViewSnippet
+            // imageListcollection
             // 
-            this.treeViewSnippet.ContextMenuStrip = this.ContentMenuSnippet;
-            this.treeViewSnippet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewSnippet.Location = new System.Drawing.Point(0, 0);
-            this.treeViewSnippet.Name = "treeViewSnippet";
-            this.treeViewSnippet.Size = new System.Drawing.Size(247, 370);
-            this.treeViewSnippet.TabIndex = 0;
-            // 
-            // tabControlMainSeeting
-            // 
-            this.tabControlMainSeeting.Controls.Add(this.tGenerator);
-            this.tabControlMainSeeting.Controls.Add(this.tSnippet);
-            this.tabControlMainSeeting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlMainSeeting.Location = new System.Drawing.Point(247, 0);
-            this.tabControlMainSeeting.Name = "tabControlMainSeeting";
-            this.tabControlMainSeeting.SelectedIndex = 0;
-            this.tabControlMainSeeting.Size = new System.Drawing.Size(804, 658);
-            this.tabControlMainSeeting.TabIndex = 1;
-            // 
-            // tGenerator
-            // 
-            this.tGenerator.Location = new System.Drawing.Point(4, 22);
-            this.tGenerator.Name = "tGenerator";
-            this.tGenerator.Padding = new System.Windows.Forms.Padding(3);
-            this.tGenerator.Size = new System.Drawing.Size(796, 632);
-            this.tGenerator.TabIndex = 0;
-            this.tGenerator.Text = "Generator";
-            this.tGenerator.UseVisualStyleBackColor = true;
-            // 
-            // tSnippet
-            // 
-            this.tSnippet.Controls.Add(this.cIsFind);
-            this.tSnippet.Controls.Add(this.cLanguage);
-            this.tSnippet.Controls.Add(this.cIsEnabled);
-            this.tSnippet.Controls.Add(this.cIsMerge);
-            this.tSnippet.Controls.Add(this.tFileName);
-            this.tSnippet.Controls.Add(this.tName);
-            this.tSnippet.Controls.Add(this.lGeneratorFloder);
-            this.tSnippet.Controls.Add(this.lLanguage);
-            this.tSnippet.Controls.Add(this.lFileName);
-            this.tSnippet.Controls.Add(this.lName);
-            this.tSnippet.Location = new System.Drawing.Point(4, 22);
-            this.tSnippet.Name = "tSnippet";
-            this.tSnippet.Padding = new System.Windows.Forms.Padding(3);
-            this.tSnippet.Size = new System.Drawing.Size(796, 632);
-            this.tSnippet.TabIndex = 1;
-            this.tSnippet.Text = "SnippetSetting";
-            this.tSnippet.UseVisualStyleBackColor = true;
-            // 
-            // cIsFind
-            // 
-            this.cIsFind.AutoSize = true;
-            this.cIsFind.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cIsFind.Location = new System.Drawing.Point(53, 213);
-            this.cIsFind.Name = "cIsFind";
-            this.cIsFind.Size = new System.Drawing.Size(113, 25);
-            this.cIsFind.TabIndex = 37;
-            this.cIsFind.Text = "自动查找";
-            this.cIsFind.UseVisualStyleBackColor = true;
-            // 
-            // cLanguage
-            // 
-            this.cLanguage.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cLanguage.FormattingEnabled = true;
-            this.cLanguage.Location = new System.Drawing.Point(146, 250);
-            this.cLanguage.Name = "cLanguage";
-            this.cLanguage.Size = new System.Drawing.Size(149, 29);
-            this.cLanguage.TabIndex = 36;
-            // 
-            // cIsEnabled
-            // 
-            this.cIsEnabled.AutoSize = true;
-            this.cIsEnabled.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cIsEnabled.Location = new System.Drawing.Point(53, 170);
-            this.cIsEnabled.Name = "cIsEnabled";
-            this.cIsEnabled.Size = new System.Drawing.Size(71, 25);
-            this.cIsEnabled.TabIndex = 35;
-            this.cIsEnabled.Text = "启用";
-            this.cIsEnabled.UseVisualStyleBackColor = true;
-            // 
-            // cIsMerge
-            // 
-            this.cIsMerge.AutoSize = true;
-            this.cIsMerge.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cIsMerge.Location = new System.Drawing.Point(53, 127);
-            this.cIsMerge.Name = "cIsMerge";
-            this.cIsMerge.Size = new System.Drawing.Size(71, 25);
-            this.cIsMerge.TabIndex = 34;
-            this.cIsMerge.Text = "合并";
-            this.cIsMerge.UseVisualStyleBackColor = true;
-            // 
-            // tFileName
-            // 
-            this.tFileName.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tFileName.Location = new System.Drawing.Point(146, 51);
-            this.tFileName.Name = "tFileName";
-            this.tFileName.Size = new System.Drawing.Size(378, 31);
-            this.tFileName.TabIndex = 33;
-            // 
-            // tName
-            // 
-            this.tName.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tName.Location = new System.Drawing.Point(146, 16);
-            this.tName.Name = "tName";
-            this.tName.Size = new System.Drawing.Size(378, 31);
-            this.tName.TabIndex = 32;
-            // 
-            // lGeneratorFloder
-            // 
-            this.lGeneratorFloder.AutoSize = true;
-            this.lGeneratorFloder.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lGeneratorFloder.Location = new System.Drawing.Point(46, 89);
-            this.lGeneratorFloder.Name = "lGeneratorFloder";
-            this.lGeneratorFloder.Size = new System.Drawing.Size(94, 21);
-            this.lGeneratorFloder.TabIndex = 31;
-            this.lGeneratorFloder.Text = "文件夹：";
-            // 
-            // lLanguage
-            // 
-            this.lLanguage.AutoSize = true;
-            this.lLanguage.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lLanguage.Location = new System.Drawing.Point(49, 253);
-            this.lLanguage.Name = "lLanguage";
-            this.lLanguage.Size = new System.Drawing.Size(73, 21);
-            this.lLanguage.TabIndex = 30;
-            this.lLanguage.Text = "语言：";
-            // 
-            // lFileName
-            // 
-            this.lFileName.AutoSize = true;
-            this.lFileName.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lFileName.Location = new System.Drawing.Point(5, 55);
-            this.lFileName.Name = "lFileName";
-            this.lFileName.Size = new System.Drawing.Size(136, 21);
-            this.lFileName.TabIndex = 29;
-            this.lFileName.Text = "文件规则名：";
-            // 
-            // lName
-            // 
-            this.lName.AutoSize = true;
-            this.lName.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lName.Location = new System.Drawing.Point(25, 19);
-            this.lName.Name = "lName";
-            this.lName.Size = new System.Drawing.Size(115, 21);
-            this.lName.TabIndex = 28;
-            this.lName.Text = "模版名称：";
+            this.imageListcollection.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListcollection.ImageStream")));
+            this.imageListcollection.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListcollection.Images.SetKeyName(0, "DataBaseAddress.png");
+            this.imageListcollection.Images.SetKeyName(1, "DataBase.png");
+            this.imageListcollection.Images.SetKeyName(2, "Floder.png");
+            this.imageListcollection.Images.SetKeyName(3, "Table.png");
+            this.imageListcollection.Images.SetKeyName(4, "refersh.png");
+            this.imageListcollection.Images.SetKeyName(5, "Solution.png");
+            this.imageListcollection.Images.SetKeyName(6, "Project.png");
+            this.imageListcollection.Images.SetKeyName(7, "Aspx.png");
+            this.imageListcollection.Images.SetKeyName(8, "Csharp.png");
+            this.imageListcollection.Images.SetKeyName(9, "Config.png");
+            this.imageListcollection.Images.SetKeyName(10, "JavaScript.png");
+            this.imageListcollection.Images.SetKeyName(11, "yes.png");
+            this.imageListcollection.Images.SetKeyName(12, "wrong.png");
             // 
             // Geneartor
             // 
@@ -471,6 +761,27 @@
             this.tabMain.ResumeLayout(false);
             this.tabPageGenerator.ResumeLayout(false);
             this.pGeneratorMain.ResumeLayout(false);
+            this.tabControlMainSeeting.ResumeLayout(false);
+            this.tstartgenerator.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataSourceGrids)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.tSnippet.ResumeLayout(false);
+            this.pfrom.ResumeLayout(false);
+            this.tform.ResumeLayout(false);
+            this.tfrom.ResumeLayout(false);
+            this.tfrom.PerformLayout();
+            this.ptopsnippet.ResumeLayout(false);
+            this.ptopsnippet.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datasnippet)).EndInit();
+            this.toolsnippet.ResumeLayout(false);
+            this.toolsnippet.PerformLayout();
             this.pGeneratorLeft.ResumeLayout(false);
             this.pGeneratorLeft.PerformLayout();
             this.pGeneratorTree.ResumeLayout(false);
@@ -480,12 +791,7 @@
             this.tabSettings.ResumeLayout(false);
             this.tabPageVariables.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataVariables)).EndInit();
-            this.pSnippet.ResumeLayout(false);
-            this.pdsnippet.ResumeLayout(false);
             this.ContentMenuSnippet.ResumeLayout(false);
-            this.tabControlMainSeeting.ResumeLayout(false);
-            this.tSnippet.ResumeLayout(false);
-            this.tSnippet.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -506,9 +812,6 @@
         private System.Windows.Forms.TabPage tabPageVariables;
         private System.Windows.Forms.TabPage tabPageDataType;
         private System.Windows.Forms.DataGridView dataVariables;
-        private System.Windows.Forms.Panel pSnippet;
-        private System.Windows.Forms.Panel pdsnippet;
-        private System.Windows.Forms.Panel ptop;
         private System.Windows.Forms.ContextMenuStrip ContentMenuSnippet;
         private System.Windows.Forms.ToolStripMenuItem CMS新建模板;
         private System.Windows.Forms.ToolStripMenuItem CMS修改;
@@ -516,20 +819,46 @@
         private System.Windows.Forms.ToolStripMenuItem CMS启用;
         private System.Windows.Forms.ToolStripMenuItem CMS禁用;
         private System.Windows.Forms.ToolStripMenuItem CMS看生成代码;
-        private System.Windows.Forms.TreeView treeViewSnippet;
         private System.Windows.Forms.TabControl tabControlMainSeeting;
-        private System.Windows.Forms.TabPage tGenerator;
+        private System.Windows.Forms.TabPage tstartgenerator;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TreeView treesnippet;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TabPage tSnippet;
-        private System.Windows.Forms.CheckBox cIsFind;
-        private System.Windows.Forms.ComboBox cLanguage;
-        private System.Windows.Forms.CheckBox cIsEnabled;
-        private System.Windows.Forms.CheckBox cIsMerge;
-        private System.Windows.Forms.TextBox tFileName;
-        private System.Windows.Forms.TextBox tName;
+        private System.Windows.Forms.Panel pfrom;
+        private System.Windows.Forms.TabControl tform;
+        private System.Windows.Forms.TabPage tfrom;
+        private System.Windows.Forms.CheckBox SnippetIsSelectColumn;
+        private Kevin.SyntaxTextBox.SyntaxTextBox SnippetContext;
+        private System.Windows.Forms.CheckBox SnippetIsAppend;
+        private Common.TreeComboBox SnippetPath;
+        private System.Windows.Forms.Button btnsnippetsave;
+        private System.Windows.Forms.CheckBox SnippetAutoFind;
+        private System.Windows.Forms.CheckBox SnippetIsEnabled;
+        private System.Windows.Forms.CheckBox SnippetIsMergin;
+        private System.Windows.Forms.TextBox SnippetFileName;
+        private System.Windows.Forms.TextBox SnippetName;
         private System.Windows.Forms.Label lGeneratorFloder;
-        private System.Windows.Forms.Label lLanguage;
         private System.Windows.Forms.Label lFileName;
         private System.Windows.Forms.Label lName;
+        private System.Windows.Forms.TabPage tSQL;
+        private System.Windows.Forms.Panel ptopsnippet;
+        private System.Windows.Forms.DataGridView datasnippet;
+        private System.Windows.Forms.ToolStrip toolsnippet;
+        private System.Windows.Forms.ToolStripButton toolsnippetinsert;
+        private System.Windows.Forms.ToolStripButton toolsnippetupdate;
+        private System.Windows.Forms.ToolStripButton toolsnippetdelete;
+        private System.Windows.Forms.ToolStripButton toolsnippetrefresh;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tooldatasource;
+        private System.Windows.Forms.TreeView treeSource;
+        private System.Windows.Forms.ToolStripButton toolSourceClear;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.DataGridView dataSourceGrids;
+        private System.Windows.Forms.ToolStripButton toolGenerator;
+        private Kevin.SyntaxTextBox.SyntaxTextBox GeneratorText;
     }
 }
 

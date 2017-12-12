@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\DatabaseHelper.cs" />
+    <Compile Include="Database\Column.cs" />
     <Compile Include="Email\EmailHelper.cs" />
     <Compile Include="Extensions\DataTableExtenstions.cs" />
     <Compile Include="Extensions\EnumExtenstions.cs" />
