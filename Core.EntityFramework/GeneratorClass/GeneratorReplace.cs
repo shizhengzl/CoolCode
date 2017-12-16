@@ -17,5 +17,14 @@ namespace Core.EntityFramework.GeneratorClass
         public string Operation { get; set; }
 
         public bool UserDeclare { get; set; }
+
+        public ReplaceType ReplaceType { get; set; }
+    }
+
+    public enum ReplaceType
+    {
+        Snippet,
+        Tag,
+        Brackets
     }
 }

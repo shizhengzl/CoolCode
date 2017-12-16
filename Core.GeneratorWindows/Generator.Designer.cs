@@ -190,7 +190,7 @@
             this.GeneratorText.AcceptsTab = true;
             this.GeneratorText.CaseSensitive = false;
             this.GeneratorText.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
-    "Assemblies\\li9lxckp01\\csharp.xml";
+    "Assemblies\\rddzqc1a01\\csharp.xml";
             this.GeneratorText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GeneratorText.FilterAutoComplete = true;
             this.GeneratorText.Location = new System.Drawing.Point(0, 0);
@@ -377,7 +377,7 @@
             this.SnippetContext.AcceptsTab = true;
             this.SnippetContext.CaseSensitive = false;
             this.SnippetContext.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
-    "Assemblies\\li9lxckp01\\csharp.xml";
+    "Assemblies\\rddzqc1a01\\csharp.xml";
             this.SnippetContext.FilterAutoComplete = true;
             this.SnippetContext.Location = new System.Drawing.Point(23, 176);
             this.SnippetContext.MaxUndoRedoSteps = 50;
@@ -555,6 +555,7 @@
             this.toolsnippetupdate.Name = "toolsnippetupdate";
             this.toolsnippetupdate.Size = new System.Drawing.Size(71, 22);
             this.toolsnippetupdate.Text = "Update";
+            this.toolsnippetupdate.Click += new System.EventHandler(this.toolsnippetupdate_Click);
             // 
             // toolsnippetdelete
             // 
@@ -563,6 +564,7 @@
             this.toolsnippetdelete.Name = "toolsnippetdelete";
             this.toolsnippetdelete.Size = new System.Drawing.Size(65, 22);
             this.toolsnippetdelete.Text = "Delete";
+            this.toolsnippetdelete.Click += new System.EventHandler(this.toolsnippetdelete_Click);
             // 
             // toolsnippetrefresh
             // 

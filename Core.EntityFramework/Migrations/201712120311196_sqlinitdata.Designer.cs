@@ -13,7 +13,7 @@ namespace Core.EntityFramework.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201712101340007_sqlinitdata"; }
+            get { return "201712120311196_sqlinitdata"; }
         }
         
         string IMigrationMetadata.Source

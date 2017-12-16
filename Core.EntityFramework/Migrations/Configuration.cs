@@ -32,22 +32,27 @@ namespace Core.EntityFramework.Migrations
             context.GeneratorReplace.RemoveRange(context.GeneratorReplace.ToList());
             context.GeneratorSnippet.RemoveRange(context.GeneratorSnippet.ToList());
             context.GeneratorSQL.RemoveRange(context.GeneratorSQL.ToList());
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "DataBaseName" , ReplaceDeclare = "@DataBaseName" , UserDeclare = false });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "DataTableName", ReplaceDeclare = "@DataTableName", UserDeclare = false });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "ColumnName", ReplaceDeclare = "@ColumnName", UserDeclare = false });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "ColumnType", ReplaceDeclare = "@ColumnType", UserDeclare = false });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "SQLType", ReplaceDeclare = "@SQLType", UserDeclare = false });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "DBType", ReplaceDeclare = "@DBType", UserDeclare = false });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "ColumnDescription", ReplaceDeclare = "@ColumnDescription", UserDeclare = false });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "DataBaseName" , ReplaceDeclare = "@DataBaseName" , UserDeclare = false, ReplaceType= GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "TableName", ReplaceDeclare = "@TableName", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "ColumnName", ReplaceDeclare = "@ColumnName", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "CSharpType", ReplaceDeclare = "@CSharpType", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "SQLType", ReplaceDeclare = "@SQLType", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "SQLDBType", ReplaceDeclare = "@SQLDBType", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "ColumnDescription", ReplaceDeclare = "@ColumnDescription", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "Starts", ReplaceDeclare = "<%!", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "Ends", ReplaceDeclare = "!%>", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });
 
-            context.GeneratorSnippet.Add(new GeneratorClass.GeneratorSnippet() {  IsFloder = false,Name ="친경"});
+
+
+            context.GeneratorSnippet.Add(new GeneratorClass.GeneratorSnippet() {  IsFloder = false,Name ="친경" ,IsEnabled = true, Context="<%! public @CSharpType @ColumnName {get;set;} !%>"});
 
             context.GeneratorSQL.Add(new GeneratorClass.GeneratorSQL() {  Name="Columns", SQLContext= @" use [{0}]
-
+       DECLARE @databaseName VARCHAR(100)= '{0}'
       DECLARE @tableName VARCHAR(100)= '{1}'
       DECLARE @table TABLE
       (
       ID INT IDENTITY(1, 1) ,
+      DataBaseName Varchar(200),
       ObjectId INT ,
       TableName VARCHAR(100),
       ColumnName VARCHAR(200) ,
@@ -74,7 +79,9 @@ namespace Core.EntityFramework.Migrations
       )
 
       INSERT  INTO @table
-      ( ObjectId ,
+      ( 
+      DataBaseName,
+      ObjectId ,
       TableName,
       ColumnName ,
       ColumnDESCRIPTION ,
@@ -86,7 +93,7 @@ namespace Core.EntityFramework.Migrations
       Precision,
       Scale
       )
-      SELECT  cl.object_id ,@tableName,
+      SELECT @databaseName, cl.object_id ,@tableName,
       cl.name AS ColumnName ,
       ISNULL(CONVERT(VARCHAR(200), ep.value), '') AS Descripiton ,
       cl.is_identity AS IsIdentity ,

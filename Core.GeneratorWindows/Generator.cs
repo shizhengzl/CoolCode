@@ -72,14 +72,16 @@ namespace Core.GeneratorWindows
             if (tn.Text == "DataSource")
                 return;
             var dbname = (tn.Tag as TreeNode).Parent.Parent.Text;
-
-            var generatorsql = db.GeneratorSQL.Where(x => x.Name == "Columns").FirstOrDefault();
-            var dt = DatabaseHelper.ExecuteQuery(string.Format(generatorsql.SQLContext, dbname, tn.Text)).Tables[0];
-            var Columns = dt.ToList<Column>();
-
-            dataSourceGrids.DataSource = Columns;
+            dataSourceGrids.DataSource = LoadTableColumn(dbname, tn.Text); ;
             dataSourceGrids.AutoGenerateColumns = true;
             dataSourceGrids.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+        }
+
+        private List<Column> LoadTableColumn(string databasename, string tablename)
+        {
+            var generatorsql = db.GeneratorSQL.Where(x => x.Name == "Columns").FirstOrDefault();
+            var dt = DatabaseHelper.ExecuteQuery(string.Format(generatorsql.SQLContext, databasename, tablename)).Tables[0];
+            return dt.ToList<Column>();
         }
 
         private void InitTreeSource()
@@ -119,7 +121,7 @@ namespace Core.GeneratorWindows
         {
             treedb.Nodes.Clear();
             treedb.ImageList = imageListcollection;
-            TreeNode root = new TreeNode($"{db.DataBaseSetting.FirstOrDefault().Address}"); 
+            TreeNode root = new TreeNode($"{db.DataBaseSetting.FirstOrDefault().Address}");
             root.Tag = DBTypeClass.ServerAddress;
             SetTreeImages(root);
             string DbSQL = @"
@@ -134,8 +136,8 @@ PRINT @RESULT
 SELECT Name as DataBaseName FROM   sys.databases
 EXEC (@RESULT)";
 
-            DataSet Ds = DatabaseHelper.ExecuteQuery(DbSQL); 
-            var DataTableList = Ds.Tables[1].ToList<TableDescription>(); 
+            DataSet Ds = DatabaseHelper.ExecuteQuery(DbSQL);
+            var DataTableList = Ds.Tables[1].ToList<TableDescription>();
             var DataBaseList = Ds.Tables[0].ToList<DataBaseDescription>();
             foreach (var item in DataBaseList)
             {
@@ -160,9 +162,9 @@ EXEC (@RESULT)";
                 SetTreeImages(producttn);
                 dbnode.Nodes.Add(producttn);
                 foreach (var dt in dtlist)
-                { 
-                    TreeNode dtn = new TreeNode(dt.TableName); 
-                    
+                {
+                    TreeNode dtn = new TreeNode(dt.TableName);
+
 
                     switch (dt.Type.ToUpper().Trim())
                     {
@@ -185,12 +187,12 @@ EXEC (@RESULT)";
 
             treedb.Nodes.Add(root);
         }
-        
+
         private void SetTreeImages(TreeNode tn)
         {
             DBTypeClass dc = (DBTypeClass)tn.Tag;
 
-            switch(dc)
+            switch (dc)
             {
                 case DBTypeClass.ServerAddress:
                     tn.ImageIndex = tn.SelectedImageIndex = (int)ImageIndex.DataBaseAddress;
@@ -231,7 +233,7 @@ EXEC (@RESULT)";
             if (tn == null) return;
             foreach (TreeNode tnChild in tn.Nodes)
             {
-              
+
 
                 tnChild.Checked = Checked;
 
@@ -239,7 +241,7 @@ EXEC (@RESULT)";
 
             }
             TreeNode tnParent = tn;
-        } 
+        }
 
         private void SetNodeStyle(TreeNode Node)
         {
@@ -288,13 +290,19 @@ EXEC (@RESULT)";
                 {
                     if (treeSource.Nodes[0].Nodes.Find(e.Node.Text, true).Count() == 0)
                     {
-                        treeSource.Nodes[0].Nodes.Add(new TreeNode() { Name = e.Node.Text, Text = e.Node.Text,
-                            ImageIndex = (int)ImageIndex.Table,SelectedImageIndex=(int)ImageIndex.Table ,Tag = e.Node });
+                        treeSource.Nodes[0].Nodes.Add(new TreeNode()
+                        {
+                            Name = e.Node.Text,
+                            Text = e.Node.Text,
+                            ImageIndex = (int)ImageIndex.Table,
+                            SelectedImageIndex = (int)ImageIndex.Table,
+                            Tag = e.Node
+                        });
                     }
                 }
                 else
                 {
-                    if (treeSource.Nodes[0].Nodes.Find(e.Node.Text,true).Count() > 0)
+                    if (treeSource.Nodes[0].Nodes.Find(e.Node.Text, true).Count() > 0)
                     {
                         treeSource.Nodes[0].Nodes.Remove(treeSource.Nodes[0].Nodes.Find(e.Node.Text, true).FirstOrDefault());
                     }
@@ -312,7 +320,7 @@ EXEC (@RESULT)";
             var dt = replace.ToDataTable<GeneratorReplace>();
             dataVariables.DataSource = dt;
             dataVariables.AutoGenerateColumns = true;
-            dataVariables.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders; 
+            dataVariables.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
         }
 
 
@@ -390,7 +398,7 @@ EXEC (@RESULT)";
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("提示LoadComboTree" +  ex.Message);
+                MessageBox.Show("提示LoadComboTree" + ex.Message);
             }
         }
 
@@ -532,7 +540,7 @@ EXEC (@RESULT)";
             string context = SnippetContext.Text;
 
             var isupdate = db.GeneratorSnippet.FirstOrDefault(x => x.Name == name);
-            if(isupdate == null)
+            if (isupdate == null)
             {
                 isupdate = new GeneratorSnippet();
                 db.GeneratorSnippet.Add(isupdate);
@@ -596,7 +604,7 @@ EXEC (@RESULT)";
             SnippetAutoFind.Checked = data.AutoFind;
             SnippetIsMergin.Checked = data.IsMergin;
             SnippetIsEnabled.Checked = data.IsEnabled;
-            SnippetIsAppend .Checked = data.IsAppend;
+            SnippetIsAppend.Checked = data.IsAppend;
             SnippetName.Text = data.Name;
             SnippetFileName.Text = data.GeneratorFileName;
             SnippetPath.Text = data.GeneratorPath;
@@ -616,12 +624,13 @@ EXEC (@RESULT)";
             var list = db.GeneratorSnippet.OrderByDescending(x => x.IsEnabled);
 
             list.ToList().ForEach(x => allModel.Nodes.Add(
-                new TreeNode() {
+                new TreeNode()
+                {
                     Text = x.Name,
-                    ImageIndex = x.IsEnabled? (int)ImageIndex.Yes : (int)ImageIndex.Wrong,
+                    ImageIndex = x.IsEnabled ? (int)ImageIndex.Yes : (int)ImageIndex.Wrong,
                     SelectedImageIndex = x.IsEnabled ? (int)ImageIndex.Yes : (int)ImageIndex.Wrong,
                     Tag = x
-                }) );
+                }));
 
             treesnippet.ExpandAll();
         }
@@ -640,12 +649,61 @@ EXEC (@RESULT)";
             if (hasselectnode == null || hasselectnode.Text == "DataSource")
                 return;
 
-            
+            var tree = (treeSource.SelectedNode.Tag as TreeNode);
+            var dbname = tree.Parent.Parent.Text;
+            var columns = LoadTableColumn(dbname, tree.Text);
+
+            GeneratorText.Text = GeneratorCode(snippet, columns);
 
         }
 
-        #endregion
 
+        private string GeneratorCode(GeneratorSnippet gs, List<Column> columns)
+        {
+            var starts = db.GeneratorReplace.FirstOrDefault(x => x.ReplaceName == "Starts").ReplaceDeclare;
+            var ends = db.GeneratorReplace.FirstOrDefault(x => x.ReplaceName == "Ends").ReplaceDeclare;
+
+            var generatorCode = gs.Context;
+            int length = generatorCode.Length;
+            int startNumber = (length - generatorCode.Replace(starts, "").Length) / starts.Length;
+
+            var columnsnippet = db.GeneratorReplace.Where(x => x.ReplaceType == ReplaceType.Snippet).ToList();
+
+            for (int i = 0; i < startNumber; i++)
+            {
+                StringBuilder sb = new StringBuilder();
+                int startIndex = generatorCode.IndexOf(starts);
+                if (startIndex < 0)
+                    continue;
+                int lastIndex = generatorCode.IndexOf(ends);
+                string repleceContext = generatorCode.Substring(startIndex, lastIndex - startIndex + starts.Length);//.Replace(starts,string.Empty).Replace(ends,string.Empty);
+
+                StringBuilder sbt = new StringBuilder();
+
+                foreach (var item in columns)
+                {
+                    string csreplace = repleceContext;
+                    foreach (var cs in columnsnippet)
+                    { 
+                        if (csreplace.IndexOf(cs.ReplaceDeclare) > -1)
+                        {
+                            csreplace = csreplace.Replace(cs.ReplaceDeclare, item.GetValue(cs.ReplaceName).ToString());
+                           
+                        }
+                    } sbt.Append(csreplace);
+                }
+
+                generatorCode = generatorCode.Replace(repleceContext, sbt.ToString());
+            }
+
+            db.GeneratorReplace.ToList().ForEach(x => generatorCode = generatorCode.Replace(x.ReplaceDeclare, string.Empty));
+
+            return generatorCode;
+        }
+
+
+
+        #endregion
 
     }
 
@@ -669,11 +727,11 @@ EXEC (@RESULT)";
         Floder = 2,
         Table = 3,
         Refresh = 4,
-        Solution =  5, 
+        Solution = 5,
         Project = 6,
         Aspx = 7,
         Csharp = 8,
-        Config = 9 , 
+        Config = 9,
         JavaScript = 10,
         Yes = 11,
         Wrong = 12,
@@ -685,7 +743,7 @@ EXEC (@RESULT)";
     {
         public static string AssemblyPath = Assembly.GetExecutingAssembly().Location.GetFileDirectory();
 
-        public static string CSharpColor = AssemblyPath + "\\csharp.xml"; 
+        public static string CSharpColor = AssemblyPath + "\\csharp.xml";
     }
 
 }

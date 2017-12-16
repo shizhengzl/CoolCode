@@ -9,6 +9,8 @@ namespace Core.UsuallyCommon.Database
 {
     public class Column
     { 
+        public string DataBaseName { get; set; }
+
         /// <summary>
         /// 表名
         /// </summary>
@@ -100,6 +102,11 @@ namespace Core.UsuallyCommon.Database
         /// 位置
         /// </summary>
         public int TableIndex { get; set; }
+
+        public object GetValue(string propertyName)
+        {
+            return this.GetType().GetProperty(propertyName).GetValue(this, null);
+        }
 
     }
 }

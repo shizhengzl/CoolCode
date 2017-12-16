@@ -72,9 +72,9 @@
     <Compile Include="GeneratorClass\GeneratorReplace.cs" />
     <Compile Include="GeneratorClass\GeneratorSnippet.cs" />
     <Compile Include="GeneratorClass\GeneratorSQL.cs" />
-    <Compile Include="Migrations\201712101340007_sqlinitdata.cs" />
-    <Compile Include="Migrations\201712101340007_sqlinitdata.Designer.cs">
-      <DependentUpon>201712101340007_sqlinitdata.cs</DependentUpon>
+    <Compile Include="Migrations\201712120311196_sqlinitdata.cs" />
+    <Compile Include="Migrations\201712120311196_sqlinitdata.Designer.cs">
+      <DependentUpon>201712120311196_sqlinitdata.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,8 +94,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712101340007_sqlinitdata.resx">
-      <DependentUpon>201712101340007_sqlinitdata.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712120311196_sqlinitdata.resx">
+      <DependentUpon>201712120311196_sqlinitdata.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

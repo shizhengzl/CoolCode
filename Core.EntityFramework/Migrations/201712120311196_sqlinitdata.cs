@@ -12,6 +12,7 @@ namespace Core.EntityFramework.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
+                        DataBaseName = c.String(maxLength: 2147483647),
                         TableName = c.String(maxLength: 2147483647),
                         ColumnName = c.String(maxLength: 2147483647),
                         ColumnDescription = c.String(maxLength: 2147483647),
@@ -52,6 +53,7 @@ namespace Core.EntityFramework.Migrations
                         ReplaceDeclare = c.String(maxLength: 2147483647),
                         Operation = c.String(maxLength: 2147483647),
                         UserDeclare = c.Boolean(nullable: false),
+                        ReplaceType = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ReplaceName);
             
