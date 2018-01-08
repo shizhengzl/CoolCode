@@ -11,8 +11,10 @@ namespace Core.EntityFramework.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            //SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
+
             AutomaticMigrationDataLossAllowed = true;
-            SetSqlGenerator("System.Data.SQLite", new SQLiteMigrationSqlGenerator());
+            //SetSqlGenerator("System.Data.SQLite", new SQLiteMigrationSqlGenerator());
         }
 
         protected override void Seed(GeneratorContext context)
@@ -32,19 +34,21 @@ namespace Core.EntityFramework.Migrations
             context.GeneratorReplace.RemoveRange(context.GeneratorReplace.ToList());
             context.GeneratorSnippet.RemoveRange(context.GeneratorSnippet.ToList());
             context.GeneratorSQL.RemoveRange(context.GeneratorSQL.ToList());
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "DataBaseName" , ReplaceDeclare = "@DataBaseName" , UserDeclare = false, ReplaceType= GeneratorClass.ReplaceType.Snippet });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "TableName", ReplaceDeclare = "@TableName", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "ColumnName", ReplaceDeclare = "@ColumnName", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "CSharpType", ReplaceDeclare = "@CSharpType", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "SQLType", ReplaceDeclare = "@SQLType", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "SQLDBType", ReplaceDeclare = "@SQLDBType", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "ColumnDescription", ReplaceDeclare = "@ColumnDescription", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "Starts", ReplaceDeclare = "<%!", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "Ends", ReplaceDeclare = "!%>", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.NameSpace.ToString(), ReplaceDeclare = "@" + ReplaceVariable.NameSpace.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.DataBaseName.ToString(), ReplaceDeclare = "@" + ReplaceVariable.DataBaseName.ToString(), UserDeclare = false, ReplaceType= GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.TableName.ToString(), ReplaceDeclare = "@" + ReplaceVariable.TableName.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.ColumnName.ToString(), ReplaceDeclare = "@" + ReplaceVariable.ColumnName.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.CSharpType.ToString(), ReplaceDeclare = "@" + ReplaceVariable.CSharpType.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.SQLType.ToString(), ReplaceDeclare = "@" + ReplaceVariable.SQLType.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.SQLDBType.ToString(), ReplaceDeclare = "@" + ReplaceVariable.SQLDBType.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.ColumnDescription.ToString(), ReplaceDeclare = "@" + ReplaceVariable.ColumnDescription.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Starts.ToString(), ReplaceDeclare = "<%!", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Ends.ToString(), ReplaceDeclare = "!%>", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });
 
 
 
-            context.GeneratorSnippet.Add(new GeneratorClass.GeneratorSnippet() {  IsFloder = false,Name ="친경" ,IsEnabled = true, Context="<%! public @CSharpType @ColumnName {get;set;} !%>"});
+            context.GeneratorSnippet.Add(new GeneratorClass.GeneratorSnippet() {  IsFloder = false,Name ="친경" ,IsEnabled = true, Context= "namespace @NameSpaces { using System; public class @TableName { <%!  public @CSharpType @ColumnName {get;set;} !%> }}" });
 
             context.GeneratorSQL.Add(new GeneratorClass.GeneratorSQL() {  Name="Columns", SQLContext= @" use [{0}]
        DECLARE @databaseName VARCHAR(100)= '{0}'

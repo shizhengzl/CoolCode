@@ -22,7 +22,7 @@
 
   <!--The Commands section is where commands, menus, and menu groups are defined.
       This section uses a Guid to identify the package that provides the command defined inside it. -->
-  <Commands package="guidcdGeneratorPackage">
+  <Commands package="guidGeneratorToolsPackage">
     <!-- Inside this section we have different sub-sections: one for the menus, another
     for the menu groups, one for the buttons (the actual commands), one for the combos
     and the last one for the bitmaps used. Each element is identified by a command id that
@@ -36,7 +36,7 @@
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
     <Groups>
-      <Group guid="guidcdGeneratorPackageCmdSet" id="MyMenuGroup" priority="0x0600">
+      <Group guid="guidGeneratorToolsPackageCmdSet" id="MyMenuGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
       </Group>
     </Groups>
@@ -52,13 +52,14 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidcdGeneratorPackageCmdSet" id="cdGeneratorId" priority="0x0100" type="Button">
-        <Parent guid="guidcdGeneratorPackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages" id="bmpPic1" />
+      <Button guid="guidGeneratorToolsPackageCmdSet" id="GeneratorToolsId" priority="0x0100"  type="Button" >
+        <Parent guid="guidGeneratorToolsPackageCmdSet" id="MyMenuGroup" />
+        <Icon guid="guidImages" id="jfms" />
         <Strings>
-          <ButtonText>Generator Code</ButtonText>
+          <ButtonText>Code GeneratorTools</ButtonText>
         </Strings>
       </Button>
+      
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -68,27 +69,28 @@
             bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
             inside a button definition. An important aspect of this declaration is that the element id
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
-      <Bitmap guid="guidImages" href="Resources\cdGenerator.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
+      <Bitmap guid="guidImages" href="Resources\Images.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough,jfms"/>
     </Bitmaps>
   </Commands>
 
   <Symbols>
     <!-- This is the package guid. -->
-    <GuidSymbol name="guidcdGeneratorPackage" value="{f9ef2470-3ab4-4231-a791-6d1dbbbba919}" />
+    <GuidSymbol name="guidGeneratorToolsPackage" value="{66f8fb4f-8605-4a97-9be1-5ddbcc20f873}" />
 
     <!-- This is the guid used to group the menu commands together -->
-    <GuidSymbol name="guidcdGeneratorPackageCmdSet" value="{8fd5de3c-496c-4390-b4de-65546a2879da}">
+    <GuidSymbol name="guidGeneratorToolsPackageCmdSet" value="{466ec8a4-2821-4ef4-b516-bab2e8867207}">
       <IDSymbol name="MyMenuGroup" value="0x1020" />
-      <IDSymbol name="cdGeneratorId" value="0x0100" />
+      <IDSymbol name="GeneratorToolsId" value="0x0100" />
     </GuidSymbol>
 
-    <GuidSymbol name="guidImages" value="{9acd463d-9ca4-403f-8ba4-e939132a5b18}" >
+    <GuidSymbol name="guidImages" value="{274594f9-5291-4d1e-87f7-b3fd28b6dd41}" >
       <IDSymbol name="bmpPic1" value="1" />
       <IDSymbol name="bmpPic2" value="2" />
       <IDSymbol name="bmpPicSearch" value="3" />
       <IDSymbol name="bmpPicX" value="4" />
       <IDSymbol name="bmpPicArrows" value="5" />
       <IDSymbol name="bmpPicStrikethrough" value="6" />
+      <IDSymbol name="jfms" value="7" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

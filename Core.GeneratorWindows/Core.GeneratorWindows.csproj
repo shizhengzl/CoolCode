@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Core.GeneratorWindows</RootNamespace>
     <AssemblyName>Core.GeneratorWindows</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
@@ -197,6 +197,9 @@
     <Content Include="SyntaxTextBox\obj\Debug\SyntaxTextBox.dll" />
     <Content Include="SyntaxTextBox\obj\Debug\SyntaxTextBox.pdb" />
     <Content Include="SyntaxTextBox\SyntaxTextBox.csproj" />
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\bm.png" />
   </ItemGroup>
   <ItemGroup>

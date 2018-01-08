@@ -50,7 +50,10 @@
     <Compile Include="Extensions\EnumExtenstions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Http\HttpHelper.cs" />
+    <Compile Include="IoHelper\DirectoryFileHelper.cs" />
+    <Compile Include="IoHelper\IoHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchHelper\SearchHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NuGet.exe" />
@@ -58,5 +61,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

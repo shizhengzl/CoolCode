@@ -18,6 +18,16 @@ namespace Core.GeneratorWindows
         {
             InitializeComponent();
             this.comLoginMethod.SelectedIndex = 1;
+
+            var settings = db.DataBaseSetting.FirstOrDefault();
+            if (settings != null)
+            {
+                txtServerName.Text = settings.Address;
+                txtLoginName.Text = settings.Account;
+                txtPassword.Text = settings.Password;
+                chk_remberer.Checked = settings.IsRemeber;
+                comLoginMethod.SelectedIndex = (int)settings.AuthenticationType;
+            }
         }
 
         private void comLoginMethod_SelectedIndexChanged(object sender, EventArgs e)
@@ -31,7 +41,7 @@ namespace Core.GeneratorWindows
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 string addres = txtServerName.Text.Trim();
                 string account = txtLoginName.Text.Trim();
                 string password = txtPassword.Text.Trim();
@@ -43,18 +53,30 @@ namespace Core.GeneratorWindows
                     MessageBox.Show("请输入完整信息!");
                     return;
                 }
-                 
-                db.DataBaseSetting.Add(new DataBaseSetting()
+
+                var settings = db.DataBaseSetting.FirstOrDefault(x => x.Address == addres);
+
+                if (settings == null)
                 {
-                    Account = account,
-                    Password = password,
-                    Address = addres,
-                    IsRemeber = chk_remberer.Checked,
-                    AuthenticationType = comLoginMethod.SelectedIndex.ToString().ToEnum<AuthenticationType>()
-                });
-
+                    settings = new DataBaseSetting()
+                    {
+                        Account = account,
+                        Password = password,
+                        Address = addres,
+                        IsRemeber = chk_remberer.Checked,
+                        AuthenticationType = comLoginMethod.SelectedIndex.ToString().ToEnum<AuthenticationType>()
+                    };
+                    db.DataBaseSetting.Add(settings);
+                }
+                else
+                {
+                    settings.Account = account;
+                    settings.Password = password;
+                    settings.Address = addres;
+                    settings.IsRemeber = chk_remberer.Checked;
+                    settings.AuthenticationType = comLoginMethod.SelectedIndex.ToString().ToEnum<AuthenticationType>();
+                }
                 db.SaveChanges();
-
                 DialogResult = DialogResult.OK;
 
             }
@@ -67,6 +89,32 @@ namespace Core.GeneratorWindows
         private void btnCanel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void txtServerName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13 && !string.IsNullOrEmpty(((TextBox)sender).Text.Trim()))
+            {
+                txtLoginName.Focus();
+                txtLoginName.SelectAll();
+            }
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13 && !string.IsNullOrEmpty(((TextBox)sender).Text.Trim()))
+            {
+                btnLogin_Click(null, null);
+            }
+        }
+
+        private void txtLoginName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13 && !string.IsNullOrEmpty(((TextBox)sender).Text.Trim()))
+            {
+                txtPassword.Focus();
+                txtPassword.SelectAll();
+            }
         }
     }
 }

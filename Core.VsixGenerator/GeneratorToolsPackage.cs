@@ -1,5 +1,5 @@
 ﻿//------------------------------------------------------------------------------
-// <copyright file="cdGeneratorPackage.cs" company="Company">
+// <copyright file="GeneratorToolsPackage.cs" company="Company">
 //     Copyright (c) Company.  All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
 
-namespace VsixGenerator
+namespace Core.VsixGenerator
 {
     /// <summary>
     /// This is the class that implements the package exposed by this assembly.
@@ -38,19 +38,19 @@ namespace VsixGenerator
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [Guid(cdGeneratorPackage.PackageGuidString)]
+    [Guid(GeneratorToolsPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    public sealed class cdGeneratorPackage : Package
+    public sealed class GeneratorToolsPackage : Package
     {
         /// <summary>
-        /// cdGeneratorPackage GUID string.
+        /// GeneratorToolsPackage GUID string.
         /// </summary>
-        public const string PackageGuidString = "f9ef2470-3ab4-4231-a791-6d1dbbbba919";
+        public const string PackageGuidString = "66f8fb4f-8605-4a97-9be1-5ddbcc20f873";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="cdGenerator"/> class.
+        /// Initializes a new instance of the <see cref="GeneratorTools"/> class.
         /// </summary>
-        public cdGeneratorPackage()
+        public GeneratorToolsPackage()
         {
             // Inside this method you can place any initialization code that does not require
             // any Visual Studio service because at this point the package object is created but
@@ -66,7 +66,7 @@ namespace VsixGenerator
         /// </summary>
         protected override void Initialize()
         {
-            cdGenerator.Initialize(this);
+            GeneratorTools.Initialize(this);
             base.Initialize();
         }
 

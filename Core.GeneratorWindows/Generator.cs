@@ -21,6 +21,9 @@ namespace Core.GeneratorWindows
 {
     public partial class Geneartor : Form
     {
+
+        public string DefaultGeneratorPath = "C:\\GeneratorFile";
+
         public GeneratorContext db { get; set; }
 
 
@@ -46,8 +49,8 @@ namespace Core.GeneratorWindows
             LoadGeneartorVariable();
             InitTreeSource();
             ResreshSnippet();
-            if (!(db.DataBaseSetting.Any() && db.DataBaseSetting.FirstOrDefault().IsRemeber))
-            {
+            //if (!(db.DataBaseSetting.Any() && db.DataBaseSetting.FirstOrDefault().IsRemeber))
+            //{
                 // to do login
                 GeneratorLogin gLogin = new GeneratorLogin();
                 gLogin.ShowDialog();
@@ -57,7 +60,7 @@ namespace Core.GeneratorWindows
                     Close();
                     return;
                 }
-            }
+            //}
 
             var settings = db.DataBaseSetting.FirstOrDefault();
             // set connection
@@ -110,7 +113,92 @@ namespace Core.GeneratorWindows
 
         private void toolGenerator_Click(object sender, EventArgs e)
         {
+            if(treeSource.Nodes[0].Nodes.Count < 0)
+            {
+                GeneratorText.Text = "请选择数据源.";
+                return;
+            }
 
+            if(treesnippet.Nodes[0].Nodes.Count < 0)
+            {
+                GeneratorText.Text = "请创建模版.";
+                return;
+            }
+
+            var sources = treeSource.Nodes[0].Nodes;
+
+            var snippets = treesnippet.Nodes[0].Nodes;
+
+            bool IsExists = File.Exists(DefaultGeneratorPath);
+            if (!IsExists)
+                Directory.CreateDirectory(DefaultGeneratorPath); 
+            foreach (var source in sources)
+            {
+                var dbname = ((source as TreeNode).Tag as TreeNode).Parent.Parent.Text;
+                var tablename = ((source as TreeNode).Tag as TreeNode).Text;
+                var columns = LoadTableColumn(dbname, tablename);
+                foreach (var sp in snippets)
+                {
+                    var snippet = (GeneratorSnippet)((sp as TreeNode).Tag);
+                    if (!snippet.IsEnabled)
+                        continue;
+
+
+
+                    bool isdefalepath = string.IsNullOrEmpty(snippet.GeneratorPath);
+                    var tabledeclare = db.GeneratorReplace.FirstOrDefault(x => x.ReplaceName == ReplaceVariable.TableName.ToString()).ReplaceDeclare;
+                    string filename = string.IsNullOrEmpty(snippet.GeneratorFileName) ? (tablename + ".cs") : snippet.GeneratorFileName.Replace(tabledeclare, tablename);
+                    string projectPath = VsProjectPath + "\\" + snippet.ProjectName;
+                    string namespaces = string.IsNullOrEmpty(snippet.ProjectName) ? string.Empty :  projectPath.GetFileFirstDirectory();
+                    string generatorFloder = isdefalepath ?
+                        DefaultGeneratorPath :
+                        (VsProjectPath + snippet.GeneratorPath);
+
+                    var variablesnamespaces = db.GeneratorReplace.FirstOrDefault(x => x.ReplaceName == ReplaceVariable.NameSpace.ToString()).ReplaceDeclare;
+                    var variablestablename = db.GeneratorReplace.FirstOrDefault(x => x.ReplaceName == ReplaceVariable.TableName.ToString()).ReplaceDeclare;
+
+                     
+                    #region 工程选项
+                    ProjectItem projitem = null;
+                    Project proj = null;
+                    try
+                    {
+                        projitem = (ProjectItem)ApplicationVsHelper.GetProjItemByUrl(VsProjectPath + snippet.ProjectName);
+                    }
+                    catch
+                    {
+                        proj = (Project)ApplicationVsHelper.GetProjItemByUrl(VsProjectPath + snippet.ProjectName);
+                    }
+                    #endregion
+
+                    string code = GeneratorCode(snippet, columns);
+                    code = code.Replace(variablesnamespaces, namespaces);
+                    code = code.Replace(variablestablename, tablename);
+                    db.GeneratorReplace.ToList().ForEach(x => code = code.Replace(x.ReplaceDeclare, string.Empty));
+
+                    string filefullpath = generatorFloder + "\\" + filename;
+                    bool isexists = DirectoryFileHelper.IsFindFile(generatorFloder, filename);
+                    if (!isexists)
+                    {
+                        if (!string.IsNullOrEmpty(snippet.ProjectName))
+                            ApplicationVsHelper.CheckOut(projectPath);
+                        IoHelper.CreateFile(filefullpath, code);
+                        if (proj == null)
+                            projitem.SubProject.ProjectItems.AddFromFile(filefullpath);
+                        else
+                            proj.ProjectItems.AddFromFile(filefullpath);
+                    }
+                    else
+                    {
+                        if (!isdefalepath)
+                            ApplicationVsHelper.CheckOut(filefullpath);
+                        IoHelper.FileOverWrite(filefullpath, code);
+                    }
+
+                    ApplicationVsHelper.Open(filefullpath);
+                    ApplicationVsHelper.EditFormatDocument(filefullpath);
+                } 
+            } 
         }
         #endregion
 
@@ -316,6 +404,7 @@ EXEC (@RESULT)";
 
         public void LoadGeneartorVariable()
         {
+            db = new GeneratorContext();
             var replace = db.GeneratorReplace.OrderBy(x => x.ReplaceName).ToList();
             var dt = replace.ToDataTable<GeneratorReplace>();
             dataVariables.DataSource = dt;
@@ -328,7 +417,7 @@ EXEC (@RESULT)";
         #endregion
 
         #region tree 
-        private void treeSolution_DragDrop(object sender, DragEventArgs e)
+        private void SnippetPath_DropDown(object sender, EventArgs e)
         {
             try
             {
@@ -364,8 +453,8 @@ EXEC (@RESULT)";
                             bool isFloder = item.SubProject != null && item.SubProject.ProjectItems != null;
                             TreeNode tn = new TreeNode();
                             tn.Text = item.SubProject == null ? item.Name : item.SubProject.Name;
-                            tn.ToolTipText = item.SubProject.UniqueName.Replace("..\\", "");
-                            tn.Tag = item.SubProject.UniqueName.Replace("..\\", "");//.Replace("\\" + item.SubProject.Name + ".csproj", "");
+                            tn.ToolTipText = item.SubProject.UniqueName.GetFileDirectory();
+                            tn.Tag = item.SubProject.UniqueName;//.Replace("\\" + item.SubProject.Name + ".csproj", "");
                             tn.ImageIndex = tn.SelectedImageIndex = isFloder ? (int)ImageIndex.Floder : (int)ImageIndex.Project;
                             //string floder 
                             string floder = item.SubProject.FullName.Replace("\\" + item.SubProject.Name + ".csproj", "");
@@ -379,7 +468,7 @@ EXEC (@RESULT)";
                     else
                     {
                         chldNode.Text = project.Name;
-                        chldNode.ToolTipText = project.UniqueName.Replace("..\\", "");
+                        chldNode.ToolTipText = project.UniqueName.GetFileDirectory();
                         chldNode.Tag = project.UniqueName.Replace("..\\", ""); // tag->proj 
                         chldNode.ImageIndex = chldNode.SelectedImageIndex = (int)ImageIndex.Project;
 
@@ -412,8 +501,8 @@ EXEC (@RESULT)";
                 bool isFloder = item.SubProject != null && item.SubProject.ProjectItems != null;
                 TreeNode tn = new TreeNode();
                 tn.Text = item.SubProject == null ? item.Name : item.SubProject.Name;
-                tn.ToolTipText = item.SubProject.UniqueName.Replace("..\\", "");
-                tn.Tag = item.SubProject.UniqueName.Replace("..\\", "");//.Replace("\\" + item.SubProject.Name + ".csproj", "");
+                tn.ToolTipText = item.SubProject.UniqueName.GetFileDirectory();
+                tn.Tag = item.SubProject.UniqueName;//.Replace("\\" + item.SubProject.Name + ".csproj", "");
                 tn.ImageIndex = tn.SelectedImageIndex = isFloder ? (int)ImageIndex.Floder : (int)ImageIndex.Project;
 
                 //string floder 
@@ -443,8 +532,8 @@ EXEC (@RESULT)";
 
                     TreeNode chldNode = new TreeNode();
                     chldNode.Text = chlFile.Name;
-                    chldNode.ToolTipText = node.ToolTipText;
-                    chldNode.Tag = chlFile.FullName.Replace(VsProjectPath, "");
+                    chldNode.ToolTipText = chlFile.FullName.Replace(VsProjectPath, string.Empty);
+                    chldNode.Tag = node.Tag;
                     chldNode.ImageIndex = this.IsFileReturnFlag(chlFile.Extension);
                     chldNode.SelectedImageIndex = chldNode.ImageIndex;
                     node.Nodes.Add(chldNode);
@@ -453,11 +542,10 @@ EXEC (@RESULT)";
                 foreach (DirectoryInfo chldFolder in chldFolders)
                 {
                     TreeNode chldNode = new TreeNode();
-                    chldNode.ToolTipText = node.ToolTipText;
                     chldNode.ImageIndex = 2;
-                    chldNode.Tag = chldFolder.FullName.Replace(VsProjectPath, "");
+                    chldNode.Tag = node.Tag; //chldFolder.FullName.Replace(VsProjectPath, "");
                     chldNode.Text = chldFolder.Name;
-                    chldNode.ToolTipText = node.ToolTipText;
+                    chldNode.ToolTipText = chldFolder.FullName.Replace(VsProjectPath,string.Empty);
                     node.Nodes.Add(chldNode);
                     GetFiles(chldFolder.FullName, chldNode);
                 }
@@ -526,9 +614,13 @@ EXEC (@RESULT)";
 
         private void btnsnippetsave_Click(object sender, EventArgs e)
         {
+            bool isSelect = SnippetPath.SelectedNode != null;
             var name = SnippetName.Text.Trim();
             var filename = SnippetFileName.Text.Trim();
-            var filepath = SnippetPath.Text.Trim();
+
+            var filepath = isSelect ?  SnippetPath.SelectedNode.ToolTipText.ToStringExtension() : string.Empty;
+            string projectname = isSelect ? SnippetPath.SelectedNode.Tag.ToStringExtension() : string.Empty;
+
 
             bool ismergin = SnippetIsMergin.Checked;
             bool isappend = SnippetIsAppend.Checked;
@@ -552,7 +644,8 @@ EXEC (@RESULT)";
             isupdate.IsAppend = isappend;
             isupdate.Name = name;
             isupdate.GeneratorFileName = filename;
-            isupdate.GeneratorPath = filepath;
+            isupdate.GeneratorPath = isupdate == null ? filepath : (isSelect ? filepath : isupdate.GeneratorPath);
+            isupdate.ProjectName = isupdate == null ? projectname : (isSelect ? projectname : isupdate.ProjectName );
             isupdate.Context = context;
             isupdate.IsSelectColumn = isselectcolumn;
             db.SaveChanges();
@@ -653,7 +746,20 @@ EXEC (@RESULT)";
             var dbname = tree.Parent.Parent.Text;
             var columns = LoadTableColumn(dbname, tree.Text);
 
-            GeneratorText.Text = GeneratorCode(snippet, columns);
+
+            var generatorCode = GeneratorCode(snippet, columns);
+
+            string projectPath = VsProjectPath + "\\" + snippet.ProjectName;
+            string namespaces = string.IsNullOrEmpty(snippet.ProjectName) ? string.Empty : projectPath.GetFileFirstDirectory();
+
+            var variablesnamespaces = db.GeneratorReplace.FirstOrDefault(x => x.ReplaceName == ReplaceVariable.NameSpace.ToString()).ReplaceDeclare;
+            var variablestablename = db.GeneratorReplace.FirstOrDefault(x => x.ReplaceName == ReplaceVariable.TableName.ToString()).ReplaceDeclare;
+
+            generatorCode = generatorCode.Replace(variablesnamespaces, namespaces);
+            generatorCode = generatorCode.Replace(variablestablename, tree.Text); 
+            db.GeneratorReplace.ToList().ForEach(x => generatorCode = generatorCode.Replace(x.ReplaceDeclare, string.Empty));
+
+            GeneratorText.Text = generatorCode;
 
         }
 
@@ -684,26 +790,26 @@ EXEC (@RESULT)";
                 {
                     string csreplace = repleceContext;
                     foreach (var cs in columnsnippet)
-                    { 
+                    {
                         if (csreplace.IndexOf(cs.ReplaceDeclare) > -1)
                         {
                             csreplace = csreplace.Replace(cs.ReplaceDeclare, item.GetValue(cs.ReplaceName).ToString());
-                           
+
                         }
-                    } sbt.Append(csreplace);
+                    }
+                    sbt.Append(csreplace);
                 }
 
                 generatorCode = generatorCode.Replace(repleceContext, sbt.ToString());
-            }
-
-            db.GeneratorReplace.ToList().ForEach(x => generatorCode = generatorCode.Replace(x.ReplaceDeclare, string.Empty));
-
+            } 
+           
             return generatorCode;
         }
 
 
 
         #endregion
+
 
     }
 

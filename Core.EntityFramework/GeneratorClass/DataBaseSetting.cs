@@ -28,4 +28,18 @@ namespace Core.EntityFramework
         Windows = 1
     }
 
+
+    public enum ReplaceVariable
+    {
+        NameSpace = 0,
+        DataBaseName  = 1,
+        TableName = 2,
+        ColumnName = 3,
+        CSharpType = 4,
+        SQLType = 5,
+        SQLDBType = 6,
+        ColumnDescription = 7,
+        Starts = 8,
+        Ends = 9
+    }
 }

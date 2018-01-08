@@ -32,6 +32,8 @@ namespace Core.EntityFramework.GeneratorClass
 
         public string Context { get; set; }
 
+        public string ProjectName { get; set; }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }

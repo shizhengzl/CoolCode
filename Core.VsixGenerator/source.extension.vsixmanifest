@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="VsixGenerator.Company.656a82a2-3199-4831-9427-bfa01708d239" Version="1.0" Language="en-US" Publisher="Company" />
-    <DisplayName>VsixGenerator</DisplayName>
+    <Identity Id="Core.VsixGenerator.Company.7e483f82-a7d2-406a-b20d-8fd3ff3b9184" Version="1.0" Language="en-US" Publisher="Company" />
+    <DisplayName>Core.VsixGenerator</DisplayName>
     <Description>Empty VSIX Project.</Description>
   </Metadata>
   <Installation>

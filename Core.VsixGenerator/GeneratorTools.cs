@@ -1,5 +1,5 @@
 ﻿//------------------------------------------------------------------------------
-// <copyright file="cdGenerator.cs" company="Company">
+// <copyright file="GeneratorTools.cs" company="Company">
 //     Copyright (c) Company.  All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------------
@@ -12,13 +12,14 @@ using Microsoft.VisualStudio.Shell.Interop;
 using EnvDTE80;
 using EnvDTE;
 using Core.GeneratorWindows;
+using System.Windows.Forms;
 
-namespace VsixGenerator
+namespace Core.VsixGenerator
 {
     /// <summary>
     /// Command handler
     /// </summary>
-    internal sealed class cdGenerator
+    internal sealed class GeneratorTools
     {
         /// <summary>
         /// Command ID.
@@ -28,7 +29,7 @@ namespace VsixGenerator
         /// <summary>
         /// Command menu group (command set GUID).
         /// </summary>
-        public static readonly Guid CommandSet = new Guid("8fd5de3c-496c-4390-b4de-65546a2879da");
+        public static readonly Guid CommandSet = new Guid("466ec8a4-2821-4ef4-b516-bab2e8867207");
 
         /// <summary>
         /// VS Package that provides this command, not null.
@@ -36,11 +37,11 @@ namespace VsixGenerator
         private readonly Package package;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="cdGenerator"/> class.
+        /// Initializes a new instance of the <see cref="GeneratorTools"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        private cdGenerator(Package package)
+        private GeneratorTools(Package package)
         {
             if (package == null)
             {
@@ -61,7 +62,7 @@ namespace VsixGenerator
         /// <summary>
         /// Gets the instance of the command.
         /// </summary>
-        public static cdGenerator Instance
+        public static GeneratorTools Instance
         {
             get;
             private set;
@@ -84,7 +85,7 @@ namespace VsixGenerator
         /// <param name="package">Owner package, not null.</param>
         public static void Initialize(Package package)
         {
-            Instance = new cdGenerator(package);
+            Instance = new GeneratorTools(package);
         }
 
         /// <summary>
@@ -97,10 +98,17 @@ namespace VsixGenerator
         private void MenuItemCallback(object sender, EventArgs e)
         {
             string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "cdGenerator";
-
             DTE2 dte = (DTE2)this.ServiceProvider.GetService(typeof(DTE));
-            Geneartor generator = new Geneartor(dte);
+            try
+            {
+                var s = new Geneartor(dte);
+                s.Show();
+            }
+            catch (Exception)
+            { 
+
+            }
+           
         }
     }
 }

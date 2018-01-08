@@ -23,8 +23,8 @@ namespace Core.GeneratorWindows
         {
             try
             {
-                //_applicationObject.ExecuteCommand("Edit.FormatDocument", name);
-                _applicationObject.ExecuteCommand("编辑.设置文档的格式");//,name);
+               // _applicationObject.ExecuteCommand("Edit.FormatDocument", name);
+                _applicationObject.ExecuteCommand("编辑.设置文档的格式");
                 _applicationObject.ExecuteCommand("编辑.折叠到定义");
                 _applicationObject.ActiveDocument.Save();
             }

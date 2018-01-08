@@ -73,6 +73,7 @@ namespace Core.EntityFramework.Migrations
                         AppendLocation = c.String(maxLength: 2147483647),
                         IsSelectColumn = c.Boolean(nullable: false),
                         Context = c.String(maxLength: 2147483647),
+                        ProjectName = c.String(maxLength: 2147483647),
                         FatherId = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

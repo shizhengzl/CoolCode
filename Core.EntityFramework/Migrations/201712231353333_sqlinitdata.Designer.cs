@@ -7,13 +7,13 @@ namespace Core.EntityFramework.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class sqlite : IMigrationMetadata
+    public sealed partial class sqlinitdata : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(sqlite));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(sqlinitdata));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712100412491_sqlite"; }
+            get { return "201712231353333_sqlinitdata"; }
         }
         
         string IMigrationMetadata.Source

@@ -140,7 +140,7 @@
             this.tabPageGenerator.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageGenerator.Size = new System.Drawing.Size(1342, 664);
             this.tabPageGenerator.TabIndex = 0;
-            this.tabPageGenerator.Text = "Generator";
+            this.tabPageGenerator.Text = "Code Generator";
             this.tabPageGenerator.UseVisualStyleBackColor = true;
             // 
             // pGeneratorMain
@@ -190,7 +190,7 @@
             this.GeneratorText.AcceptsTab = true;
             this.GeneratorText.CaseSensitive = false;
             this.GeneratorText.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
-    "Assemblies\\rddzqc1a01\\csharp.xml";
+    "Assemblies\\1c_forav01\\csharp.xml";
             this.GeneratorText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GeneratorText.FilterAutoComplete = true;
             this.GeneratorText.Location = new System.Drawing.Point(0, 0);
@@ -212,7 +212,7 @@
             // 
             // dataSourceGrids
             // 
-            this.dataSourceGrids.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dataSourceGrids.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dataSourceGrids.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataSourceGrids.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataSourceGrids.Location = new System.Drawing.Point(0, 0);
@@ -377,7 +377,7 @@
             this.SnippetContext.AcceptsTab = true;
             this.SnippetContext.CaseSensitive = false;
             this.SnippetContext.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
-    "Assemblies\\rddzqc1a01\\csharp.xml";
+    "Assemblies\\1c_forav01\\csharp.xml";
             this.SnippetContext.FilterAutoComplete = true;
             this.SnippetContext.Location = new System.Drawing.Point(23, 176);
             this.SnippetContext.MaxUndoRedoSteps = 50;
@@ -405,6 +405,7 @@
             this.SnippetPath.Name = "SnippetPath";
             this.SnippetPath.Size = new System.Drawing.Size(377, 21);
             this.SnippetPath.TabIndex = 47;
+            this.SnippetPath.DropDown += new System.EventHandler(this.SnippetPath_DropDown);
             // 
             // btnsnippetsave
             // 
@@ -759,7 +760,7 @@
             this.Controls.Add(this.tabMain);
             this.Name = "Geneartor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Generator";
+            this.Text = "Code Generator";
             this.tabMain.ResumeLayout(false);
             this.tabPageGenerator.ResumeLayout(false);
             this.pGeneratorMain.ResumeLayout(false);

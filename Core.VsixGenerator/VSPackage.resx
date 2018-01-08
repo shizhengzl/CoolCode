@@ -1,17 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+    VS SDK Notes: This resx file contains the resources that will be consumed from your package by Visual Studio.
+    For example, Visual Studio will attempt to load resource '400' from this resource stream when it needs to
+    load your package's icon. Because Visual Studio will always look in the VSPackage.resources stream first for
+    resources it needs, you should put additional resources that Visual Studio will load directly into this resx
+    file.
+
+    Resources that you would like to access directly from your package in a strong-typed fashion should be stored
+    in Resources.resx or another resx file.
+-->
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +36,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,10 +127,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Target" xml:space="preserve">
-    <value>H4sIAAAAAAAEAM1a3W7bNhS+H7B3EHTdWkk6DF1gt0iTeDAWJ1nUdte0dKwIlUiBpNIY6Jv1Yo+0V9jRHyVRsiXZilvkJuLPx/PPc3j83/d/p++fw8B4Ai58Rmfm6eTENIA6zPWpNzNjuX791nz/7tdfptdu+Gx8Lta9SdbhTipm5qOU0bllCecRQiImoe9wJthaThwWWsRl1tnJyR/W6akFCGEilmFMH2Iq/RDSD/y8ZNSBSMYkWDIXApGP44ydohq3JAQREQdm5iXjMLnG7XIz5zj8lfEvpnER+ARpsSFYmwahlEkikdLzTwJsyRn17AgHSPBxEwGuW5NAQM7Bebm8LzMnZwkzVrmxgHJiIVk4EPD0TS4dS9++l4xNJT2UXyaohOtUhjPzikjygaBUQErUsWnoZ55fBjxZ3y7pibb/ldG26pWyFDSo5A+XxYGMOcwoxJKT4JVxH68C3/kLNh/ZF6AzGgdBlXKkHedqAzh0z1kEXG4eYJ3zc+G6HIQwDau+2dJ3q736xoxZtJJUHEvyfAPUk4/oDGdvTWPuP4NbjORm84n66CG4SfIYP2+RdLIKQM1buw92HIbmv+Ng/LfXwbvPuSdCoDLcFz/oIpaPgAbgpPaTHKaORHectE0PFNlCPEAIK+AF8AfGAiC0A2hqlea/0yn+BAqcSMYfIAowygz2CgVwGaDUJzreD/eSnI7kY7in1DYf21vyw6/ACQjfdf44tnwXJYpLQ+8Ln4Q3E9e4eimrtqkfRSBHs+oc74db9cIdbswLFQ8XVP7+W4usK+KxkVnI2Qb3nkgJnCYYkPLcpeIOjxnHjhZiHuDigaGxiaO0O/eDLl8fh3J1Igr28QhyWgL3/Jd37IW4poncj3LxsrlP3UNVvxAX6M+H42QoN8w5TgTFqkHC88snUnM0T+DdgaNfkI7DSohuy40ShyZeWaQMDNpNyHHjNMoOo02wQVkrcbw508L3EkLM1uoJb5mPfiZBjOMnDcHXtv2Dls2+CrX8tCnhTJbNSzCxDOJTBVVeZIXJNISK13EuV5FbRZ20DBirnm11VKnvPO9trLB2IzaT0AZkc0lfTJUCbMdUS9rsWEm0LM2trDYvanhrSxE/XZIoQv4rRX0+Yth5Rf/aHl7ohhmG5YiWeldRq05C/ogH2mziQS7MfS5koqwVSdzt0g0byxr2s0XqxXHtJqInNKUqin3J/0Vs6669dcBSsrjFCzEIpHyDIq+TpBTDdggmpduq5UsWxCHdWXvvxCmK3xpOMdgfpwwmVaBydABFLSG4RlzLfH/0SuVaBa0MN7GmlqZG3XCshuVoSbBukL3MtRFcDrbXLsQeBtsNsU3ytaq1KvsdtXAPPFWytUCquf6olXqzClgZ7o9VqyiraLWJn8/eiotnPHvbgjjE3rZCbPV0LRY1i9Ndu5tmOtQ+yzqwHmiK0f5ILZVgFbJleg/srOZrxc2mhnBeVHZ1zovRIUiqdKtDqeFB90penGm3ST46hKqiPKsTVYwOoEkr0GqUaXP9UVVSXYVTg/1xyjqrClSOHjlyNVJffYk6XaXAWqo7zdPOPk0tLQ/NlpgGiujJd5Mc1N4ICWGaA07sv298CeXsklB/DUJmZVqa5Rk2izlCf0s+rnwODtKy+eYVTjZxV1rX7OfpYFlCuMGwNtYP7BzRJ8KdR8Kbr+GHNYZacdMXjRJ3nz7QWLjb2z5+wsShLZ6V3wWyf3vnJ+igjGY17Q2SsZTc6IeMBdzS/ngJjbemccfoLqAPgJdYc2cPYaC+O41oD2XoPYRuTQzoH4xFZGu7YDwJ1LsD4+FqzYARo2/t7X8flenv/vtgtL/5j8Wl9sQ/Fqz+oq+c9YDoo785N58WR39QzpLEmemuGHKS0X2UV+e2g4/zNr3z5ENfsJvp+tSq/lJtegXC90qI5HdrFBNrNPwStFizoGtWmB0yXaWoWKJZ5RIkcVF9F1z6a+JInHYwz0y1mPdArsMVuAt6F8solhdCQLgKam3oqbX7/PSZvk7z9C5KvsQYLCCZPrIAd/RD7Adlq2fe4k1bIBK/yTWKVNkyuTa9jUK6ZbQnUC6+K0gCFF62HyFEw5Qg7qhNnmAf2jBpuQGPOJui8NoO0q2IutinVz7xOAlFjlHux0+0YTd8fvc/0zdT07ApAAA=</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="110" xml:space="preserve">
+    <value>GeneratorTools Extension</value>
   </data>
-  <data name="DefaultSchema" xml:space="preserve">
-    <value>dbo</value>
+  <data name="112" xml:space="preserve">
+    <value>GeneratorTools Visual Studio Extension Detailed Info</value>
+  </data>
+  <data name="400" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\GeneratorToolsPackage.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
