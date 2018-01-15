@@ -20,6 +20,8 @@ namespace Core.EntityFramework
 
         public bool IsRemeber { get; set; }
 
+        public DateTime LastModifyTime { get; set; }
+
     } 
 
     public enum AuthenticationType
@@ -40,6 +42,26 @@ namespace Core.EntityFramework
         SQLDBType = 6,
         ColumnDescription = 7,
         Starts = 8,
-        Ends = 9
+        Ends = 9,
+        Length=10
+    }
+
+    public enum CSharpDataType
+    {
+        String,
+        Sbyte,
+        Short,
+        Int,
+        Long,
+        Byte,
+        Ushort,
+        Uint,
+        Ulong,
+        Float,
+        Double,
+        Bool,
+        Char,
+        Decimal,
+        Object
     }
 }

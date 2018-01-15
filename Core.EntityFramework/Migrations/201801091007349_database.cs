@@ -3,7 +3,7 @@ namespace Core.EntityFramework.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class sqlinitdata : DbMigration
+    public partial class database : DbMigration
     {
         public override void Up()
         {
@@ -12,24 +12,25 @@ namespace Core.EntityFramework.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        DataBaseName = c.String(maxLength: 2147483647),
-                        TableName = c.String(maxLength: 2147483647),
+                        IsSelect = c.Boolean(nullable: false),
                         ColumnName = c.String(maxLength: 2147483647),
                         ColumnDescription = c.String(maxLength: 2147483647),
-                        IsPrimaryKey = c.Boolean(nullable: false),
-                        IsIdentity = c.Boolean(nullable: false),
                         IsNullable = c.Boolean(nullable: false),
-                        SQLType = c.String(maxLength: 2147483647),
-                        SQLTypeLength = c.Int(nullable: false),
-                        SQLDBType = c.String(maxLength: 2147483647),
                         CSharpType = c.String(maxLength: 2147483647),
+                        Length = c.Int(nullable: false),
+                        DefaultValue = c.String(maxLength: 2147483647),
+                        SQLType = c.String(maxLength: 2147483647),
+                        SQLDBType = c.String(maxLength: 2147483647),
                         IsForeignKey = c.Boolean(nullable: false),
                         ForeignKeyTable = c.String(maxLength: 2147483647),
                         Precision = c.Byte(nullable: false),
                         Scale = c.Byte(nullable: false),
-                        DefaultValue = c.String(maxLength: 2147483647),
                         ObjectId = c.Int(nullable: false),
                         TableIndex = c.Int(nullable: false),
+                        DataBaseName = c.String(maxLength: 2147483647),
+                        IsIdentity = c.Boolean(nullable: false),
+                        TableName = c.String(maxLength: 2147483647),
+                        IsPrimaryKey = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -42,6 +43,7 @@ namespace Core.EntityFramework.Migrations
                         Password = c.String(maxLength: 2147483647),
                         AuthenticationType = c.Int(nullable: false),
                         IsRemeber = c.Boolean(nullable: false),
+                        LastModifyTime = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Address);
             

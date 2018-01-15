@@ -5,12 +5,12 @@ namespace Core.EntityFramework.Migrations
     using System.Data.Entity.Migrations;
     using System.Data.SQLite.EF6.Migrations;
     using System.Linq;
-
+    using UsuallyCommon;
     internal sealed class Configuration : DbMigrationsConfiguration<Core.EntityFramework.GeneratorContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             //SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
 
             AutomaticMigrationDataLossAllowed = true;
@@ -34,21 +34,46 @@ namespace Core.EntityFramework.Migrations
             context.GeneratorReplace.RemoveRange(context.GeneratorReplace.ToList());
             context.GeneratorSnippet.RemoveRange(context.GeneratorSnippet.ToList());
             context.GeneratorSQL.RemoveRange(context.GeneratorSQL.ToList());
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.NameSpace.ToString(), ReplaceDeclare = "@" + ReplaceVariable.NameSpace.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
 
+            Extensions.EnumToList<CSharpDataType>().ForEach(x=> 
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = x, ReplaceDeclare = "@" + x, UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.CsharpType }));
+
+            Extensions.EnumToList<CSharpDataType>().ForEach(x =>
+           context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "!"+ x, ReplaceDeclare = "@!" + x, UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.CsharpType }));
+
+
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.NameSpace.ToString(), ReplaceDeclare = "@" + ReplaceVariable.NameSpace.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.DataBaseName.ToString(), ReplaceDeclare = "@" + ReplaceVariable.DataBaseName.ToString(), UserDeclare = false, ReplaceType= GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.TableName.ToString(), ReplaceDeclare = "@" + ReplaceVariable.TableName.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.ColumnName.ToString(), ReplaceDeclare = "@" + ReplaceVariable.ColumnName.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.CSharpType.ToString(), ReplaceDeclare = "@" + ReplaceVariable.CSharpType.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.SQLType.ToString(), ReplaceDeclare = "@" + ReplaceVariable.SQLType.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.SQLDBType.ToString(), ReplaceDeclare = "@" + ReplaceVariable.SQLDBType.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Length.ToString(), ReplaceDeclare = "@" + ReplaceVariable.Length.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+
+
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.ColumnDescription.ToString(), ReplaceDeclare = "@" + ReplaceVariable.ColumnDescription.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Starts.ToString(), ReplaceDeclare = "<%!", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Ends.ToString(), ReplaceDeclare = "!%>", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });
 
+            context.GeneratorSnippet.Add(new GeneratorClass.GeneratorSnippet() {  IsFloder = false,Name = "Example", IsEnabled = true, IsSelectColumn = true ,Context= @"using System; 
+namespace @NameSpace
+{
+        public class @TableName
+        {
+			<%! @String  public const int Max@ColumnNameLength = @Length;
+		    !%>
 
+			<%! @!String public @CSharpType @ColumnName { get; set; }
+			!%> 
 
-            context.GeneratorSnippet.Add(new GeneratorClass.GeneratorSnippet() {  IsFloder = false,Name ="Ä£°æ" ,IsEnabled = true, Context= "namespace @NameSpaces { using System; public class @TableName { <%!  public @CSharpType @ColumnName {get;set;} !%> }}" });
+			<%! @String  
+			[MaxLength(Max@ColumnNameLength)]
+			public @CSharpType @ColumnName { get; set; }
+			!%> 
+     }
+}" });
 
             context.GeneratorSQL.Add(new GeneratorClass.GeneratorSQL() {  Name="Columns", SQLContext= @" use [{0}]
        DECLARE @databaseName VARCHAR(100)= '{0}'
@@ -66,7 +91,7 @@ namespace Core.EntityFramework.Migrations
       IsNullable BIT ,
       TableIndex INT ,
       SQLType VARCHAR(100) ,
-      SQLTypeLength INT ,
+      Length INT ,
       SQLDBType VARCHAR(100) DEFAULT '' ,
       CSharpType VARCHAR(100) DEFAULT '' ,
       IsForeignKey BIT DEFAULT 0 ,
@@ -93,7 +118,7 @@ namespace Core.EntityFramework.Migrations
       IsNullable ,
       TableIndex ,
       SQLType ,
-      SQLTypeLength,
+      Length,
       Precision,
       Scale
       )
@@ -104,7 +129,7 @@ namespace Core.EntityFramework.Migrations
       cl.is_nullable AS IsAableNull ,
       cl.column_id AS TableIndex ,
       tp.name AS SQLType ,
-      cl.max_length AS SQLTypeLength,cl.Precision,cl.scale
+      (case when tp.name = 'nvarchar' then cl.max_length/2 else cl.max_length end) AS Length,cl.Precision,cl.scale
       FROM    sys.columns cl
       LEFT JOIN sys.extended_properties ep ON cl.column_id = ep.minor_id
       AND cl.object_id = ep.major_id

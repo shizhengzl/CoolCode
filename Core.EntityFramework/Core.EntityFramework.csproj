@@ -87,9 +87,9 @@
     <Compile Include="GeneratorClass\GeneratorReplace.cs" />
     <Compile Include="GeneratorClass\GeneratorSnippet.cs" />
     <Compile Include="GeneratorClass\GeneratorSQL.cs" />
-    <Compile Include="Migrations\201712231353333_sqlinitdata.cs" />
-    <Compile Include="Migrations\201712231353333_sqlinitdata.Designer.cs">
-      <DependentUpon>201712231353333_sqlinitdata.cs</DependentUpon>
+    <Compile Include="Migrations\201801091007349_database.cs" />
+    <Compile Include="Migrations\201801091007349_database.Designer.cs">
+      <DependentUpon>201801091007349_database.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +97,9 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="codefirstgenerator.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -107,11 +110,6 @@
       <Project>{7e628ceb-d723-4e02-8267-5fda53440334}</Project>
       <Name>Core.UsuallyCommon</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712231353333_sqlinitdata.resx">
-      <DependentUpon>201712231353333_sqlinitdata.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="docs\MySqlCommand.xml" />
@@ -125,6 +123,14 @@
     <Content Include="docs\MySqlParameter.xml" />
     <Content Include="docs\MySqlParameterCollection.xml" />
     <Content Include="docs\MySqlTransaction.xml" />
+    <EmbeddedResource Include="SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801091007349_database.resx">
+      <DependentUpon>201801091007349_database.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

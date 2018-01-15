@@ -52,6 +52,16 @@ namespace Core.UsuallyCommon
             return list;
         }
 
+        public static List<string> EnumToList<T>( ) where T : struct
+        {
+            List<string> list = new List<string>();
+            foreach (int i in Enum.GetValues(typeof(T)))
+            {
+                list.Add(Enum.GetName(typeof(T), i));
+            }
+            return list;
+        }
+
         /// <summary>
         /// 获取枚举描述
         /// </summary>

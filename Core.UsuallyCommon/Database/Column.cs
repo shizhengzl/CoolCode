@@ -8,15 +8,9 @@ using System.Threading.Tasks;
 namespace Core.UsuallyCommon.Database
 {
     public class Column
-    { 
-        public string DataBaseName { get; set; }
+    {
+        public bool IsSelect { get; set; }
 
-        /// <summary>
-        /// 表名
-        /// </summary>
-        public string TableName { get; set; }
-
-        
         /// <summary>
         /// 列名
         /// </summary> 
@@ -28,19 +22,25 @@ namespace Core.UsuallyCommon.Database
         public string ColumnDescription { get; set; }
 
         /// <summary>
-        /// 是否是主键
-        /// </summary>
-        public bool IsPrimaryKey { get; set; }
-
-        /// <summary>
-        /// 是否自增
-        /// </summary>
-        public bool IsIdentity { get; set; }
-
-        /// <summary>
         /// 是否可空
         /// </summary>
         public bool IsNullable { get; set; }
+
+        /// <summary>
+        /// CSharp 类型
+        /// </summary>
+        public string CSharpType { get; set; }
+
+
+        /// <summary>
+        /// SQL 长度
+        /// </summary>
+        public int Length { get; set; }
+
+        /// <summary>
+        /// 默认值
+        /// </summary>
+        public string DefaultValue { get; set; }
 
         /// <summary>
         /// SQL 类型
@@ -48,20 +48,11 @@ namespace Core.UsuallyCommon.Database
         public string SQLType { get; set; }
 
         /// <summary>
-        /// SQL 长度
-        /// </summary>
-        public int SQLTypeLength { get; set; }
-
-        /// <summary>
         /// SQL DB 类型
         /// </summary>
         public string SQLDBType { get; set; }
 
-        /// <summary>
-        /// CSharp 类型
-        /// </summary>
-        public string CSharpType { get; set; }
-
+      
         /// <summary>
         /// 是否有外键
         /// </summary>
@@ -82,11 +73,7 @@ namespace Core.UsuallyCommon.Database
         /// </summary>
         public byte Scale { get; set; }
 
-        /// <summary>
-        /// 默认值
-        /// </summary>
-        public string DefaultValue { get; set; }
-
+      
 
         /// <summary>
         /// 自增
@@ -103,6 +90,19 @@ namespace Core.UsuallyCommon.Database
         /// </summary>
         public int TableIndex { get; set; }
 
+        public string DataBaseName { get; set; }
+        /// <summary>
+        /// 是否自增
+        /// </summary>
+        public bool IsIdentity { get; set; }
+        /// <summary>
+        /// 表名
+        /// </summary>
+        public string TableName { get; set; }
+        /// <summary>
+        /// 是否是主键
+        /// </summary>
+        public bool IsPrimaryKey { get; set; }
         public object GetValue(string propertyName)
         {
             return this.GetType().GetProperty(propertyName).GetValue(this, null);

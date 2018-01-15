@@ -25,6 +25,7 @@ namespace Core.EntityFramework.GeneratorClass
     {
         Snippet,
         Tag,
-        Brackets
+        Brackets,
+        CsharpType
     }
 }

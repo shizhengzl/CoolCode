@@ -19,7 +19,7 @@ namespace Core.GeneratorWindows
             InitializeComponent();
             this.comLoginMethod.SelectedIndex = 1;
 
-            var settings = db.DataBaseSetting.FirstOrDefault();
+            var settings = db.DataBaseSetting.OrderByDescending(x=>x.LastModifyTime).FirstOrDefault();
             if (settings != null)
             {
                 txtServerName.Text = settings.Address;
@@ -63,6 +63,7 @@ namespace Core.GeneratorWindows
                         Account = account,
                         Password = password,
                         Address = addres,
+                        LastModifyTime = DateTime.Now,
                         IsRemeber = chk_remberer.Checked,
                         AuthenticationType = comLoginMethod.SelectedIndex.ToString().ToEnum<AuthenticationType>()
                     };
@@ -70,12 +71,15 @@ namespace Core.GeneratorWindows
                 }
                 else
                 {
+                    settings.LastModifyTime = DateTime.Now;
                     settings.Account = account;
                     settings.Password = password;
                     settings.Address = addres;
                     settings.IsRemeber = chk_remberer.Checked;
                     settings.AuthenticationType = comLoginMethod.SelectedIndex.ToString().ToEnum<AuthenticationType>();
-                }
+
+
+                } 
                 db.SaveChanges();
                 DialogResult = DialogResult.OK;
 

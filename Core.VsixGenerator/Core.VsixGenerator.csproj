@@ -55,6 +55,11 @@
     <Compile Include="GeneratorTools.cs" />
     <Compile Include="GeneratorToolsPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -67,10 +72,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="earth_48px_1184796_easyicon.net.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\Images.png" />
-    <Content Include="x64\SQLite.Interop.dll" />
-    <Content Include="x64\sqlite3.dll" />
-    <Content Include="x86\SQLite.Interop.dll" />
+    <None Include="Resources\SQLite.Interop.dll" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <VSCTCompile Include="GeneratorToolsPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>

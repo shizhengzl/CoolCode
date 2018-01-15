@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneratorLogin));
             this.chk_remberer = new System.Windows.Forms.CheckBox();
             this.btnCanel = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
@@ -178,6 +179,7 @@
             this.Controls.Add(this.labLoginMethod);
             this.Controls.Add(this.txtServerName);
             this.Controls.Add(this.labServerName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GeneratorLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Code Generator Login";

@@ -42,11 +42,11 @@ namespace Core.EntityFramework
             {
                 ConnectionString =
             new SQLiteConnectionStringBuilder()
-            { DataSource = "sqlitegenerator.db", ForeignKeys = true }
+            { DataSource = "codefirstgenerator.db", ForeignKeys = true }
             .ConnectionString
             }, true)
              //base("GeneratorContext")
-        {
+        { 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<GeneratorContext, Configuration>());
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

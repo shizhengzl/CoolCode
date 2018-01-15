@@ -78,19 +78,19 @@
             this.treedb = new System.Windows.Forms.TreeView();
             this.tooldb = new System.Windows.Forms.ToolStrip();
             this.tooldbrefresh = new System.Windows.Forms.ToolStripButton();
+            this.toolscriptreconnection = new System.Windows.Forms.ToolStripButton();
             this.tabPageSetting = new System.Windows.Forms.TabPage();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.tabPageVariables = new System.Windows.Forms.TabPage();
             this.dataVariables = new System.Windows.Forms.DataGridView();
             this.tabPageDataType = new System.Windows.Forms.TabPage();
+            this.imageListcollection = new System.Windows.Forms.ImageList(this.components);
             this.ContentMenuSnippet = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.CMS新建模板 = new System.Windows.Forms.ToolStripMenuItem();
-            this.CMS修改 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMS删除 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMS启用 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMS禁用 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMS看生成代码 = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageListcollection = new System.Windows.Forms.ImageList(this.components);
+            this.CMS修改 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabMain.SuspendLayout();
             this.tabPageGenerator.SuspendLayout();
             this.pGeneratorMain.SuspendLayout();
@@ -125,6 +125,7 @@
             this.tabMain.Controls.Add(this.tabPageGenerator);
             this.tabMain.Controls.Add(this.tabPageSetting);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabMain.ImageList = this.imageListcollection;
             this.tabMain.Location = new System.Drawing.Point(0, 0);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
@@ -135,10 +136,11 @@
             // 
             this.tabPageGenerator.Controls.Add(this.pGeneratorMain);
             this.tabPageGenerator.Controls.Add(this.pGeneratorLeft);
-            this.tabPageGenerator.Location = new System.Drawing.Point(4, 22);
+            this.tabPageGenerator.ImageIndex = 11;
+            this.tabPageGenerator.Location = new System.Drawing.Point(4, 23);
             this.tabPageGenerator.Name = "tabPageGenerator";
             this.tabPageGenerator.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageGenerator.Size = new System.Drawing.Size(1342, 664);
+            this.tabPageGenerator.Size = new System.Drawing.Size(1342, 663);
             this.tabPageGenerator.TabIndex = 0;
             this.tabPageGenerator.Text = "Code Generator";
             this.tabPageGenerator.UseVisualStyleBackColor = true;
@@ -149,7 +151,7 @@
             this.pGeneratorMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pGeneratorMain.Location = new System.Drawing.Point(288, 3);
             this.pGeneratorMain.Name = "pGeneratorMain";
-            this.pGeneratorMain.Size = new System.Drawing.Size(1051, 658);
+            this.pGeneratorMain.Size = new System.Drawing.Size(1051, 657);
             this.pGeneratorMain.TabIndex = 1;
             // 
             // tabControlMainSeeting
@@ -160,7 +162,7 @@
             this.tabControlMainSeeting.Location = new System.Drawing.Point(0, 0);
             this.tabControlMainSeeting.Name = "tabControlMainSeeting";
             this.tabControlMainSeeting.SelectedIndex = 0;
-            this.tabControlMainSeeting.Size = new System.Drawing.Size(1051, 658);
+            this.tabControlMainSeeting.Size = new System.Drawing.Size(1051, 657);
             this.tabControlMainSeeting.TabIndex = 3;
             // 
             // tstartgenerator
@@ -171,7 +173,7 @@
             this.tstartgenerator.Location = new System.Drawing.Point(4, 22);
             this.tstartgenerator.Name = "tstartgenerator";
             this.tstartgenerator.Padding = new System.Windows.Forms.Padding(3);
-            this.tstartgenerator.Size = new System.Drawing.Size(1043, 632);
+            this.tstartgenerator.Size = new System.Drawing.Size(1043, 631);
             this.tstartgenerator.TabIndex = 2;
             this.tstartgenerator.Text = "Start Generator";
             this.tstartgenerator.UseVisualStyleBackColor = true;
@@ -180,9 +182,9 @@
             // 
             this.panel5.Controls.Add(this.GeneratorText);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(290, 252);
+            this.panel5.Location = new System.Drawing.Point(290, 383);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(750, 377);
+            this.panel5.Size = new System.Drawing.Size(750, 245);
             this.panel5.TabIndex = 2;
             // 
             // GeneratorText
@@ -190,13 +192,13 @@
             this.GeneratorText.AcceptsTab = true;
             this.GeneratorText.CaseSensitive = false;
             this.GeneratorText.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
-    "Assemblies\\1c_forav01\\csharp.xml";
+    "Assemblies\\yey2n1tt01\\csharp.xml";
             this.GeneratorText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GeneratorText.FilterAutoComplete = true;
             this.GeneratorText.Location = new System.Drawing.Point(0, 0);
             this.GeneratorText.MaxUndoRedoSteps = 50;
             this.GeneratorText.Name = "GeneratorText";
-            this.GeneratorText.Size = new System.Drawing.Size(750, 377);
+            this.GeneratorText.Size = new System.Drawing.Size(750, 245);
             this.GeneratorText.TabIndex = 0;
             this.GeneratorText.Text = "";
             this.GeneratorText.WordWrap = false;
@@ -207,7 +209,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(290, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(750, 249);
+            this.panel4.Size = new System.Drawing.Size(750, 380);
             this.panel4.TabIndex = 1;
             // 
             // dataSourceGrids
@@ -218,7 +220,7 @@
             this.dataSourceGrids.Location = new System.Drawing.Point(0, 0);
             this.dataSourceGrids.Name = "dataSourceGrids";
             this.dataSourceGrids.RowTemplate.Height = 23;
-            this.dataSourceGrids.Size = new System.Drawing.Size(750, 249);
+            this.dataSourceGrids.Size = new System.Drawing.Size(750, 380);
             this.dataSourceGrids.TabIndex = 0;
             // 
             // panel1
@@ -228,16 +230,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(287, 626);
+            this.panel1.Size = new System.Drawing.Size(287, 625);
             this.panel1.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.treesnippet);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 249);
+            this.panel3.Location = new System.Drawing.Point(0, 380);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(287, 377);
+            this.panel3.Size = new System.Drawing.Size(287, 245);
             this.panel3.TabIndex = 1;
             // 
             // treesnippet
@@ -245,9 +247,9 @@
             this.treesnippet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treesnippet.Location = new System.Drawing.Point(0, 0);
             this.treesnippet.Name = "treesnippet";
-            this.treesnippet.Size = new System.Drawing.Size(287, 377);
+            this.treesnippet.Size = new System.Drawing.Size(287, 245);
             this.treesnippet.TabIndex = 0;
-            this.treesnippet.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treesnippet_NodeMouseClick);
+            this.treesnippet.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treesnippet_NodeMouseDoubleClick);
             // 
             // panel2
             // 
@@ -256,7 +258,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(287, 249);
+            this.panel2.Size = new System.Drawing.Size(287, 380);
             this.panel2.TabIndex = 0;
             // 
             // treeSource
@@ -264,7 +266,7 @@
             this.treeSource.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeSource.Location = new System.Drawing.Point(0, 25);
             this.treeSource.Name = "treeSource";
-            this.treeSource.Size = new System.Drawing.Size(287, 224);
+            this.treeSource.Size = new System.Drawing.Size(287, 355);
             this.treeSource.TabIndex = 1;
             this.treeSource.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeSource_NodeMouseClick);
             // 
@@ -313,9 +315,9 @@
             this.tSnippet.Location = new System.Drawing.Point(4, 22);
             this.tSnippet.Name = "tSnippet";
             this.tSnippet.Padding = new System.Windows.Forms.Padding(3);
-            this.tSnippet.Size = new System.Drawing.Size(1043, 632);
+            this.tSnippet.Size = new System.Drawing.Size(1043, 631);
             this.tSnippet.TabIndex = 3;
-            this.tSnippet.Text = "SnippetSetting";
+            this.tSnippet.Text = "Template Setting";
             this.tSnippet.UseVisualStyleBackColor = true;
             // 
             // pfrom
@@ -324,7 +326,7 @@
             this.pfrom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pfrom.Location = new System.Drawing.Point(3, 259);
             this.pfrom.Name = "pfrom";
-            this.pfrom.Size = new System.Drawing.Size(1037, 370);
+            this.pfrom.Size = new System.Drawing.Size(1037, 369);
             this.pfrom.TabIndex = 1;
             // 
             // tform
@@ -335,7 +337,7 @@
             this.tform.Location = new System.Drawing.Point(0, 0);
             this.tform.Name = "tform";
             this.tform.SelectedIndex = 0;
-            this.tform.Size = new System.Drawing.Size(1037, 370);
+            this.tform.Size = new System.Drawing.Size(1037, 369);
             this.tform.TabIndex = 0;
             // 
             // tfrom
@@ -356,9 +358,9 @@
             this.tfrom.Location = new System.Drawing.Point(4, 22);
             this.tfrom.Name = "tfrom";
             this.tfrom.Padding = new System.Windows.Forms.Padding(3);
-            this.tfrom.Size = new System.Drawing.Size(1029, 344);
+            this.tfrom.Size = new System.Drawing.Size(1029, 343);
             this.tfrom.TabIndex = 0;
-            this.tfrom.Text = "SnippetForm";
+            this.tfrom.Text = "Templete";
             this.tfrom.UseVisualStyleBackColor = true;
             // 
             // SnippetIsSelectColumn
@@ -377,7 +379,7 @@
             this.SnippetContext.AcceptsTab = true;
             this.SnippetContext.CaseSensitive = false;
             this.SnippetContext.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
-    "Assemblies\\1c_forav01\\csharp.xml";
+    "Assemblies\\yey2n1tt01\\csharp.xml";
             this.SnippetContext.FilterAutoComplete = true;
             this.SnippetContext.Location = new System.Drawing.Point(23, 176);
             this.SnippetContext.MaxUndoRedoSteps = 50;
@@ -501,7 +503,7 @@
             this.tSQL.Location = new System.Drawing.Point(4, 22);
             this.tSQL.Name = "tSQL";
             this.tSQL.Padding = new System.Windows.Forms.Padding(3);
-            this.tSQL.Size = new System.Drawing.Size(1029, 344);
+            this.tSQL.Size = new System.Drawing.Size(1029, 343);
             this.tSQL.TabIndex = 1;
             this.tSQL.Text = "SQL";
             this.tSQL.UseVisualStyleBackColor = true;
@@ -518,7 +520,7 @@
             // 
             // datasnippet
             // 
-            this.datasnippet.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.datasnippet.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.datasnippet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datasnippet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.datasnippet.Location = new System.Drawing.Point(0, 25);
@@ -582,7 +584,7 @@
             this.pGeneratorLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pGeneratorLeft.Location = new System.Drawing.Point(3, 3);
             this.pGeneratorLeft.Name = "pGeneratorLeft";
-            this.pGeneratorLeft.Size = new System.Drawing.Size(285, 658);
+            this.pGeneratorLeft.Size = new System.Drawing.Size(285, 657);
             this.pGeneratorLeft.TabIndex = 0;
             // 
             // pGeneratorTree
@@ -591,7 +593,7 @@
             this.pGeneratorTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pGeneratorTree.Location = new System.Drawing.Point(0, 25);
             this.pGeneratorTree.Name = "pGeneratorTree";
-            this.pGeneratorTree.Size = new System.Drawing.Size(285, 633);
+            this.pGeneratorTree.Size = new System.Drawing.Size(285, 632);
             this.pGeneratorTree.TabIndex = 1;
             // 
             // treedb
@@ -601,7 +603,7 @@
             this.treedb.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.treedb.Location = new System.Drawing.Point(0, 0);
             this.treedb.Name = "treedb";
-            this.treedb.Size = new System.Drawing.Size(285, 633);
+            this.treedb.Size = new System.Drawing.Size(285, 632);
             this.treedb.TabIndex = 0;
             this.treedb.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treedb_AfterCheck);
             this.treedb.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treedb_NodeMouseClick);
@@ -609,7 +611,8 @@
             // tooldb
             // 
             this.tooldb.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tooldbrefresh});
+            this.tooldbrefresh,
+            this.toolscriptreconnection});
             this.tooldb.Location = new System.Drawing.Point(0, 0);
             this.tooldb.Name = "tooldb";
             this.tooldb.Size = new System.Drawing.Size(285, 25);
@@ -625,13 +628,22 @@
             this.tooldbrefresh.Text = "Refresh";
             this.tooldbrefresh.Click += new System.EventHandler(this.tooldbrefresh_Click);
             // 
+            // toolscriptreconnection
+            // 
+            this.toolscriptreconnection.Image = ((System.Drawing.Image)(resources.GetObject("toolscriptreconnection.Image")));
+            this.toolscriptreconnection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolscriptreconnection.Name = "toolscriptreconnection";
+            this.toolscriptreconnection.Size = new System.Drawing.Size(108, 22);
+            this.toolscriptreconnection.Text = "ReConnection";
+            this.toolscriptreconnection.Click += new System.EventHandler(this.toolscriptreconnection_Click);
+            // 
             // tabPageSetting
             // 
             this.tabPageSetting.Controls.Add(this.tabSettings);
-            this.tabPageSetting.Location = new System.Drawing.Point(4, 22);
+            this.tabPageSetting.Location = new System.Drawing.Point(4, 23);
             this.tabPageSetting.Name = "tabPageSetting";
             this.tabPageSetting.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSetting.Size = new System.Drawing.Size(1342, 664);
+            this.tabPageSetting.Size = new System.Drawing.Size(1342, 663);
             this.tabPageSetting.TabIndex = 1;
             this.tabPageSetting.Text = "Setting";
             this.tabPageSetting.UseVisualStyleBackColor = true;
@@ -644,7 +656,7 @@
             this.tabSettings.Location = new System.Drawing.Point(3, 3);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.SelectedIndex = 0;
-            this.tabSettings.Size = new System.Drawing.Size(1336, 658);
+            this.tabSettings.Size = new System.Drawing.Size(1336, 657);
             this.tabSettings.TabIndex = 0;
             // 
             // tabPageVariables
@@ -653,7 +665,7 @@
             this.tabPageVariables.Location = new System.Drawing.Point(4, 22);
             this.tabPageVariables.Name = "tabPageVariables";
             this.tabPageVariables.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageVariables.Size = new System.Drawing.Size(1328, 632);
+            this.tabPageVariables.Size = new System.Drawing.Size(1328, 631);
             this.tabPageVariables.TabIndex = 0;
             this.tabPageVariables.Text = "Variables";
             this.tabPageVariables.UseVisualStyleBackColor = true;
@@ -667,7 +679,7 @@
             this.dataVariables.Location = new System.Drawing.Point(3, 3);
             this.dataVariables.Name = "dataVariables";
             this.dataVariables.RowTemplate.Height = 23;
-            this.dataVariables.Size = new System.Drawing.Size(1322, 626);
+            this.dataVariables.Size = new System.Drawing.Size(1322, 625);
             this.dataVariables.TabIndex = 0;
             // 
             // tabPageDataType
@@ -675,64 +687,10 @@
             this.tabPageDataType.Location = new System.Drawing.Point(4, 22);
             this.tabPageDataType.Name = "tabPageDataType";
             this.tabPageDataType.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDataType.Size = new System.Drawing.Size(1328, 632);
+            this.tabPageDataType.Size = new System.Drawing.Size(1328, 631);
             this.tabPageDataType.TabIndex = 1;
             this.tabPageDataType.Text = "DataType";
             this.tabPageDataType.UseVisualStyleBackColor = true;
-            // 
-            // ContentMenuSnippet
-            // 
-            this.ContentMenuSnippet.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CMS新建模板,
-            this.CMS修改,
-            this.CMS删除,
-            this.CMS启用,
-            this.CMS禁用,
-            this.CMS看生成代码});
-            this.ContentMenuSnippet.Name = "CMS";
-            this.ContentMenuSnippet.Size = new System.Drawing.Size(137, 136);
-            // 
-            // CMS新建模板
-            // 
-            this.CMS新建模板.Image = ((System.Drawing.Image)(resources.GetObject("CMS新建模板.Image")));
-            this.CMS新建模板.Name = "CMS新建模板";
-            this.CMS新建模板.Size = new System.Drawing.Size(136, 22);
-            this.CMS新建模板.Text = "新建模板";
-            // 
-            // CMS修改
-            // 
-            this.CMS修改.Image = ((System.Drawing.Image)(resources.GetObject("CMS修改.Image")));
-            this.CMS修改.Name = "CMS修改";
-            this.CMS修改.Size = new System.Drawing.Size(136, 22);
-            this.CMS修改.Text = "修改";
-            // 
-            // CMS删除
-            // 
-            this.CMS删除.Image = ((System.Drawing.Image)(resources.GetObject("CMS删除.Image")));
-            this.CMS删除.Name = "CMS删除";
-            this.CMS删除.Size = new System.Drawing.Size(136, 22);
-            this.CMS删除.Text = "删除";
-            // 
-            // CMS启用
-            // 
-            this.CMS启用.Image = ((System.Drawing.Image)(resources.GetObject("CMS启用.Image")));
-            this.CMS启用.Name = "CMS启用";
-            this.CMS启用.Size = new System.Drawing.Size(136, 22);
-            this.CMS启用.Text = "启用";
-            // 
-            // CMS禁用
-            // 
-            this.CMS禁用.Image = ((System.Drawing.Image)(resources.GetObject("CMS禁用.Image")));
-            this.CMS禁用.Name = "CMS禁用";
-            this.CMS禁用.Size = new System.Drawing.Size(136, 22);
-            this.CMS禁用.Text = "禁用";
-            // 
-            // CMS看生成代码
-            // 
-            this.CMS看生成代码.Image = ((System.Drawing.Image)(resources.GetObject("CMS看生成代码.Image")));
-            this.CMS看生成代码.Name = "CMS看生成代码";
-            this.CMS看生成代码.Size = new System.Drawing.Size(136, 22);
-            this.CMS看生成代码.Text = "看生成代码";
             // 
             // imageListcollection
             // 
@@ -752,12 +710,58 @@
             this.imageListcollection.Images.SetKeyName(11, "yes.png");
             this.imageListcollection.Images.SetKeyName(12, "wrong.png");
             // 
+            // ContentMenuSnippet
+            // 
+            this.ContentMenuSnippet.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CMS启用,
+            this.CMS禁用,
+            this.CMS删除,
+            this.CMS看生成代码});
+            this.ContentMenuSnippet.Name = "CMS";
+            this.ContentMenuSnippet.Size = new System.Drawing.Size(153, 114);
+            // 
+            // CMS删除
+            // 
+            this.CMS删除.Image = ((System.Drawing.Image)(resources.GetObject("CMS删除.Image")));
+            this.CMS删除.Name = "CMS删除";
+            this.CMS删除.Size = new System.Drawing.Size(152, 22);
+            this.CMS删除.Text = "删除";
+            // 
+            // CMS启用
+            // 
+            this.CMS启用.Image = ((System.Drawing.Image)(resources.GetObject("CMS启用.Image")));
+            this.CMS启用.Name = "CMS启用";
+            this.CMS启用.Size = new System.Drawing.Size(152, 22);
+            this.CMS启用.Text = "启用";
+            // 
+            // CMS禁用
+            // 
+            this.CMS禁用.Image = ((System.Drawing.Image)(resources.GetObject("CMS禁用.Image")));
+            this.CMS禁用.Name = "CMS禁用";
+            this.CMS禁用.Size = new System.Drawing.Size(152, 22);
+            this.CMS禁用.Text = "禁用";
+            // 
+            // CMS看生成代码
+            // 
+            this.CMS看生成代码.Image = ((System.Drawing.Image)(resources.GetObject("CMS看生成代码.Image")));
+            this.CMS看生成代码.Name = "CMS看生成代码";
+            this.CMS看生成代码.Size = new System.Drawing.Size(152, 22);
+            this.CMS看生成代码.Text = "看生成代码";
+            // 
+            // CMS修改
+            // 
+            this.CMS修改.Image = ((System.Drawing.Image)(resources.GetObject("CMS修改.Image")));
+            this.CMS修改.Name = "CMS修改";
+            this.CMS修改.Size = new System.Drawing.Size(152, 22);
+            this.CMS修改.Text = "修改";
+            // 
             // Geneartor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 690);
             this.Controls.Add(this.tabMain);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Geneartor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Code Generator";
@@ -816,8 +820,6 @@
         private System.Windows.Forms.TabPage tabPageDataType;
         private System.Windows.Forms.DataGridView dataVariables;
         private System.Windows.Forms.ContextMenuStrip ContentMenuSnippet;
-        private System.Windows.Forms.ToolStripMenuItem CMS新建模板;
-        private System.Windows.Forms.ToolStripMenuItem CMS修改;
         private System.Windows.Forms.ToolStripMenuItem CMS删除;
         private System.Windows.Forms.ToolStripMenuItem CMS启用;
         private System.Windows.Forms.ToolStripMenuItem CMS禁用;
@@ -862,6 +864,8 @@
         private System.Windows.Forms.DataGridView dataSourceGrids;
         private System.Windows.Forms.ToolStripButton toolGenerator;
         private Kevin.SyntaxTextBox.SyntaxTextBox GeneratorText;
+        private System.Windows.Forms.ToolStripButton toolscriptreconnection;
+        private System.Windows.Forms.ToolStripMenuItem CMS修改;
     }
 }
 

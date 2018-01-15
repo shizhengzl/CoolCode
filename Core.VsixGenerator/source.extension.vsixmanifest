@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="Core.VsixGenerator.Company.7e483f82-a7d2-406a-b20d-8fd3ff3b9184" Version="1.0" Language="en-US" Publisher="Company" />
+    <Identity Id="Core.VsixGenerator.Company.7e483f82-a7d2-406a-b20d-8fd3ff3b9184" Version="1.0" Language="en-US" Publisher="shizheng" />
     <DisplayName>Core.VsixGenerator</DisplayName>
-    <Description>Empty VSIX Project.</Description>
+    <Description xml:space="preserve">Generator Tools</Description>
+    <Icon>earth_48px_1184796_easyicon.net.ico</Icon>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />

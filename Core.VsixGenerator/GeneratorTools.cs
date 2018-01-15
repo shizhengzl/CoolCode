@@ -104,9 +104,9 @@ namespace Core.VsixGenerator
                 var s = new Geneartor(dte);
                 s.Show();
             }
-            catch (Exception)
-            { 
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
            
         }
