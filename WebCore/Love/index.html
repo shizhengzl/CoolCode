@@ -1,0 +1,225 @@
+﻿<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Bless You</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- <meta content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=1" name="viewport" />-->
+    <style type="text/css">
+        @font-face {
+            font-family: digit;
+            src: url('digital-7_mono.ttf') format("truetype");
+        }
+    </style>
+    <link href="css/default.css" type="text/css" rel="stylesheet">
+  
+    <link href="css/font/default.css" rel="stylesheet" />
+     <link href="css/style.css" rel="stylesheet" /> 
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/garden.js"></script>
+    <script type="text/javascript" src="js/functions_dev.js"></script>
+</head>
+<body> 
+    <!--<canvas id="gd" height="500" width="500"></canvas>-->
+    <div id="mainDiv">
+        <div id="content">
+            <div id="code">
+                <span class="comments">/**</span><br />
+                <span class="space" /><span class="comments">* 你、</span><br />
+                <span class="space" /><span class="comments">* 甜音雅举、</span><br />
+                <span class="space" /><span class="comments">* 生性高雅、</span><br />
+                <span class="space" /><span class="comments">* 聪明伶俐、</span><br />
+                <span class="space" /><span class="comments">* 天生可爱.... **/</span><br />
+
+                <span class="comments">// 被惦记是温暖的.</span><br />
+                Being remembered is warm.<br />
+                <span class="comments">// 被祝福是快乐的.</span><br />
+                Blessed is happy.<br />
+
+                <span class="comments">// 被祈祷是神圣的.</span><br />
+                Being blessed is sacred<br />
+
+                <span class="comments">// 被保佑是安全的.</span><br />
+                and blessed is safe.<br />
+
+                <span class="comments">// 温柔的女人是金子. </span><br />
+                Tender woman is gold.<br />
+                <span class="comments">// 漂亮的女人是钻石. </span><br />
+                Beautiful woman is a diamond.<br />
+                <span class="comments">// 聪明的女人是宝藏. </span><br />
+                A smart woman is a treasure.<br />
+                <span class="comments">// 你是世界上最大的宝藏. </span><br />
+                You are the greatest treasure in the world.</span><br />
+
+                <span class="comments">//你是被我惦记着祝福着祈祷着保佑着的朋友.</span><br />
+                You are a friend that I care about, bless, pray and bless.<br />
+
+                <!--<span class="comments">// 祝生日快乐.</span><br />
+                Happy birthday!<br /><br />-->
+
+            </div>
+            <div id="loveHeart">
+                <canvas id="garden"  height="500" width="500"></canvas>
+
+                <div id="words">
+           <div id="messages">
+               也许不是最好的,但愿在你心中是最美的.</br>
+
+               <!--<div id="elapseClock"></div>-->
+           </div>
+           <div id="loveu">
+               Love u forever and ever.<br />
+               <div class="signature">-- Lion</div>
+           </div>
+       </div>
+
+
+            </div>
+        </div>
+    </div> 
+
+    <div id="bodys" style="display:none">
+        <div class="Upper">
+
+            <table style="width:100%" border="0" cellspacing="0" cellpadding="0" align="center">
+                <tr>
+                    <td>
+                        <table style="width:50%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+                            <tr>
+                                <td style="padding:70px 0 0" align="center" width="385">
+                                    <span id="botAgregar" style="position:absolute; z-index:999; color:red; top:20px; margin-left:-35px;"></span>
+                                    <h1 style="color:#f4f2ed"></h1>
+                                    <p style="color:#d3f1a0"></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:10px 0" colspan="2" align="right"></td>
+                            </tr>
+                        </table>
+                        <table style="width:50%" border="0" cellspacing="0" cellpadding="0" align="center">
+                            <tr>
+                                <td class="content" style align="left" valign="top" width="600">
+                                    <table border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td style="padding:20px 0 25px 95px" align="left"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:0 0 25px 95px" valign="top"></td>
+                                        </tr>
+
+
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+
+
+
+ 
+        <script>
+
+            $.AutomLeafStart({
+                leafsfolder: "images/",
+                howmanyimgsare: 8,
+                initialleafs: 10,
+                maxYposition: -5,
+                multiplyclick: true,
+                multiplynumber: 2,
+                infinite: true,
+                fallingsequence: 500
+            });
+            $.AutomLeafAdd({ leafsfolder: "images/", add: 8, })
+            $("#botAgregar").on("click", function () {
+                $.AutomLeafAdd({ leafsfolder: "images/", add: 8, })
+
+            });
+            //var c = document.getElementsByTagName('canvas')[0];
+            //var a = c.getContext('2d');
+            //var offsetX = $("#loveHeart").width() / 2;
+            //var offsetY = $("#loveHeart").height() / 2 - 55;
+            //var together = new Date();
+            //if (!document.createElement('canvas').getContext) {
+            //    var msg = document.createElement("div");
+            //    msg.id = "errorMsg";
+            //    msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
+            //    document.body.appendChild(msg);
+            //    $("#code").css("display", "none")
+            //    $("#copyright").css("position", "absolute");
+            //    $("#copyright").css("bottom", "10px");
+            //    document.execCommand("stop");
+            //} else {
+            //    setTimeout(function () {
+            //        startHeartAnimation();
+            //    }, 5000);
+
+            //    timeElapse(together);
+            //    setInterval(function () {
+            //        timeElapse(together);
+            //    }, 500);
+
+            //    adjustCodePosition();
+            //    $("#code").typewriter();
+            //}
+
+        </script>
+        <script type="text/javascript">
+
+        </script>
+    </div>
+
+    <audio src="qh.mp3"
+           id="muise" loop="loop"></audio>
+
+    <script type="text/javascript">
+        var offsetX = $("#loveHeart").width() / 2;
+        var offsetY = $("#loveHeart").height() / 2 - 55;
+        var together = new Date();
+
+        if (!document.createElement('canvas').getContext) {
+            var msg = document.createElement("div");
+            msg.id = "errorMsg";
+            msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
+            document.body.appendChild(msg);
+            $("#code").css("display", "none")
+            $("#copyright").css("position", "absolute");
+            $("#copyright").css("bottom", "10px");
+            document.execCommand("stop");
+
+        } else {
+            setTimeout(function () {
+                startHeartAnimation();
+            }, 5000);
+
+            timeElapse(together);
+            setInterval(function () {
+                timeElapse(together);
+            }, 500);
+
+            adjustCodePosition();
+            $("#code").typewriter();
+        }
+
+    </script>
+    <script type="text/javascript">
+        var c = document.getElementsByTagName('canvas')[0];
+        var a = c.getContext('2d');
+
+        function audioAutoPlay(id) {
+            var audio = document.getElementById(id);
+            audio.play();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                audio.play();
+            }, false);
+        }
+        audioAutoPlay('muise');//xxx是你audio标签的id
+    </script>
+    <script type="text/javascript" id="my"></script>
+</body>
+</html>
