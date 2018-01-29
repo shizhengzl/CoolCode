@@ -1,12 +1,193 @@
 ﻿<Window x:Class="Works.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Works"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:awe="http://schemas.awesomium.com/winfx"
+    xmlns:data="http://schemas.awesomium.com/winfx/data"
+    xmlns:core="clr-namespace:Awesomium.Core;assembly=Awesomium.Core"
+    WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown"
         
-    </Grid>
+        Title="MainWindow" Height="650" Width="525">
+    <Window.Resources>
+        <awe:WebSessionProvider x:Key="webSession" DataPath=".\">
+            <core:WebPreferences 
+                ShrinkStandaloneImagesToFit="False"
+                SmoothScrolling="True" />
+        </awe:WebSessionProvider>
+
+        <awe:UrlConverter x:Key="UrlConverter" />
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    </Window.Resources>
+    <awe:WebDialogsLayer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <DockPanel 
+                LastChildFill="True" 
+                Height="30"
+                Visibility="{Binding IsRegularWindow, 
+                    ElementName=webWindow, 
+                    Converter={StaticResource booleanToVisibilityConverter}}">
+                <Button 
+                    Content="Back" 
+                    Width="60" 
+                    Command="{x:Static NavigationCommands.BrowseBack}" 
+                    CommandTarget="{Binding ElementName=webControl}"/>
+                <Button 
+                    Content="Forward" 
+                    Width="60" 
+                    Command="{x:Static NavigationCommands.BrowseForward}" 
+                    CommandTarget="{Binding ElementName=webControl}"/>
+                <Button 
+                    Content="Reload" 
+                    Width="60" 
+                    Command="{x:Static NavigationCommands.Refresh}" 
+                    CommandParameter="False"
+                    CommandTarget="{Binding ElementName=webControl}"/>
+                <Button 
+                    Content="Home" 
+                    Width="60" 
+                    Command="{x:Static NavigationCommands.BrowseHome}"
+                    CommandTarget="{Binding ElementName=webControl}"/>
+             
+                <TextBox 
+                    FontSize="16"
+                    Padding="3,0"
+                    VerticalContentAlignment="Center"
+                    TextWrapping="NoWrap"
+                    Text="{data:SourceBinding webControl}" />
+            </DockPanel>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="220"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel  Grid.Row="0">
+                        <Button>10 Dollar x,y(F8)</Button>
+                        <TextBox Text="680,537" Name="TenDollayXy" ></TextBox>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="1">
+                        <Button>Ok x,y (F9)</Button>
+                        <TextBox Text="1003,525" Name="OkXy" ></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="2">
+                        <Button Name="btnstart" Width="100" Click="btnstart_Click">start</Button>
+                        <Button Name="btnend" Click="btnend_Click">ends</Button>
+                    </DockPanel>
+                    <DockPanel Grid.Row="3">
+                        <Button Name="ToBaijia" Click="ToBaijia_Click">BaiJia</Button>
+                    </DockPanel>
+                    <DockPanel Grid.Row="4">
+                        <Button>Xian F7</Button>
+                        <TextBox Text="546,447" Name="XianXy" ></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="5">
+                        <Button>Zhuang F6</Button>
+                        <TextBox Text="1007,450" Name="ZhuangXy" ></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="6">
+                        <Button>Min Value</Button>
+                        <TextBox Text="10" Name="MinValue" ></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="7">
+                        <Button>Addmoney</Button>
+                        <TextBox Text="10" Name="Addmoney" ></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="8">
+                        <Button>lostPresent</Button>
+                        <TextBox Text="0.05" Name="LostPresent" ></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="9">
+                        <Label MaxWidth="300">
+                            <TextBlock  Name="lblMessage" TextWrapping="Wrap"> this is message,append messages  sssssssssssssssssssssssssss</TextBlock></Label>
+                    </DockPanel>
+                    
+                </Grid>
+                
+                <Grid  Grid.Column="1">
+                    <awe:WebControl 
+                Grid.Column="1"
+                x:Name="webControl"
+                NativeView="{Binding NativeView, ElementName=webWindow}"
+                WebSession="{Binding Source={StaticResource webSession}}"
+                Source="http://www.vip090.com/"/>
+                </Grid>
+
+            </Grid>
+          
+            <StatusBar
+                Grid.Row="2" 
+                Height="25" 
+                BorderBrush="{DynamicResource 
+                    {x:Static SystemColors.ActiveBorderBrushKey}}" 
+                BorderThickness="0,1,0,0"
+                Visibility="{Binding IsRegularWindow, 
+                    ElementName=webWindow, 
+                    Converter={StaticResource booleanToVisibilityConverter}}">
+                <StatusBarItem>
+                    <TextBlock 
+                        VerticalAlignment="Center" 
+                        Padding="3" 
+                        TextWrapping="NoWrap" 
+                        TextTrimming="CharacterEllipsis" 
+                        Text="{Binding TargetURL, ElementName=webControl, 
+                            Converter={StaticResource UrlConverter}}"/>
+                </StatusBarItem>
+                <StatusBarItem HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            Margin="7,0" 
+                            Text="Zoom:"/>
+                        <Slider 
+                            DataContext="{Binding ElementName=webControl}" 
+                            Margin="3,0" 
+                            Minimum="10" 
+                            Maximum="400" 
+                            Width="120"
+                            VerticalAlignment="Center" 
+                            Value="{Binding Zoom}" 
+                            AutoToolTipPlacement="TopLeft" 
+                            IsSnapToTickEnabled="True" 
+                            IsMoveToPointEnabled="True" 
+                            SmallChange="1" 
+                            LargeChange="10" 
+                            TickFrequency="10" 
+                            Focusable="False" 
+                            ToolTip="{Binding Zoom}">
+                            <Slider.ContextMenu>
+                                <ContextMenu 
+                                 DataContext="{Binding PlacementTarget.DataContext,
+                                 RelativeSource={RelativeSource Self}}">
+                                    <MenuItem 
+                                  Command="{x:Static awe:WebControlCommands.ResetZoom}"
+                                  CommandTarget="{Binding}" />
+                                </ContextMenu>
+                            </Slider.ContextMenu>
+                        </Slider>
+                    </StackPanel>
+                </StatusBarItem>
+            </StatusBar>
+        </Grid>
+    </awe:WebDialogsLayer>
 </Window>

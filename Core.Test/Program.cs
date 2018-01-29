@@ -12,8 +12,14 @@ namespace Core.Test
     {
         static void Main(string[] args)
         {
-            Send();
+            SendEmail("ddd");
         }
+
+        public static void SendEmail(string content)
+        {
+            EmailHelper.SendEmail("415552548@qq.com", "omgyvfhsugztbhcc", "13701859214@qq.com", "", "works", content, "smtp.qq.com", 25);
+        }
+
 
         public static async void Send()
         {

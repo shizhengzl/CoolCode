@@ -61,8 +61,8 @@ namespace Core.UsuallyCommon
                 {
                     myClient.Host = Host;//SMTP服务器
                     myClient.Port = Port;//SMTP端口
-                    myClient.EnableSsl = false;
-                    myClient.UseDefaultCredentials = true;
+                    myClient.EnableSsl = true;
+                    myClient.UseDefaultCredentials = false;
                     //验证邮件
                     myClient.Credentials = new NetworkCredential(FormMail, FormMailPwd);
                     //发送邮件

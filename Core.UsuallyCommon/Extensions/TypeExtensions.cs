@@ -28,7 +28,20 @@ namespace Core.UsuallyCommon
             bool isparse = Int32.TryParse(obj.ToStringExtension(),out result);
             return result;
         }
-
+        public static DateTime ToDateTime(this object obj)
+        {
+            DateTime result = DateTime.MinValue;
+            if (obj != null)
+                DateTime.TryParse(obj.ToString(), out result);
+            return result;
+        }
+        public static Decimal ToDecimal(this object obj)
+        {
+            Decimal result = Decimal.MaxValue;
+            if (obj != null)
+                Decimal.TryParse(obj.ToStringExtension(), out result);
+            return result;
+        }
 
         // 获取文件扩展名
         public static string GetFileExtension(this object obj)

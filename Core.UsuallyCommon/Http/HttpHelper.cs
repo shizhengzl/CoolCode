@@ -10,7 +10,15 @@ using System.Threading.Tasks;
 namespace Core.UsuallyCommon
 {
     public class HttpHelper
-    { 
+    {
+
+        public static async Task<string> GetAsync(string url, CookieContainer container)
+        {
+            HttpClientHandler handler = new HttpClientHandler() { CookieContainer = container };
+            HttpClient client = new HttpClient(handler);
+            var result = await client.GetAsync(url);
+            return await result.Content.ReadAsStringAsync();
+        }
         public async Task<string> Send(List<KeyValuePair<string, string>> list, string url)
         {
             try

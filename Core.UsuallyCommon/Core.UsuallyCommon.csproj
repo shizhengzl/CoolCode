@@ -48,6 +48,7 @@
     <Compile Include="Email\EmailHelper.cs" />
     <Compile Include="Extensions\DataTableExtenstions.cs" />
     <Compile Include="Extensions\EnumExtenstions.cs" />
+    <Compile Include="Extensions\Random\RandomHelper.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Http\HttpHelper.cs" />
     <Compile Include="IoHelper\DirectoryFileHelper.cs" />
