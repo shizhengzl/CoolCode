@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.UsuallyCommon;
 using System.Net.Http;
+using System.Security.Cryptography;
 
 namespace Core.Test
 {
@@ -12,7 +13,9 @@ namespace Core.Test
     {
         static void Main(string[] args)
         {
-            SendEmail("ddd");
+            string key = "0123456789ABCDEF";
+            string message = "你是大傻b";
+            Console.ReadLine();
         }
 
         public static void SendEmail(string content)

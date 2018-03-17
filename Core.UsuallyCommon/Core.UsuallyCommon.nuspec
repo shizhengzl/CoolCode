@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Core.UsuallyCommon</id>
-    <version>1.0.0.6</version>
-    <title>usuallycommon</title>
+    <id>UsuallyCommon</id>
+    <version>1.0.0.2</version>
+    <title>UsuallyCommon</title>
     <authors>shizheng</authors>
     <owners>shizheng</owners>
-    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <licenseUrl>https://github.com/shizhengzl/CoolCode/tree/master/Core.UsuallyCommon</licenseUrl>
+    <projectUrl>https://github.com/shizhengzl/CoolCode/tree/master/Core.UsuallyCommon</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE2</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>usuallycommon</description>
+    <description>UsuallyCommon</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
-    <copyright>Copyright 2017</copyright>
+
   </metadata>
 </package>

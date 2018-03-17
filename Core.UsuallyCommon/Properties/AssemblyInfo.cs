@@ -32,10 +32,11 @@ using System.Runtime.InteropServices;
 // 可以指定所有值，也可以使用以下所示的 "*" 预置版本号和修订号
 //通过使用 "*"，如下所示:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.6")]
-[assembly: AssemblyFileVersion("1.0.0.6")]
+[assembly: AssemblyVersion("1.0.0.2")]
+[assembly: AssemblyFileVersion("1.0.0.2")]
 
 
 // nuget spec
-// nuget pack Core.UsuallyCommon.csproj
-// nuget push Core.UsuallyCommon.1.0.0.6.nupkg
+// nuget pack Core.UsuallyCommon.csproj 
+// nuget setApiKey oy2ijayvahrelt23ipkaxgotiz3b2rjelpaqnr3vpidszq  -Source https://www.nuget.org/api/v2/package
+// nuget push Core.UsuallyCommon.1.0.0.7.nupkg -Source https://www.nuget.org/api/v2/package oy2chhaqdcuxnggtcgnadnd3h6m75nbuxjwdglgypuaiqe

@@ -57,7 +57,7 @@ namespace Works
             this.WindowState = System.Windows.WindowState.Maximized; this.Source = WebCore.Configuration.HomeURL;
 
             readDataTimer.Tick += new EventHandler(timeCycle);
-            readDataTimer.Interval = new TimeSpan(0, 0, 0, 8);
+            readDataTimer.Interval = new TimeSpan(0, 0, 0,5);
             //readDataTimer.Start();
         }
         #region webborrow
@@ -168,8 +168,6 @@ namespace Works
             {
 
             }
-
-
         }
 
         public async Task<List<GameResult>> GetResultHtml()
@@ -238,6 +236,8 @@ namespace Works
             this.lblMessage.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             Invest();
         }
+
+        public DateTime now = System.DateTime.Now;
         public async void Invest()
         {
             lblMessage.Text = string.Empty;
@@ -262,69 +262,69 @@ namespace Works
 
             InitUrl();
             var list = result.OrderByDescending(x => x.InvestTime).Take(10).ToList();
-
             var second = result.Skip(1).Take(1).FirstOrDefault();
-
-            Decimal lostmoney = 0;
+            var first = list.First();
+            
             Decimal minvalue = MinValue.Text.ToDecimal();
             Decimal addmoney = Addmoney.Text.ToDecimal();
 
             Decimal lostPersent = LostPresent.Text.ToDecimal();
-            Decimal basePersent = 10 / lostPersent;
+            Decimal basePersent = addmoney / lostPersent;
 
-            int allcount = 0;
 
-            if (second != null)
-            { 
-                var ms = Math.Abs((list.FirstOrDefault().InvestMoney - second.InvestMoney).ToDecimal())  ;
-                if(ms !=(list.FirstOrDefault().InvestMoney.ToInt32() / basePersent + 1).ToDecimal() * addmoney)
-                {
-                    if (list.FirstOrDefault().InvestMoney < second.InvestMoney && allcount %2 ==0)
-                        lostmoney = second.InvestMoney.Value - list.FirstOrDefault().InvestMoney.Value + addmoney;
-                    allcount++;
-                }
 
-                
-            }
-            bool isover = IsOver(list.First());
+            // 最后一次投注
+            var money = first.Remark.IndexOf('/') > -1 ? first.Remark.Split('/')[1].ToDecimal() : 10000;
+            var investmoney = first.InvestMoney;
+
+            bool isover = IsOver(first);
             if (isover)
             {
                 lblMessage.Text += "start invest";
-                var last = list.FirstOrDefault();
-
-                var lastmoney = last.Remark.IndexOf('/') > -1 ? last.Remark.Split('/')[1].ToDecimal() : 10000;
-
-                // invest
-                decimal investmoney = last.InvestMoney.ToDecimal();
-
-
-                if (last.WinMoney > 0)
+                if (first.WinMoney >= 0)
                 {
-                    investmoney -= (last.InvestMoney.ToInt32() / basePersent + 1).ToDecimal() * addmoney;
-                }
-                if (last.WinMoney < 0)
-                {
-                    investmoney += (last.InvestMoney.ToInt32() / basePersent + 1).ToDecimal() * addmoney;
-                }
-
-                investmoney += lostmoney;
-
-                if (investmoney < minvalue)
                     investmoney = minvalue;
-
-                if (lastmoney < investmoney)
+                }
+                else if(first.WinMoney < 0)
+                {
+                    investmoney = first.InvestMoney * 2;
+                } 
+                 
+                if (money < investmoney)
                 {
                     // send email
-                    string message = string.Format("金额不足：{0},下注需要：{1}", lastmoney, investmoney);
+                    string message = string.Format("金额不足：{0},下注需要：{1}", money, investmoney);
                     SendEmail(message);
                     lblMessage.Text += message;
                     return;
                 }
+                if (money > 10000)
+                {
+                    // send email
+                    string message = string.Format("good luck ,total  money:{0}", money);
+                    SendEmail(message);
+                    lblMessage.Text += message;
+                    readDataTimer.Stop();
+                    return;
+                }
+
+                if(investmoney == 160 || investmoney == 640 || investmoney == 80)
+                { 
+                    now = now.AddMinutes(5);
+                    string message = "waiting 5 min";
+                    lblMessage.Text += message;
+                    
+                }
+               
+                if (DateTime.Now < now)
+                    return;
+                
+
                 // 准备按钮
                 MouseHelper.DoClick(TenDollayXy.Text.Split(',')[0].ToInt32(), TenDollayXy.Text.Split(',')[1].ToInt32());
                 var clicktencount = investmoney / 10;
 
-                bool random = RandomHelper.RandomBool();
+                bool random = true;// RandomHelper.RandomBool();
 
                 int x = random ? XianXy.Text.Split(',')[0].ToInt32() : ZhuangXy.Text.Split(',')[0].ToInt32();
                 int y = random ? XianXy.Text.Split(',')[1].ToInt32() : ZhuangXy.Text.Split(',')[1].ToInt32();
@@ -346,6 +346,7 @@ namespace Works
                     SaveDb(list.FirstOrDefault());
             }
         }
+
 
         public bool IsOver(GameResult game)
         {

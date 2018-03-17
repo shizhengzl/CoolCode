@@ -107,11 +107,11 @@
                     </DockPanel>
                     <DockPanel Grid.Row="6">
                         <Button>Min Value</Button>
-                        <TextBox Text="10" Name="MinValue" ></TextBox>
+                        <TextBox Text="50" Name="MinValue" ></TextBox>
                     </DockPanel>
                     <DockPanel Grid.Row="7">
                         <Button>Addmoney</Button>
-                        <TextBox Text="10" Name="Addmoney" ></TextBox>
+                        <TextBox Text="50" Name="Addmoney" ></TextBox>
                     </DockPanel>
                     <DockPanel Grid.Row="8">
                         <Button>lostPresent</Button>
