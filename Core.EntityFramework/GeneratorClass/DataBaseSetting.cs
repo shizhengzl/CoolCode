@@ -22,6 +22,8 @@ namespace Core.EntityFramework
 
         public DateTime LastModifyTime { get; set; }
 
+        public string DataBase { get; set; }
+
     } 
 
     public enum AuthenticationType

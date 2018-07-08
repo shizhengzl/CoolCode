@@ -19,7 +19,7 @@ namespace Core.GeneratorWindows
             InitializeComponent();
             this.comLoginMethod.SelectedIndex = 1;
 
-            var settings = db.DataBaseSetting.OrderByDescending(x=>x.LastModifyTime).FirstOrDefault();
+            var settings = db.DataBaseSetting.OrderByDescending(x => x.LastModifyTime).FirstOrDefault();
             if (settings != null)
             {
                 txtServerName.Text = settings.Address;
@@ -65,6 +65,7 @@ namespace Core.GeneratorWindows
                         Address = addres,
                         LastModifyTime = DateTime.Now,
                         IsRemeber = chk_remberer.Checked,
+                        DataBase = comDataBase.Text,
                         AuthenticationType = comLoginMethod.SelectedIndex.ToString().ToEnum<AuthenticationType>()
                     };
                     db.DataBaseSetting.Add(settings);
@@ -76,10 +77,11 @@ namespace Core.GeneratorWindows
                     settings.Password = password;
                     settings.Address = addres;
                     settings.IsRemeber = chk_remberer.Checked;
+                    settings.DataBase = comDataBase.Text;
                     settings.AuthenticationType = comLoginMethod.SelectedIndex.ToString().ToEnum<AuthenticationType>();
 
 
-                } 
+                }
                 db.SaveChanges();
                 DialogResult = DialogResult.OK;
 
@@ -118,6 +120,23 @@ namespace Core.GeneratorWindows
             {
                 txtPassword.Focus();
                 txtPassword.SelectAll();
+            }
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            DatabaseHelper.connectionString = $"Server={txtServerName.Text};uid={txtLoginName.Text};pwd={txtPassword.Text};database=master;";
+
+            string getdatabasesql = @"SELECT * FROM sys.databases";
+            DataSet Ds = DatabaseHelper.ExecuteQuery(getdatabasesql);
+
+            comDataBase.Items.Clear();
+
+            DataTable dt = Ds.Tables[0];
+
+            foreach (DataRow item in dt.Rows)
+            {
+                comDataBase.Items.Add(item["name"].ToStringExtension());
             }
         }
     }

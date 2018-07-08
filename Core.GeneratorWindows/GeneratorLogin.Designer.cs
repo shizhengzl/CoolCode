@@ -40,6 +40,9 @@
             this.labLoginMethod = new System.Windows.Forms.Label();
             this.txtServerName = new System.Windows.Forms.TextBox();
             this.labServerName = new System.Windows.Forms.Label();
+            this.comDataBase = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // chk_remberer
@@ -49,7 +52,7 @@
             this.chk_remberer.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk_remberer.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chk_remberer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.chk_remberer.Location = new System.Drawing.Point(96, 246);
+            this.chk_remberer.Location = new System.Drawing.Point(96, 309);
             this.chk_remberer.Name = "chk_remberer";
             this.chk_remberer.Size = new System.Drawing.Size(103, 25);
             this.chk_remberer.TabIndex = 32;
@@ -59,7 +62,7 @@
             // btnCanel
             // 
             this.btnCanel.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnCanel.Location = new System.Drawing.Point(306, 235);
+            this.btnCanel.Location = new System.Drawing.Point(306, 298);
             this.btnCanel.Name = "btnCanel";
             this.btnCanel.Size = new System.Drawing.Size(75, 43);
             this.btnCanel.TabIndex = 31;
@@ -70,7 +73,7 @@
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnLogin.Location = new System.Drawing.Point(211, 235);
+            this.btnLogin.Location = new System.Drawing.Point(211, 298);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 43);
             this.btnLogin.TabIndex = 30;
@@ -163,11 +166,47 @@
             this.labServerName.TabIndex = 22;
             this.labServerName.Text = "Server Name:";
             // 
+            // comDataBase
+            // 
+            this.comDataBase.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.comDataBase.FormattingEnabled = true;
+            this.comDataBase.Items.AddRange(new object[] {
+            "Windows   Login",
+            "SQLServer Login"});
+            this.comDataBase.Location = new System.Drawing.Point(211, 254);
+            this.comDataBase.Name = "comDataBase";
+            this.comDataBase.Size = new System.Drawing.Size(172, 27);
+            this.comDataBase.TabIndex = 34;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.label1.Location = new System.Drawing.Point(92, 255);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 19);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "DataBase:";
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(213, 221);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(168, 23);
+            this.btnTest.TabIndex = 35;
+            this.btnTest.Text = "Test Connection";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // GeneratorLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(459, 314);
+            this.ClientSize = new System.Drawing.Size(514, 389);
+            this.Controls.Add(this.btnTest);
+            this.Controls.Add(this.comDataBase);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.chk_remberer);
             this.Controls.Add(this.btnCanel);
             this.Controls.Add(this.btnLogin);
@@ -201,5 +240,8 @@
         private System.Windows.Forms.Label labLoginMethod;
         private System.Windows.Forms.TextBox txtServerName;
         private System.Windows.Forms.Label labServerName;
+        private System.Windows.Forms.ComboBox comDataBase;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnTest;
     }
 }

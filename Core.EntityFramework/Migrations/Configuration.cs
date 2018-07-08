@@ -10,11 +10,11 @@ namespace Core.EntityFramework.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
             //SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
 
-            AutomaticMigrationDataLossAllowed = true;
-            //SetSqlGenerator("System.Data.SQLite", new SQLiteMigrationSqlGenerator());
+            AutomaticMigrationDataLossAllowed = false;
+            SetSqlGenerator("System.Data.SQLite", new SQLiteMigrationSqlGenerator());
         }
 
         protected override void Seed(GeneratorContext context)
@@ -31,19 +31,60 @@ namespace Core.EntityFramework.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            if (context.Controls.Count() == 0)
+            {
+                context.Controls.RemoveRange(context.Controls.ToList());
+
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "bigint" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "binary" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "bit" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "char" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "date" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "datetime" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "datetime2" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "datetimeoffset" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "decimal" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "float" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "geography" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "geometry" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "hierarchyid" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "image" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "int" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "money" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "nchar" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "ntext" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "numeric" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "nvarchar" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "real" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "smalldatetime" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "smallint" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "smallmoney" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "sql_variant" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "sysname" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "text" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "time" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "timestamp" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "tinyint" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "uniqueidentifier" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "varbinary" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "varchar" });
+                context.Controls.Add(new GeneratorClass.Controls() { Name = "xml" });
+
+            }
+
             context.GeneratorReplace.RemoveRange(context.GeneratorReplace.ToList());
             context.GeneratorSnippet.RemoveRange(context.GeneratorSnippet.ToList());
             context.GeneratorSQL.RemoveRange(context.GeneratorSQL.ToList());
 
-            Extensions.EnumToList<CSharpDataType>().ForEach(x=> 
+            Extensions.EnumToList<CSharpDataType>().ForEach(x =>
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = x, ReplaceDeclare = "@" + x, UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.CsharpType }));
 
             Extensions.EnumToList<CSharpDataType>().ForEach(x =>
-           context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "!"+ x, ReplaceDeclare = "@!" + x, UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.CsharpType }));
+           context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "!" + x, ReplaceDeclare = "@!" + x, UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.CsharpType }));
 
 
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.NameSpace.ToString(), ReplaceDeclare = "@" + ReplaceVariable.NameSpace.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
-            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.DataBaseName.ToString(), ReplaceDeclare = "@" + ReplaceVariable.DataBaseName.ToString(), UserDeclare = false, ReplaceType= GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.DataBaseName.ToString(), ReplaceDeclare = "@" + ReplaceVariable.DataBaseName.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.TableName.ToString(), ReplaceDeclare = "@" + ReplaceVariable.TableName.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.ColumnName.ToString(), ReplaceDeclare = "@" + ReplaceVariable.ColumnName.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.CSharpType.ToString(), ReplaceDeclare = "@" + ReplaceVariable.CSharpType.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
@@ -57,7 +98,7 @@ namespace Core.EntityFramework.Migrations
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Starts.ToString(), ReplaceDeclare = "<%!", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Ends.ToString(), ReplaceDeclare = "!%>", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });
 
-            context.GeneratorSnippet.Add(new GeneratorClass.GeneratorSnippet() {  IsFloder = false,Name = "Example", IsEnabled = true, IsSelectColumn = true ,Context= @"using System; 
+            context.GeneratorSnippet.Add(new GeneratorClass.GeneratorSnippet() { IsFloder = false, Name = "Example", IsEnabled = true, IsSelectColumn = true, Context = @"using System; 
 namespace @NameSpace
 {
         public class @TableName
@@ -75,7 +116,7 @@ namespace @NameSpace
      }
 }" });
 
-            context.GeneratorSQL.Add(new GeneratorClass.GeneratorSQL() {  Name="Columns", SQLContext= @" use [{0}]
+            context.GeneratorSQL.Add(new GeneratorClass.GeneratorSQL() { Name = "Columns", SQLContext = @" use [{0}]
        DECLARE @databaseName VARCHAR(100)= '{0}'
       DECLARE @tableName VARCHAR(100)= '{1}'
       DECLARE @table TABLE

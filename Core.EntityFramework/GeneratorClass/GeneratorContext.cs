@@ -37,12 +37,14 @@ namespace Core.EntityFramework
 
         public DbSet<GeneratorSQL> GeneratorSQL { get; set; }
 
+        public DbSet<Controls> Controls { get; set; }
+
         public GeneratorContext() :
             base(new SQLiteConnection()
             {
                 ConnectionString =
             new SQLiteConnectionStringBuilder()
-            { DataSource = "codefirstgenerator.db", ForeignKeys = true }
+            { DataSource = "codegenerator.db", ForeignKeys = true }
             .ConnectionString
             }, true)
              //base("GeneratorContext")

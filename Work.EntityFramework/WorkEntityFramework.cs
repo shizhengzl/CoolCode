@@ -25,14 +25,13 @@
         //如果您想要针对其他数据库和/或数据库提供程序，请在应用程序配置文件中修改“WorkEntityFramework”
         //连接字符串。
         public WorkEntityFramework()
-        //    : base(new SQLiteConnection()
-        //{
-        //    ConnectionString =
-        //new SQLiteConnectionStringBuilder()
-        //{ DataSource = "Cache\\Cookies", ForeignKeys = true }
-        //.ConnectionString
-        //    }, true)
-            : base("name=WorkEntityFramework")
+            : base(new SQLiteConnection()
+            {
+                ConnectionString =  new SQLiteConnectionStringBuilder()
+                 { DataSource = "Cache\\Cookies", ForeignKeys = true }
+        .ConnectionString
+            }, true)
+        //    : base("name=WorkEntityFramework")
         {
         }
 
@@ -47,10 +46,4 @@
 
         public virtual DbSet<GameResult> gameresult { get; set; }
     }
-    
-    //public class MyEntity
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //}
 }

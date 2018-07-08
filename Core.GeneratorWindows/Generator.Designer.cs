@@ -43,6 +43,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.treesnippet = new System.Windows.Forms.TreeView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbltables = new System.Windows.Forms.Label();
+            this.textAlias = new System.Windows.Forms.TextBox();
+            this.textSql = new Kevin.SyntaxTextBox.SyntaxTextBox();
             this.treeSource = new System.Windows.Forms.TreeView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tooldatasource = new System.Windows.Forms.ToolStripButton();
@@ -84,11 +88,14 @@
             this.tabPageVariables = new System.Windows.Forms.TabPage();
             this.dataVariables = new System.Windows.Forms.DataGridView();
             this.tabPageDataType = new System.Windows.Forms.TabPage();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.tbldatatypesave = new System.Windows.Forms.ToolStripButton();
+            this.datatypegrid = new System.Windows.Forms.DataGridView();
             this.imageListcollection = new System.Windows.Forms.ImageList(this.components);
             this.ContentMenuSnippet = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.CMS删除 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMS启用 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMS禁用 = new System.Windows.Forms.ToolStripMenuItem();
+            this.CMS删除 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMS看生成代码 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMS修改 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabMain.SuspendLayout();
@@ -102,6 +109,7 @@
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tSnippet.SuspendLayout();
             this.pfrom.SuspendLayout();
@@ -117,6 +125,9 @@
             this.tabSettings.SuspendLayout();
             this.tabPageVariables.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataVariables)).BeginInit();
+            this.tabPageDataType.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datatypegrid)).BeginInit();
             this.ContentMenuSnippet.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -192,7 +203,7 @@
             this.GeneratorText.AcceptsTab = true;
             this.GeneratorText.CaseSensitive = false;
             this.GeneratorText.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
-    "Assemblies\\yey2n1tt01\\csharp.xml";
+    "Assemblies\\eb7ayotr01\\csharp.xml";
             this.GeneratorText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GeneratorText.FilterAutoComplete = true;
             this.GeneratorText.Location = new System.Drawing.Point(0, 0);
@@ -253,6 +264,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.treeSource);
             this.panel2.Controls.Add(this.toolStrip1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -261,12 +273,55 @@
             this.panel2.Size = new System.Drawing.Size(287, 380);
             this.panel2.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lbltables);
+            this.groupBox1.Controls.Add(this.textAlias);
+            this.groupBox1.Controls.Add(this.textSql);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox1.Location = new System.Drawing.Point(0, 283);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(287, 97);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "AttendSQL";
+            // 
+            // lbltables
+            // 
+            this.lbltables.AutoSize = true;
+            this.lbltables.Location = new System.Drawing.Point(6, 73);
+            this.lbltables.Name = "lbltables";
+            this.lbltables.Size = new System.Drawing.Size(95, 12);
+            this.lbltables.TabIndex = 2;
+            this.lbltables.Text = "AliasTableName:";
+            // 
+            // textAlias
+            // 
+            this.textAlias.Location = new System.Drawing.Point(101, 70);
+            this.textAlias.Name = "textAlias";
+            this.textAlias.Size = new System.Drawing.Size(180, 21);
+            this.textAlias.TabIndex = 1;
+            // 
+            // textSql
+            // 
+            this.textSql.AcceptsTab = true;
+            this.textSql.CaseSensitive = false;
+            this.textSql.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
+    "Assemblies\\eb7ayotr01\\csharp.xml";
+            this.textSql.FilterAutoComplete = true;
+            this.textSql.Location = new System.Drawing.Point(3, 17);
+            this.textSql.MaxUndoRedoSteps = 50;
+            this.textSql.Name = "textSql";
+            this.textSql.Size = new System.Drawing.Size(281, 49);
+            this.textSql.TabIndex = 0;
+            this.textSql.Text = "";
+            this.textSql.WordWrap = false;
+            // 
             // treeSource
             // 
-            this.treeSource.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeSource.Location = new System.Drawing.Point(0, 25);
             this.treeSource.Name = "treeSource";
-            this.treeSource.Size = new System.Drawing.Size(287, 355);
+            this.treeSource.Size = new System.Drawing.Size(287, 258);
             this.treeSource.TabIndex = 1;
             this.treeSource.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeSource_NodeMouseClick);
             // 
@@ -287,8 +342,9 @@
             this.tooldatasource.Image = ((System.Drawing.Image)(resources.GetObject("tooldatasource.Image")));
             this.tooldatasource.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tooldatasource.Name = "tooldatasource";
-            this.tooldatasource.Size = new System.Drawing.Size(96, 22);
-            this.tooldatasource.Text = "Add Source";
+            this.tooldatasource.Size = new System.Drawing.Size(115, 22);
+            this.tooldatasource.Text = "AddSQLSource";
+            this.tooldatasource.Click += new System.EventHandler(this.tooldatasource_Click);
             // 
             // toolSourceClear
             // 
@@ -379,7 +435,7 @@
             this.SnippetContext.AcceptsTab = true;
             this.SnippetContext.CaseSensitive = false;
             this.SnippetContext.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
-    "Assemblies\\yey2n1tt01\\csharp.xml";
+    "Assemblies\\eb7ayotr01\\csharp.xml";
             this.SnippetContext.FilterAutoComplete = true;
             this.SnippetContext.Location = new System.Drawing.Point(23, 176);
             this.SnippetContext.MaxUndoRedoSteps = 50;
@@ -684,6 +740,8 @@
             // 
             // tabPageDataType
             // 
+            this.tabPageDataType.Controls.Add(this.toolStrip2);
+            this.tabPageDataType.Controls.Add(this.datatypegrid);
             this.tabPageDataType.Location = new System.Drawing.Point(4, 22);
             this.tabPageDataType.Name = "tabPageDataType";
             this.tabPageDataType.Padding = new System.Windows.Forms.Padding(3);
@@ -691,6 +749,36 @@
             this.tabPageDataType.TabIndex = 1;
             this.tabPageDataType.Text = "DataType";
             this.tabPageDataType.UseVisualStyleBackColor = true;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tbldatatypesave});
+            this.toolStrip2.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(1322, 25);
+            this.toolStrip2.TabIndex = 1;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // tbldatatypesave
+            // 
+            this.tbldatatypesave.Image = ((System.Drawing.Image)(resources.GetObject("tbldatatypesave.Image")));
+            this.tbldatatypesave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbldatatypesave.Name = "tbldatatypesave";
+            this.tbldatatypesave.Size = new System.Drawing.Size(54, 22);
+            this.tbldatatypesave.Text = "save";
+            this.tbldatatypesave.Click += new System.EventHandler(this.tbldatatypesave_Click);
+            // 
+            // datatypegrid
+            // 
+            this.datatypegrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datatypegrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.datatypegrid.Location = new System.Drawing.Point(3, 32);
+            this.datatypegrid.Name = "datatypegrid";
+            this.datatypegrid.RowTemplate.Height = 23;
+            this.datatypegrid.Size = new System.Drawing.Size(1322, 596);
+            this.datatypegrid.TabIndex = 0;
+            this.datatypegrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datatypegrid_CellContentDoubleClick);
             // 
             // imageListcollection
             // 
@@ -718,34 +806,34 @@
             this.CMS删除,
             this.CMS看生成代码});
             this.ContentMenuSnippet.Name = "CMS";
-            this.ContentMenuSnippet.Size = new System.Drawing.Size(153, 114);
-            // 
-            // CMS删除
-            // 
-            this.CMS删除.Image = ((System.Drawing.Image)(resources.GetObject("CMS删除.Image")));
-            this.CMS删除.Name = "CMS删除";
-            this.CMS删除.Size = new System.Drawing.Size(152, 22);
-            this.CMS删除.Text = "删除";
+            this.ContentMenuSnippet.Size = new System.Drawing.Size(137, 92);
             // 
             // CMS启用
             // 
             this.CMS启用.Image = ((System.Drawing.Image)(resources.GetObject("CMS启用.Image")));
             this.CMS启用.Name = "CMS启用";
-            this.CMS启用.Size = new System.Drawing.Size(152, 22);
+            this.CMS启用.Size = new System.Drawing.Size(136, 22);
             this.CMS启用.Text = "启用";
             // 
             // CMS禁用
             // 
             this.CMS禁用.Image = ((System.Drawing.Image)(resources.GetObject("CMS禁用.Image")));
             this.CMS禁用.Name = "CMS禁用";
-            this.CMS禁用.Size = new System.Drawing.Size(152, 22);
+            this.CMS禁用.Size = new System.Drawing.Size(136, 22);
             this.CMS禁用.Text = "禁用";
+            // 
+            // CMS删除
+            // 
+            this.CMS删除.Image = ((System.Drawing.Image)(resources.GetObject("CMS删除.Image")));
+            this.CMS删除.Name = "CMS删除";
+            this.CMS删除.Size = new System.Drawing.Size(136, 22);
+            this.CMS删除.Text = "删除";
             // 
             // CMS看生成代码
             // 
             this.CMS看生成代码.Image = ((System.Drawing.Image)(resources.GetObject("CMS看生成代码.Image")));
             this.CMS看生成代码.Name = "CMS看生成代码";
-            this.CMS看生成代码.Size = new System.Drawing.Size(152, 22);
+            this.CMS看生成代码.Size = new System.Drawing.Size(136, 22);
             this.CMS看生成代码.Text = "看生成代码";
             // 
             // CMS修改
@@ -777,6 +865,8 @@
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tSnippet.ResumeLayout(false);
@@ -798,6 +888,11 @@
             this.tabSettings.ResumeLayout(false);
             this.tabPageVariables.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataVariables)).EndInit();
+            this.tabPageDataType.ResumeLayout(false);
+            this.tabPageDataType.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datatypegrid)).EndInit();
             this.ContentMenuSnippet.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -866,6 +961,13 @@
         private Kevin.SyntaxTextBox.SyntaxTextBox GeneratorText;
         private System.Windows.Forms.ToolStripButton toolscriptreconnection;
         private System.Windows.Forms.ToolStripMenuItem CMS修改;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private Kevin.SyntaxTextBox.SyntaxTextBox textSql;
+        private System.Windows.Forms.Label lbltables;
+        private System.Windows.Forms.TextBox textAlias;
+        private System.Windows.Forms.DataGridView datatypegrid;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton tbldatatypesave;
     }
 }
 

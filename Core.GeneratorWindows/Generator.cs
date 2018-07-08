@@ -42,7 +42,7 @@ namespace Core.GeneratorWindows
         public string DefaultGeneratorPath = "C:\\GeneratorFile";
 
         public GeneratorContext db { get; set; }
-        
+
         public Geneartor(DTE2 applicationObject = null)
         {
             InitializeComponent();
@@ -54,6 +54,11 @@ namespace Core.GeneratorWindows
         {
             InitializeComponent();
             GeneratorInit();
+
+            datatypegrid.DataSource = db.Controls.ToList();
+
+            datatypegrid.AutoGenerateColumns = true; 
+            this.datatypegrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         public void GeneratorInit()
@@ -61,6 +66,7 @@ namespace Core.GeneratorWindows
             db = new GeneratorContext();
             GeneratorText.ConfigFile = GetPath.CSharpColor;
             SnippetContext.ConfigFile = GetPath.CSharpColor;
+            textSql.ConfigFile = GetPath.CSharpColor;
             LoadGeneartorVariable();
             InitTreeSource();
             ResreshSnippet();
@@ -72,8 +78,16 @@ namespace Core.GeneratorWindows
         {
             if (tn.Text == "DataSource")
                 return;
-            var dbname = (tn.Tag as TreeNode).Parent.Parent.Text;
-            dataSourceGrids.DataSource = LoadTableColumn(dbname, tn.Text); ;
+
+            var listColumn = new List<Column>();
+            if (tn.Name.IndexOf("@") > -1)
+                listColumn = (List<Column>)tn.Tag;
+            else
+            {
+                var dbname = (tn.Tag as TreeNode).Parent.Parent.Text;
+                listColumn = LoadTableColumn(dbname, tn.Text);
+            }
+            dataSourceGrids.DataSource = listColumn;
             dataSourceGrids.AutoGenerateColumns = true;
             dataSourceGrids.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
         }
@@ -235,6 +249,12 @@ EXEC (@RESULT)";
             var DataBaseList = Ds.Tables[0].ToList<DataBaseDescription>();
             foreach (var item in DataBaseList)
             {
+                string databasename = db.DataBaseSetting.OrderByDescending(x => x.LastModifyTime).First().DataBase;
+                if (!string.IsNullOrEmpty(databasename) && item.DataBaseName != databasename)
+                {
+                    continue;
+                }
+
                 TreeNode dbnode = new TreeNode(item.DataBaseName);
                 dbnode.Tag = DBTypeClass.DataBase;
                 SetTreeImages(dbnode);
@@ -712,7 +732,7 @@ EXEC (@RESULT)";
                 }));
 
             treesnippet.ExpandAll();
-        } 
+        }
         private void treesnippet_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             string message = string.Empty;
@@ -727,14 +747,26 @@ EXEC (@RESULT)";
                 GeneratorText.Text = message;
                 return;
             }
+
+            string dbname = string.Empty;
+            List<Column> columns = new List<Column>();
             if (tree == null)
+            { 
                 tree = ((TreeNode)treeSource.Nodes[0].Nodes[0].Tag);
+                dbname = tree.Parent.Parent.Text;
+                columns = LoadTableColumn(dbname, tree.Text);
+            }
+            else if (tree.Tag is List<Column>)
+            {
+                dbname = ((List<Column>)(tree.Tag)).FirstOrDefault().DataBaseName;
+                columns = (List<Column>)tree.Tag;
+            }
             else
+            {
                 tree = (TreeNode)tree.Tag;
-
-            var dbname = tree.Parent.Parent.Text;
-            var columns = LoadTableColumn(dbname, tree.Text);
-
+                dbname = tree.Parent.Parent.Text;
+                columns = LoadTableColumn(dbname, tree.Text);
+            }
             if (snippet.IsSelectColumn)
             {
                 ColumnSelectForm selct = new ColumnSelectForm(tree.Text, columns);
@@ -802,6 +834,20 @@ EXEC (@RESULT)";
                         }
                     }
                     string csreplace = repleceContext;
+
+                    if (csreplace.IndexOf("@Controls") > -1)
+                    {
+                        string defaultstring = db.Controls.FirstOrDefault(x => x.Name.ToUpper() == "varchar".ToUpper()).ControlString;
+                         
+                        var nowcontrols = db.Controls.FirstOrDefault(x => x.Name.ToUpper() == item.SQLType.ToUpper()).ControlString;
+
+                        if (string.IsNullOrEmpty(nowcontrols))
+                            csreplace = defaultstring;
+                        else
+                            csreplace = nowcontrols;
+                    }
+
+
                     foreach (var cs in columnsnippet)
                     {
                         if (csreplace.IndexOf(cs.ReplaceDeclare) > -1)
@@ -809,7 +855,7 @@ EXEC (@RESULT)";
                             csreplace = csreplace.Replace(cs.ReplaceDeclare, item.GetValue(cs.ReplaceName).ToString());
 
                         }
-                    }
+                    } 
                     db.GeneratorReplace.Where(x => x.ReplaceType == ReplaceType.Brackets).ToList().ForEach(x => csreplace = csreplace.Replace(x.ReplaceDeclare, string.Empty));
                     sbt.Append(csreplace);
                 }
@@ -824,6 +870,74 @@ EXEC (@RESULT)";
             Connection();
         }
         #endregion
+
+        private void tooldatasource_Click(object sender, EventArgs e)
+        {
+            string sql = textSql.Text;
+            var databasename = db.DataBaseSetting.First().DataBase;
+            if (string.IsNullOrEmpty(sql))
+            {
+                MessageBox.Show("请输入SQL");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(databasename))
+            {
+                MessageBox.Show("请选择数据库");
+                return;
+            }
+
+            SQLParser parser = new SQLParser(sql);
+            var list = parser.GetMyTables();
+            List<Column> rs = new List<Column>();
+            foreach (var item in list)
+            {
+                rs.AddRange(LoadTableColumn(databasename, item));
+            }
+            rs.ForEach(x => x.IsSelect = false);
+            parser.GetMyColumns(rs);
+            rs = rs.OrderByDescending(x => x.IsSelect).ToList<Column>();
+            if (treeSource.Nodes[0].Nodes.ContainsKey("@" + textAlias.Text))
+            {
+
+                MessageBox.Show("存在key");
+                return;
+            }
+            treeSource.Nodes[0].Nodes.Add(new TreeNode()
+            {
+                Name = "@" + textAlias.Text,
+                Text = textAlias.Text,
+                Tag = rs,
+
+                ImageIndex = (int)ImageIndex.Table,
+                SelectedImageIndex = (int)ImageIndex.Table
+            });
+        }
+
+        private void tbldatatypesave_Click(object sender, EventArgs e)
+        {
+            datatypegrid.EndEdit(); 
+            var count = datatypegrid.Rows.Count;
+            for(int i=0;i<count;i++)
+            {
+                string name = datatypegrid.Rows[i].Cells[0].Value.ToStringExtension();
+                string controls = datatypegrid.Rows[i].Cells[1].Value.ToStringExtension();
+                if(!string.IsNullOrEmpty(controls))
+                { 
+                    var up = db.Controls.Where(x => x.Name == name).FirstOrDefault();
+                    up.ControlString = controls; 
+                    
+                }
+            }
+            db.SaveChanges();
+            //datasnippet.CommitEdit();
+            datatypegrid.DataSource = db.Controls.ToList(); 
+        }
+
+        private void datatypegrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            datatypegrid.BeginEdit(false);
+        }
     }
 
     public class DataBaseDescription

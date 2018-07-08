@@ -82,14 +82,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GeneratorClass\Controls.cs" />
     <Compile Include="GeneratorClass\DataBaseSetting.cs" />
     <Compile Include="GeneratorClass\GeneratorContext.cs" />
     <Compile Include="GeneratorClass\GeneratorReplace.cs" />
     <Compile Include="GeneratorClass\GeneratorSnippet.cs" />
     <Compile Include="GeneratorClass\GeneratorSQL.cs" />
-    <Compile Include="Migrations\201801091007349_database.cs" />
-    <Compile Include="Migrations\201801091007349_database.Designer.cs">
-      <DependentUpon>201801091007349_database.cs</DependentUpon>
+    <Compile Include="Migrations\201807071656423_initdatabases.cs" />
+    <Compile Include="Migrations\201807071656423_initdatabases.Designer.cs">
+      <DependentUpon>201807071656423_initdatabases.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,9 +98,6 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="codefirstgenerator.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -123,13 +121,10 @@
     <Content Include="docs\MySqlParameter.xml" />
     <Content Include="docs\MySqlParameterCollection.xml" />
     <Content Include="docs\MySqlTransaction.xml" />
-    <EmbeddedResource Include="SQLite.Interop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801091007349_database.resx">
-      <DependentUpon>201801091007349_database.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807071656423_initdatabases.resx">
+      <DependentUpon>201807071656423_initdatabases.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
