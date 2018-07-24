@@ -88,9 +88,9 @@
     <Compile Include="GeneratorClass\GeneratorReplace.cs" />
     <Compile Include="GeneratorClass\GeneratorSnippet.cs" />
     <Compile Include="GeneratorClass\GeneratorSQL.cs" />
-    <Compile Include="Migrations\201807071656423_initdatabases.cs" />
-    <Compile Include="Migrations\201807071656423_initdatabases.Designer.cs">
-      <DependentUpon>201807071656423_initdatabases.cs</DependentUpon>
+    <Compile Include="Migrations\201807240608251_initdatabase.cs" />
+    <Compile Include="Migrations\201807240608251_initdatabase.Designer.cs">
+      <DependentUpon>201807240608251_initdatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,8 +123,8 @@
     <Content Include="docs\MySqlTransaction.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807071656423_initdatabases.resx">
-      <DependentUpon>201807071656423_initdatabases.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807240608251_initdatabase.resx">
+      <DependentUpon>201807240608251_initdatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

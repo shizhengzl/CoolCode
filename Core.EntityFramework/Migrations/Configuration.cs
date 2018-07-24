@@ -31,6 +31,10 @@ namespace Core.EntityFramework.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            if (context.Controls.Count() != 0)
+            {
+                return;
+            }
             if (context.Controls.Count() == 0)
             {
                 context.Controls.RemoveRange(context.Controls.ToList());
@@ -92,7 +96,9 @@ namespace Core.EntityFramework.Migrations
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.SQLDBType.ToString(), ReplaceDeclare = "@" + ReplaceVariable.SQLDBType.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
 
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Length.ToString(), ReplaceDeclare = "@" + ReplaceVariable.Length.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
-
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Keys.ToString(), ReplaceDeclare = "@" + ReplaceVariable.Keys.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Delimiter.ToString(), ReplaceDeclare = "@" + ReplaceVariable.Delimiter.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Where.ToString(), ReplaceDeclare = "@" + ReplaceVariable.Where.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
 
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.ColumnDescription.ToString(), ReplaceDeclare = "@" + ReplaceVariable.ColumnDescription.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Starts.ToString(), ReplaceDeclare = "<%!", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });

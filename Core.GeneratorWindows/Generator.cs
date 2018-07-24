@@ -57,7 +57,7 @@ namespace Core.GeneratorWindows
 
             datatypegrid.DataSource = db.Controls.ToList();
 
-            datatypegrid.AutoGenerateColumns = true; 
+            datatypegrid.AutoGenerateColumns = true;
             this.datatypegrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -751,7 +751,7 @@ EXEC (@RESULT)";
             string dbname = string.Empty;
             List<Column> columns = new List<Column>();
             if (tree == null)
-            { 
+            {
                 tree = ((TreeNode)treeSource.Nodes[0].Nodes[0].Tag);
                 dbname = tree.Parent.Parent.Text;
                 columns = LoadTableColumn(dbname, tree.Text);
@@ -796,6 +796,23 @@ EXEC (@RESULT)";
             int length = generatorCode.Length;
             int startNumber = (length - generatorCode.Replace(starts, "").Length) / starts.Length;
 
+            string Keys = string.Empty;
+            string Wheres = string.Empty;
+            var RKeys = db.GeneratorReplace.FirstOrDefault(x => x.ReplaceName == ReplaceVariable.Keys.ToString());
+            var RWheres = db.GeneratorReplace.FirstOrDefault(x => x.ReplaceName == ReplaceVariable.Where.ToString());
+            Keys = string.Empty;
+            Wheres = " Where ";
+            bool isfirstkey = true;
+            foreach (var c in columns)
+            {
+             
+                if (c.IsPrimaryKey)
+                {
+                    Keys += ((isfirstkey) ? " " : " , ") + c.ColumnName;
+                    Wheres += (isfirstkey ? " " : " AND ") + c.ColumnName + " =@" + c.ColumnName;
+                    isfirstkey = false;
+                }
+            } 
             var columnsnippet = db.GeneratorReplace.Where(x => x.ReplaceType == ReplaceType.Snippet).ToList();
 
             for (int i = 0; i < startNumber; i++)
@@ -816,10 +833,16 @@ EXEC (@RESULT)";
                     isno = existscsharptype.ReplaceDeclare.Contains("!");
                 StringBuilder sbt = new StringBuilder();
 
+
+                int islastColumn = columns.Where(x => x.IsSelect).Count();
+           
+                var demiliter = db.GeneratorReplace.FirstOrDefault(x => x.ReplaceName == ReplaceVariable.Delimiter.ToString());
+               
                 foreach (var item in columns)
-                {
+                { 
                     if (!item.IsSelect)
                         continue;
+                    islastColumn -= 1;
                     if (isexistscshaptype)
                     {
                         if (!isno)
@@ -833,12 +856,20 @@ EXEC (@RESULT)";
                                 continue;
                         }
                     }
-                    string csreplace = repleceContext;
+
+
+                    string csreplace = repleceContext; 
+                  
+                    if (csreplace.ToUpper().IndexOf(demiliter.ReplaceDeclare.ToUpper()) > -1)
+                    {
+                        csreplace = csreplace.Replace(demiliter.ReplaceDeclare, ((islastColumn != 0) ? "," : ""));
+                    }
+
 
                     if (csreplace.IndexOf("@Controls") > -1)
                     {
                         string defaultstring = db.Controls.FirstOrDefault(x => x.Name.ToUpper() == "varchar".ToUpper()).ControlString;
-                         
+
                         var nowcontrols = db.Controls.FirstOrDefault(x => x.Name.ToUpper() == item.SQLType.ToUpper()).ControlString;
 
                         if (string.IsNullOrEmpty(nowcontrols))
@@ -850,12 +881,16 @@ EXEC (@RESULT)";
 
                     foreach (var cs in columnsnippet)
                     {
-                        if (csreplace.IndexOf(cs.ReplaceDeclare) > -1)
+                        if (csreplace.IndexOf(cs.ReplaceDeclare) > -1
+                            
+                            && cs.ReplaceName.ToUpper() != RKeys.ReplaceName.ToUpper()
+                             && cs.ReplaceName.ToUpper() != RWheres.ReplaceName.ToUpper() 
+                            )
                         {
                             csreplace = csreplace.Replace(cs.ReplaceDeclare, item.GetValue(cs.ReplaceName).ToString());
 
                         }
-                    } 
+                    }
                     db.GeneratorReplace.Where(x => x.ReplaceType == ReplaceType.Brackets).ToList().ForEach(x => csreplace = csreplace.Replace(x.ReplaceDeclare, string.Empty));
                     sbt.Append(csreplace);
                 }
@@ -863,7 +898,7 @@ EXEC (@RESULT)";
                 generatorCode = generatorCode.Replace(repleceContext, sbt.ToString());
             }
 
-            return generatorCode;
+            return generatorCode.Replace(RKeys.ReplaceDeclare, Keys).Replace(RWheres.ReplaceDeclare, Wheres);
         }
         private void toolscriptreconnection_Click(object sender, EventArgs e)
         {
@@ -916,22 +951,22 @@ EXEC (@RESULT)";
 
         private void tbldatatypesave_Click(object sender, EventArgs e)
         {
-            datatypegrid.EndEdit(); 
+            datatypegrid.EndEdit();
             var count = datatypegrid.Rows.Count;
-            for(int i=0;i<count;i++)
+            for (int i = 0; i < count; i++)
             {
                 string name = datatypegrid.Rows[i].Cells[0].Value.ToStringExtension();
                 string controls = datatypegrid.Rows[i].Cells[1].Value.ToStringExtension();
-                if(!string.IsNullOrEmpty(controls))
-                { 
+                if (!string.IsNullOrEmpty(controls))
+                {
                     var up = db.Controls.Where(x => x.Name == name).FirstOrDefault();
-                    up.ControlString = controls; 
-                    
+                    up.ControlString = controls;
+
                 }
             }
             db.SaveChanges();
             //datasnippet.CommitEdit();
-            datatypegrid.DataSource = db.Controls.ToList(); 
+            datatypegrid.DataSource = db.Controls.ToList();
         }
 
         private void datatypegrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)

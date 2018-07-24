@@ -45,7 +45,10 @@ namespace Core.EntityFramework
         ColumnDescription = 7,
         Starts = 8,
         Ends = 9,
-        Length=10
+        Length=10,
+        Keys = 11,
+        Delimiter = 12,
+        Where = 13
     }
 
     public enum CSharpDataType

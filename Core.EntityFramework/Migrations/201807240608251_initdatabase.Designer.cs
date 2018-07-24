@@ -7,13 +7,13 @@ namespace Core.EntityFramework.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initdatabases : IMigrationMetadata
+    public sealed partial class initdatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initdatabases));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initdatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807071656423_initdatabases"; }
+            get { return "201807240608251_initdatabase"; }
         }
         
         string IMigrationMetadata.Source
