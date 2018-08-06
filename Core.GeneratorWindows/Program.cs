@@ -14,9 +14,17 @@ namespace Core.GeneratorWindows
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Geneartor());
+            //try
+            //{
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Geneartor());
+            //}
+            //catch (Exception)
+            //{ 
+
+            //}
+           
         }
     }
 }

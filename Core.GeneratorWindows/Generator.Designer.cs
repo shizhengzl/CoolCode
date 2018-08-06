@@ -42,6 +42,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.treesnippet = new System.Windows.Forms.TreeView();
+            this.ContentMenuSnippet = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CMS启用 = new System.Windows.Forms.ToolStripMenuItem();
+            this.CMS禁用 = new System.Windows.Forms.ToolStripMenuItem();
+            this.CMS删除 = new System.Windows.Forms.ToolStripMenuItem();
+            this.CMS看生成代码 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbltables = new System.Windows.Forms.Label();
@@ -56,6 +61,9 @@
             this.pfrom = new System.Windows.Forms.Panel();
             this.tform = new System.Windows.Forms.TabControl();
             this.tfrom = new System.Windows.Forms.TabPage();
+            this.txtFatherId = new System.Windows.Forms.TextBox();
+            this.lblFatherId = new System.Windows.Forms.Label();
+            this.ckIsFloder = new System.Windows.Forms.CheckBox();
             this.SnippetIsSelectColumn = new System.Windows.Forms.CheckBox();
             this.SnippetContext = new Kevin.SyntaxTextBox.SyntaxTextBox();
             this.SnippetIsAppend = new System.Windows.Forms.CheckBox();
@@ -84,7 +92,7 @@
             this.tooldbrefresh = new System.Windows.Forms.ToolStripButton();
             this.toolscriptreconnection = new System.Windows.Forms.ToolStripButton();
             this.tabPageSetting = new System.Windows.Forms.TabPage();
-            this.tabSettings = new System.Windows.Forms.TabControl();
+            this.SysSettings = new System.Windows.Forms.TabControl();
             this.tabPageVariables = new System.Windows.Forms.TabPage();
             this.dataVariables = new System.Windows.Forms.DataGridView();
             this.tabPageDataType = new System.Windows.Forms.TabPage();
@@ -92,12 +100,8 @@
             this.tbldatatypesave = new System.Windows.Forms.ToolStripButton();
             this.datatypegrid = new System.Windows.Forms.DataGridView();
             this.imageListcollection = new System.Windows.Forms.ImageList(this.components);
-            this.ContentMenuSnippet = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.CMS启用 = new System.Windows.Forms.ToolStripMenuItem();
-            this.CMS禁用 = new System.Windows.Forms.ToolStripMenuItem();
-            this.CMS删除 = new System.Windows.Forms.ToolStripMenuItem();
-            this.CMS看生成代码 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMS修改 = new System.Windows.Forms.ToolStripMenuItem();
+            this.SystemSQL = new System.Windows.Forms.TabPage();
             this.tabMain.SuspendLayout();
             this.tabPageGenerator.SuspendLayout();
             this.pGeneratorMain.SuspendLayout();
@@ -108,6 +112,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataSourceGrids)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.ContentMenuSnippet.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -122,13 +127,12 @@
             this.pGeneratorTree.SuspendLayout();
             this.tooldb.SuspendLayout();
             this.tabPageSetting.SuspendLayout();
-            this.tabSettings.SuspendLayout();
+            this.SysSettings.SuspendLayout();
             this.tabPageVariables.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataVariables)).BeginInit();
             this.tabPageDataType.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datatypegrid)).BeginInit();
-            this.ContentMenuSnippet.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMain
@@ -202,8 +206,8 @@
             // 
             this.GeneratorText.AcceptsTab = true;
             this.GeneratorText.CaseSensitive = false;
-            this.GeneratorText.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
-    "Assemblies\\eb7ayotr01\\csharp.xml";
+            this.GeneratorText.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6a85e28e\\Project" +
+    "Assemblies\\luhiidvn01\\csharp.xml";
             this.GeneratorText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GeneratorText.FilterAutoComplete = true;
             this.GeneratorText.Location = new System.Drawing.Point(0, 0);
@@ -255,12 +259,55 @@
             // 
             // treesnippet
             // 
+            this.treesnippet.ContextMenuStrip = this.ContentMenuSnippet;
             this.treesnippet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treesnippet.Location = new System.Drawing.Point(0, 0);
             this.treesnippet.Name = "treesnippet";
             this.treesnippet.Size = new System.Drawing.Size(287, 245);
             this.treesnippet.TabIndex = 0;
             this.treesnippet.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treesnippet_NodeMouseDoubleClick);
+            // 
+            // ContentMenuSnippet
+            // 
+            this.ContentMenuSnippet.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CMS启用,
+            this.CMS禁用,
+            this.CMS删除,
+            this.CMS看生成代码});
+            this.ContentMenuSnippet.Name = "CMS";
+            this.ContentMenuSnippet.Size = new System.Drawing.Size(137, 92);
+            // 
+            // CMS启用
+            // 
+            this.CMS启用.Image = ((System.Drawing.Image)(resources.GetObject("CMS启用.Image")));
+            this.CMS启用.Name = "CMS启用";
+            this.CMS启用.Size = new System.Drawing.Size(136, 22);
+            this.CMS启用.Text = "启用";
+            this.CMS启用.Click += new System.EventHandler(this.CMS启用_Click);
+            // 
+            // CMS禁用
+            // 
+            this.CMS禁用.Image = ((System.Drawing.Image)(resources.GetObject("CMS禁用.Image")));
+            this.CMS禁用.Name = "CMS禁用";
+            this.CMS禁用.Size = new System.Drawing.Size(136, 22);
+            this.CMS禁用.Text = "禁用";
+            this.CMS禁用.Click += new System.EventHandler(this.CMS禁用_Click);
+            // 
+            // CMS删除
+            // 
+            this.CMS删除.Image = ((System.Drawing.Image)(resources.GetObject("CMS删除.Image")));
+            this.CMS删除.Name = "CMS删除";
+            this.CMS删除.Size = new System.Drawing.Size(136, 22);
+            this.CMS删除.Text = "删除";
+            this.CMS删除.Click += new System.EventHandler(this.CMS删除_Click);
+            // 
+            // CMS看生成代码
+            // 
+            this.CMS看生成代码.Image = ((System.Drawing.Image)(resources.GetObject("CMS看生成代码.Image")));
+            this.CMS看生成代码.Name = "CMS看生成代码";
+            this.CMS看生成代码.Size = new System.Drawing.Size(136, 22);
+            this.CMS看生成代码.Text = "看生成代码";
+            this.CMS看生成代码.Click += new System.EventHandler(this.CMS看生成代码_Click);
             // 
             // panel2
             // 
@@ -306,8 +353,8 @@
             // 
             this.textSql.AcceptsTab = true;
             this.textSql.CaseSensitive = false;
-            this.textSql.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
-    "Assemblies\\eb7ayotr01\\csharp.xml";
+            this.textSql.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6a85e28e\\Project" +
+    "Assemblies\\luhiidvn01\\csharp.xml";
             this.textSql.FilterAutoComplete = true;
             this.textSql.Location = new System.Drawing.Point(3, 17);
             this.textSql.MaxUndoRedoSteps = 50;
@@ -398,6 +445,9 @@
             // 
             // tfrom
             // 
+            this.tfrom.Controls.Add(this.txtFatherId);
+            this.tfrom.Controls.Add(this.lblFatherId);
+            this.tfrom.Controls.Add(this.ckIsFloder);
             this.tfrom.Controls.Add(this.SnippetIsSelectColumn);
             this.tfrom.Controls.Add(this.SnippetContext);
             this.tfrom.Controls.Add(this.SnippetIsAppend);
@@ -419,6 +469,35 @@
             this.tfrom.Text = "Templete";
             this.tfrom.UseVisualStyleBackColor = true;
             // 
+            // txtFatherId
+            // 
+            this.txtFatherId.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtFatherId.Location = new System.Drawing.Point(613, 12);
+            this.txtFatherId.Name = "txtFatherId";
+            this.txtFatherId.Size = new System.Drawing.Size(99, 31);
+            this.txtFatherId.TabIndex = 53;
+            // 
+            // lblFatherId
+            // 
+            this.lblFatherId.AutoSize = true;
+            this.lblFatherId.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblFatherId.Location = new System.Drawing.Point(542, 19);
+            this.lblFatherId.Name = "lblFatherId";
+            this.lblFatherId.Size = new System.Drawing.Size(74, 21);
+            this.lblFatherId.TabIndex = 52;
+            this.lblFatherId.Text = "父ID：";
+            // 
+            // ckIsFloder
+            // 
+            this.ckIsFloder.AutoSize = true;
+            this.ckIsFloder.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ckIsFloder.Location = new System.Drawing.Point(546, 65);
+            this.ckIsFloder.Name = "ckIsFloder";
+            this.ckIsFloder.Size = new System.Drawing.Size(92, 25);
+            this.ckIsFloder.TabIndex = 51;
+            this.ckIsFloder.Text = "文件夹";
+            this.ckIsFloder.UseVisualStyleBackColor = true;
+            // 
             // SnippetIsSelectColumn
             // 
             this.SnippetIsSelectColumn.AutoSize = true;
@@ -434,8 +513,8 @@
             // 
             this.SnippetContext.AcceptsTab = true;
             this.SnippetContext.CaseSensitive = false;
-            this.SnippetContext.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6bad1949\\Project" +
-    "Assemblies\\eb7ayotr01\\csharp.xml";
+            this.SnippetContext.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6a85e28e\\Project" +
+    "Assemblies\\luhiidvn01\\csharp.xml";
             this.SnippetContext.FilterAutoComplete = true;
             this.SnippetContext.Location = new System.Drawing.Point(23, 176);
             this.SnippetContext.MaxUndoRedoSteps = 50;
@@ -467,7 +546,7 @@
             // 
             // btnsnippetsave
             // 
-            this.btnsnippetsave.Location = new System.Drawing.Point(497, 126);
+            this.btnsnippetsave.Location = new System.Drawing.Point(673, 129);
             this.btnsnippetsave.Name = "btnsnippetsave";
             this.btnsnippetsave.Size = new System.Drawing.Size(75, 23);
             this.btnsnippetsave.TabIndex = 46;
@@ -695,7 +774,7 @@
             // 
             // tabPageSetting
             // 
-            this.tabPageSetting.Controls.Add(this.tabSettings);
+            this.tabPageSetting.Controls.Add(this.SysSettings);
             this.tabPageSetting.Location = new System.Drawing.Point(4, 23);
             this.tabPageSetting.Name = "tabPageSetting";
             this.tabPageSetting.Padding = new System.Windows.Forms.Padding(3);
@@ -704,16 +783,17 @@
             this.tabPageSetting.Text = "Setting";
             this.tabPageSetting.UseVisualStyleBackColor = true;
             // 
-            // tabSettings
+            // SysSettings
             // 
-            this.tabSettings.Controls.Add(this.tabPageVariables);
-            this.tabSettings.Controls.Add(this.tabPageDataType);
-            this.tabSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabSettings.Location = new System.Drawing.Point(3, 3);
-            this.tabSettings.Name = "tabSettings";
-            this.tabSettings.SelectedIndex = 0;
-            this.tabSettings.Size = new System.Drawing.Size(1336, 657);
-            this.tabSettings.TabIndex = 0;
+            this.SysSettings.Controls.Add(this.tabPageVariables);
+            this.SysSettings.Controls.Add(this.tabPageDataType);
+            this.SysSettings.Controls.Add(this.SystemSQL);
+            this.SysSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SysSettings.Location = new System.Drawing.Point(3, 3);
+            this.SysSettings.Name = "SysSettings";
+            this.SysSettings.SelectedIndex = 0;
+            this.SysSettings.Size = new System.Drawing.Size(1336, 657);
+            this.SysSettings.TabIndex = 0;
             // 
             // tabPageVariables
             // 
@@ -798,50 +878,22 @@
             this.imageListcollection.Images.SetKeyName(11, "yes.png");
             this.imageListcollection.Images.SetKeyName(12, "wrong.png");
             // 
-            // ContentMenuSnippet
-            // 
-            this.ContentMenuSnippet.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CMS启用,
-            this.CMS禁用,
-            this.CMS删除,
-            this.CMS看生成代码});
-            this.ContentMenuSnippet.Name = "CMS";
-            this.ContentMenuSnippet.Size = new System.Drawing.Size(137, 92);
-            // 
-            // CMS启用
-            // 
-            this.CMS启用.Image = ((System.Drawing.Image)(resources.GetObject("CMS启用.Image")));
-            this.CMS启用.Name = "CMS启用";
-            this.CMS启用.Size = new System.Drawing.Size(136, 22);
-            this.CMS启用.Text = "启用";
-            // 
-            // CMS禁用
-            // 
-            this.CMS禁用.Image = ((System.Drawing.Image)(resources.GetObject("CMS禁用.Image")));
-            this.CMS禁用.Name = "CMS禁用";
-            this.CMS禁用.Size = new System.Drawing.Size(136, 22);
-            this.CMS禁用.Text = "禁用";
-            // 
-            // CMS删除
-            // 
-            this.CMS删除.Image = ((System.Drawing.Image)(resources.GetObject("CMS删除.Image")));
-            this.CMS删除.Name = "CMS删除";
-            this.CMS删除.Size = new System.Drawing.Size(136, 22);
-            this.CMS删除.Text = "删除";
-            // 
-            // CMS看生成代码
-            // 
-            this.CMS看生成代码.Image = ((System.Drawing.Image)(resources.GetObject("CMS看生成代码.Image")));
-            this.CMS看生成代码.Name = "CMS看生成代码";
-            this.CMS看生成代码.Size = new System.Drawing.Size(136, 22);
-            this.CMS看生成代码.Text = "看生成代码";
-            // 
             // CMS修改
             // 
             this.CMS修改.Image = ((System.Drawing.Image)(resources.GetObject("CMS修改.Image")));
             this.CMS修改.Name = "CMS修改";
             this.CMS修改.Size = new System.Drawing.Size(152, 22);
             this.CMS修改.Text = "修改";
+            // 
+            // SystemSQL
+            // 
+            this.SystemSQL.Location = new System.Drawing.Point(4, 22);
+            this.SystemSQL.Name = "SystemSQL";
+            this.SystemSQL.Padding = new System.Windows.Forms.Padding(3);
+            this.SystemSQL.Size = new System.Drawing.Size(1328, 631);
+            this.SystemSQL.TabIndex = 2;
+            this.SystemSQL.Text = "SystemSQL";
+            this.SystemSQL.UseVisualStyleBackColor = true;
             // 
             // Geneartor
             // 
@@ -863,6 +915,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataSourceGrids)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.ContentMenuSnippet.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -885,7 +938,7 @@
             this.tooldb.ResumeLayout(false);
             this.tooldb.PerformLayout();
             this.tabPageSetting.ResumeLayout(false);
-            this.tabSettings.ResumeLayout(false);
+            this.SysSettings.ResumeLayout(false);
             this.tabPageVariables.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataVariables)).EndInit();
             this.tabPageDataType.ResumeLayout(false);
@@ -893,7 +946,6 @@
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datatypegrid)).EndInit();
-            this.ContentMenuSnippet.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -910,7 +962,7 @@
         private System.Windows.Forms.Panel pGeneratorTree;
         private System.Windows.Forms.TreeView treedb;
         private System.Windows.Forms.ImageList imageListcollection;
-        private System.Windows.Forms.TabControl tabSettings;
+        private System.Windows.Forms.TabControl SysSettings;
         private System.Windows.Forms.TabPage tabPageVariables;
         private System.Windows.Forms.TabPage tabPageDataType;
         private System.Windows.Forms.DataGridView dataVariables;
@@ -968,6 +1020,10 @@
         private System.Windows.Forms.DataGridView datatypegrid;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton tbldatatypesave;
+        private System.Windows.Forms.CheckBox ckIsFloder;
+        private System.Windows.Forms.TextBox txtFatherId;
+        private System.Windows.Forms.Label lblFatherId;
+        private System.Windows.Forms.TabPage SystemSQL;
     }
 }
 

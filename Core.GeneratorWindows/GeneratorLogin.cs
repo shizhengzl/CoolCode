@@ -26,6 +26,7 @@ namespace Core.GeneratorWindows
                 txtLoginName.Text = settings.Account;
                 txtPassword.Text = settings.Password;
                 chk_remberer.Checked = settings.IsRemeber;
+                comDataBase.Text = settings.DataBase;
                 comLoginMethod.SelectedIndex = (int)settings.AuthenticationType;
             }
         }

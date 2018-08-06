@@ -79,17 +79,34 @@ namespace Core.GeneratorWindows
             if (tn.Text == "DataSource")
                 return;
 
-            var listColumn = new List<Column>();
-            if (tn.Name.IndexOf("@") > -1)
-                listColumn = (List<Column>)tn.Tag;
-            else
-            {
-                var dbname = (tn.Tag as TreeNode).Parent.Parent.Text;
-                listColumn = LoadTableColumn(dbname, tn.Text);
-            }
+            var listColumn = (List<Column>)tn.Tag; 
+            var dbname = listColumn.FirstOrDefault().DataBaseName;
+            listColumn = LoadTableColumn(dbname, tn.Text);
+        
             dataSourceGrids.DataSource = listColumn;
             dataSourceGrids.AutoGenerateColumns = true;
             dataSourceGrids.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+        }
+
+        private void EndEdit(List<Column> sources)
+        {
+            dataSourceGrids.EndEdit();
+            try
+            {
+                for (int i = 0; i < sources.Count; i++)//得到总行数并在之内循环    
+                {
+                    Column col = sources[i];
+                    PropertyInfo[] piar = col.GetType().GetProperties();
+                    foreach (PropertyInfo pi in piar)
+                    {
+                        col.GetType().GetProperty(pi.Name).SetValue(col, Convert.ChangeType(dataSourceGrids.Rows[i].Cells[pi.Name].Value, dataSourceGrids.Rows[i].Cells[pi.Name].ValueType), null);
+                    }
+                }
+            }
+            catch (Exception ex)
+            { 
+                throw ex;
+            }
         }
 
         private List<Column> LoadTableColumn(string databasename, string tablename)
@@ -137,19 +154,17 @@ namespace Core.GeneratorWindows
                 return;
             }
 
-            var sources = treeSource.Nodes[0].Nodes;
-
+            var sources = treeSource.Nodes[0].Nodes; 
             var snippets = treesnippet.Nodes[0].Nodes;
 
             bool IsExists = File.Exists(DefaultGeneratorPath);
             if (!IsExists)
                 Directory.CreateDirectory(DefaultGeneratorPath);
             foreach (var source in sources)
-            {
-                var dbname = ((source as TreeNode).Tag as TreeNode).Parent.Parent.Text;
-                var tablename = ((source as TreeNode).Tag as TreeNode).Text;
-                var columns = LoadTableColumn(dbname, tablename);
-
+            { 
+                List<Column> columns = (source as TreeNode).Tag as List<Column>;
+                var dbname = columns.FirstOrDefault().DataBaseName;
+                var tablename = columns.FirstOrDefault().TableName;
 
                 foreach (var sp in snippets)
                 {
@@ -221,6 +236,7 @@ namespace Core.GeneratorWindows
                     ApplicationVsHelper.EditFormatDocument(filefullpath);
                 }
             }
+            MessageBox.Show("执行完成！");
         }
         #endregion
         #region database tree 
@@ -355,14 +371,15 @@ EXEC (@RESULT)";
                 {
                     if (treeSource.Nodes[0].Nodes.Find(tn.Text, true).Count() == 0)
                     {
+                        dataSourceGrids.DataSource = LoadTableColumn(tn.Parent.Parent.Text, tn.Text);
                         treeSource.Nodes[0].Nodes.Add(new TreeNode()
                         {
                             Name = tn.Text,
                             Text = tn.Text,
                             ImageIndex = (int)ImageIndex.Table,
                             SelectedImageIndex = (int)ImageIndex.Table,
-                            Tag = tn
-                        });
+                            Tag = dataSourceGrids.DataSource
+                        }); 
                     }
                 }
                 else
@@ -640,8 +657,10 @@ EXEC (@RESULT)";
             bool isenabled = SnippetIsEnabled.Checked;
 
             bool isselectcolumn = SnippetIsSelectColumn.Checked;
+            bool iFloder = ckIsFloder.Checked;
 
             string context = SnippetContext.Text;
+            Int32 fatherId = txtFatherId.Text.ToInt32();
 
             var isupdate = db.GeneratorSnippet.FirstOrDefault(x => x.Name == name);
             if (isupdate == null)
@@ -660,6 +679,8 @@ EXEC (@RESULT)";
             isupdate.ProjectName = isupdate == null ? projectname : (isSelect ? projectname : isupdate.ProjectName);
             isupdate.Context = context;
             isupdate.IsSelectColumn = isselectcolumn;
+            isupdate.IsFloder = iFloder;
+            isupdate.FatherId = fatherId;
             db.SaveChanges();
 
             ResreshSnippet();
@@ -671,6 +692,8 @@ EXEC (@RESULT)";
         private void ResreshSnippet()
         {
             var datasnippets = db.GeneratorSnippet.OrderBy(x => x.GeneratorFileName).ToList();
+            //if (datasnippet.Rows.Count == 0)
+            //    return;
             var dt = datasnippets.ToDataTable<GeneratorSnippet>();
             datasnippet.DataSource = dt;
             datasnippet.AutoGenerateColumns = true;
@@ -711,6 +734,8 @@ EXEC (@RESULT)";
             SnippetPath.Text = data.GeneratorPath;
             SnippetContext.Text = data.Context;
             SnippetIsSelectColumn.Checked = data.IsSelectColumn;
+            txtFatherId.Text = data.FatherId.ToStringExtension();
+            ckIsFloder.Checked = data.IsFloder;
         }
         private void LoadSnippetTree()
         {
@@ -720,17 +745,31 @@ EXEC (@RESULT)";
             allModel.Text = "All Model";
             treesnippet.Nodes.Add(allModel);
 
-            var list = db.GeneratorSnippet.OrderByDescending(x => x.IsEnabled);
 
-            list.ToList().ForEach(x => allModel.Nodes.Add(
-                new TreeNode()
+            var allList = db.GeneratorSnippet.OrderBy(x => x.Id);
+            var list = allList.Where(x=>x.FatherId == 0 ).OrderByDescending(x => x.IsEnabled); 
+
+            foreach (var x in list)
+            {
+                var childNodes = new TreeNode()
                 {
                     Text = x.Name,
-                    ImageIndex = x.IsEnabled ? (int)ImageIndex.Yes : (int)ImageIndex.Wrong,
-                    SelectedImageIndex = x.IsEnabled ? (int)ImageIndex.Yes : (int)ImageIndex.Wrong,
+                    ImageIndex = (x.IsFloder ? (int)ImageIndex.Floder : (x.IsEnabled ? (int)ImageIndex.Yes : (int)ImageIndex.Wrong)),
+                    SelectedImageIndex = (x.IsFloder ? (int)ImageIndex.Floder : (x.IsEnabled ? (int)ImageIndex.Yes : (int)ImageIndex.Wrong)),
                     Tag = x
-                }));
+                }; 
+                allModel.Nodes.Add(childNodes);
 
+                allList.Where(y=>y.FatherId == x.Id).OrderByDescending(z =>
+                z.IsEnabled).ToList().ForEach(u=> childNodes.Nodes.Add(
+                    new TreeNode() {
+                        Text = u.Name,
+                        ImageIndex =   (u.IsEnabled ? (int)ImageIndex.Yes : (int)ImageIndex.Wrong),
+                        SelectedImageIndex =  (u.IsEnabled ? (int)ImageIndex.Yes : (int)ImageIndex.Wrong),
+                        Tag = u
+                    }
+                    ));
+            } 
             treesnippet.ExpandAll();
         }
         private void treesnippet_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -738,41 +777,28 @@ EXEC (@RESULT)";
             string message = string.Empty;
             var snippet = (GeneratorSnippet)e.Node.Tag;
             if (snippet == null)
-                message = "没有模版！";
-            var tree = treeSource.SelectedNode;
+                message = "没有模版！"; 
             if (treeSource.Nodes[0].Nodes.Count == 0)
                 message = "请选择表！";
             if (!string.IsNullOrEmpty(message))
             {
                 GeneratorText.Text = message;
                 return;
-            }
-
-            string dbname = string.Empty;
-            List<Column> columns = new List<Column>();
+            } 
+            var tree = treeSource.SelectedNode;
             if (tree == null)
-            {
-                tree = ((TreeNode)treeSource.Nodes[0].Nodes[0].Tag);
-                dbname = tree.Parent.Parent.Text;
-                columns = LoadTableColumn(dbname, tree.Text);
-            }
-            else if (tree.Tag is List<Column>)
-            {
-                dbname = ((List<Column>)(tree.Tag)).FirstOrDefault().DataBaseName;
-                columns = (List<Column>)tree.Tag;
-            }
-            else
-            {
-                tree = (TreeNode)tree.Tag;
-                dbname = tree.Parent.Parent.Text;
-                columns = LoadTableColumn(dbname, tree.Text);
-            }
+                tree = treeSource.Nodes[0].Nodes[0]; 
+            List<Column> columns = new List<Column>();
+            EndEdit(dataSourceGrids.DataSource as List<Column>);
+            columns = dataSourceGrids.DataSource as List<Column>;
+            string dbname = columns.FirstOrDefault().DataBaseName;
+            string tableName = columns.FirstOrDefault().TableName; 
+            tree.Tag = columns; 
             if (snippet.IsSelectColumn)
             {
-                ColumnSelectForm selct = new ColumnSelectForm(tree.Text, columns);
+                ColumnSelectForm selct = new ColumnSelectForm(tableName, columns);
                 selct.ShowDialog();
-            }
-
+            } 
             var generatorCode = GeneratorCode(snippet, columns);
 
             string projectPath = VsProjectPath + "\\" + snippet.ProjectName;
@@ -782,7 +808,7 @@ EXEC (@RESULT)";
             var variablestablename = db.GeneratorReplace.FirstOrDefault(x => x.ReplaceName == ReplaceVariable.TableName.ToString()).ReplaceDeclare;
 
             generatorCode = generatorCode.Replace(variablesnamespaces, namespaces);
-            generatorCode = generatorCode.Replace(variablestablename, tree.Text);
+            generatorCode = generatorCode.Replace(variablestablename, tableName);
             db.GeneratorReplace.ToList().ForEach(x => generatorCode = generatorCode.Replace(x.ReplaceDeclare, string.Empty));
 
             GeneratorText.Text = generatorCode;
@@ -932,6 +958,7 @@ EXEC (@RESULT)";
             rs.ForEach(x => x.IsSelect = false);
             parser.GetMyColumns(rs);
             rs = rs.OrderByDescending(x => x.IsSelect).ToList<Column>();
+            textAlias.Text = rs.FirstOrDefault().TableName.Replace(".dbo", "");
             if (treeSource.Nodes[0].Nodes.ContainsKey("@" + textAlias.Text))
             {
 
@@ -942,11 +969,11 @@ EXEC (@RESULT)";
             {
                 Name = "@" + textAlias.Text,
                 Text = textAlias.Text,
-                Tag = rs,
-
+                Tag = rs, 
                 ImageIndex = (int)ImageIndex.Table,
                 SelectedImageIndex = (int)ImageIndex.Table
-            });
+            }); 
+            dataSourceGrids.DataSource = LoadTableColumn(databasename, textAlias.Text);
         }
 
         private void tbldatatypesave_Click(object sender, EventArgs e)
@@ -972,6 +999,72 @@ EXEC (@RESULT)";
         private void datatypegrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             datatypegrid.BeginEdit(false);
+        }
+
+        private void CMS启用_Click(object sender, EventArgs e)
+        {
+            if (treesnippet.SelectedNode == null)
+                return;
+            TreeNode tn = treesnippet.SelectedNode;
+
+            var snippet = (tn.Tag as GeneratorSnippet);
+            if(snippet.IsFloder)
+            {
+                db.GeneratorSnippet.Where(x => 
+                x.FatherId == snippet.Id).ToList<GeneratorSnippet>().ForEach(y=>y.IsEnabled = true);
+            }
+            else
+            {
+                db.GeneratorSnippet.FirstOrDefault(x =>  x.Id == snippet.Id).IsEnabled = true;
+            }
+            db.SaveChanges();
+            ResreshSnippet();
+        }
+
+        private void CMS禁用_Click(object sender, EventArgs e)
+        {
+            if (treesnippet.SelectedNode == null)
+                return;
+            TreeNode tn = treesnippet.SelectedNode;
+
+            var snippet = (tn.Tag as GeneratorSnippet);
+            if (snippet.IsFloder)
+            {
+                db.GeneratorSnippet.Where(x =>
+                x.FatherId == snippet.Id).ToList<GeneratorSnippet>().ForEach(y => y.IsEnabled = false);
+            }
+            else
+            {
+                db.GeneratorSnippet.FirstOrDefault(x => x.Id == snippet.Id).IsEnabled = false;
+            }
+            db.SaveChanges();
+            ResreshSnippet();
+        }
+
+        
+
+        private void CMS删除_Click(object sender, EventArgs e)
+        {
+            if (treesnippet.SelectedNode == null)
+                return;
+            TreeNode tn = treesnippet.SelectedNode; 
+            var snippet = (tn.Tag as GeneratorSnippet);
+            if (snippet.IsFloder)
+            {
+                db.GeneratorSnippet.Where(x =>
+               x.FatherId == snippet.Id).ToList<GeneratorSnippet>().ForEach(y => db.GeneratorSnippet.Remove(y));
+            }
+            else
+            {
+                db.GeneratorSnippet.Remove(db.GeneratorSnippet.FirstOrDefault(x => x.Id == snippet.Id));
+            }
+            db.SaveChanges();
+            ResreshSnippet();
+        }
+
+        private void CMS看生成代码_Click(object sender, EventArgs e)
+        {
+            treesnippet_NodeMouseDoubleClick(sender, null);
         }
     }
 
