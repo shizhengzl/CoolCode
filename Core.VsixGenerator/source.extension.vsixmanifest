@@ -1,22 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
-  <Metadata>
-    <Identity Id="Core.VsixGenerator.Company.7e483f82-a7d2-406a-b20d-8fd3ff3b9184" Version="1.0" Language="en-US" Publisher="shizheng" />
-    <DisplayName>Core.VsixGenerator</DisplayName>
-    <Description xml:space="preserve">Generator Tools</Description>
-    <Icon>earth_48px_1184796_easyicon.net.ico</Icon>
-  </Metadata>
-  <Installation>
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />
-  </Installation>
-  <Dependencies>
-    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
-    <Dependency Id="Microsoft.VisualStudio.MPF.15.0" DisplayName="Visual Studio MPF 15.0" d:Source="Installed" Version="[15.0]" />
-  </Dependencies>
-  <Prerequisites>
-    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
-  </Prerequisites>
-  <Assets>
-    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-  </Assets>
+    <Metadata>
+        <Identity Id="Core.VsixGenerator.Company.7e483f82-a7d2-406a-b20d-8fd3ff3b9184" Version="1.0" Language="en-US" Publisher="shizheng" />
+        <DisplayName>Core.VsixGenerator</DisplayName>
+        <Description xml:space="preserve">Generator Tools</Description>
+        <Icon>earth_48px_1184796_easyicon.net.ico</Icon>
+    </Metadata>
+    <Installation AllUsers="true" InstalledByMsi="true">
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />
+        <InstallationTarget Version="[14.0]" Id="Microsoft.VisualStudio.Enterprise" />
+        <InstallationTarget Version="[15.0,16.0)" Id="Microsoft.VisualStudio.Enterprise" />
+        <InstallationTarget Version="[12.0]" Id="Microsoft.VisualStudio.Enterprise" />
+        <InstallationTarget Version="[13.0]" Id="Microsoft.VisualStudio.Enterprise" />
+        <InstallationTarget Version="[15.0,16.0)" Id="Microsoft.VisualStudio.Community" />
+        <InstallationTarget Version="[14.0]" Id="Microsoft.VisualStudio.Community" />
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    </Dependencies>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
+        <Prerequisite Id="Microsoft.Net.Component.4.5.TargetingPack" Version="[15.6.27406.0,16.0)" DisplayName=".NET Framework 4.5 目标包" />
+    </Prerequisites>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+    </Assets>
 </PackageManifest>

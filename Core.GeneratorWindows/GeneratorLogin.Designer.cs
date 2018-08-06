@@ -62,7 +62,7 @@
             // btnCanel
             // 
             this.btnCanel.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnCanel.Location = new System.Drawing.Point(306, 298);
+            this.btnCanel.Location = new System.Drawing.Point(434, 297);
             this.btnCanel.Name = "btnCanel";
             this.btnCanel.Size = new System.Drawing.Size(75, 43);
             this.btnCanel.TabIndex = 31;
@@ -73,7 +73,7 @@
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnLogin.Location = new System.Drawing.Point(211, 298);
+            this.btnLogin.Location = new System.Drawing.Point(289, 298);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 43);
             this.btnLogin.TabIndex = 30;
@@ -86,7 +86,7 @@
             this.txtPassword.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtPassword.Location = new System.Drawing.Point(213, 186);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(172, 29);
+            this.txtPassword.Size = new System.Drawing.Size(331, 29);
             this.txtPassword.TabIndex = 29;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
@@ -96,7 +96,7 @@
             this.txtLoginName.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtLoginName.Location = new System.Drawing.Point(213, 140);
             this.txtLoginName.Name = "txtLoginName";
-            this.txtLoginName.Size = new System.Drawing.Size(172, 29);
+            this.txtLoginName.Size = new System.Drawing.Size(331, 29);
             this.txtLoginName.TabIndex = 28;
             this.txtLoginName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLoginName_KeyPress);
             // 
@@ -131,7 +131,7 @@
             "SQLServer Login"});
             this.comLoginMethod.Location = new System.Drawing.Point(213, 88);
             this.comLoginMethod.Name = "comLoginMethod";
-            this.comLoginMethod.Size = new System.Drawing.Size(172, 27);
+            this.comLoginMethod.Size = new System.Drawing.Size(331, 27);
             this.comLoginMethod.TabIndex = 25;
             this.comLoginMethod.SelectedIndexChanged += new System.EventHandler(this.comLoginMethod_SelectedIndexChanged);
             // 
@@ -151,7 +151,7 @@
             this.txtServerName.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtServerName.Location = new System.Drawing.Point(213, 38);
             this.txtServerName.Name = "txtServerName";
-            this.txtServerName.Size = new System.Drawing.Size(172, 29);
+            this.txtServerName.Size = new System.Drawing.Size(331, 29);
             this.txtServerName.TabIndex = 23;
             this.txtServerName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtServerName_KeyPress);
             // 
@@ -175,7 +175,7 @@
             "SQLServer Login"});
             this.comDataBase.Location = new System.Drawing.Point(211, 254);
             this.comDataBase.Name = "comDataBase";
-            this.comDataBase.Size = new System.Drawing.Size(172, 27);
+            this.comDataBase.Size = new System.Drawing.Size(333, 27);
             this.comDataBase.TabIndex = 34;
             // 
             // label1
@@ -193,7 +193,7 @@
             // 
             this.btnTest.Location = new System.Drawing.Point(213, 221);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(168, 23);
+            this.btnTest.Size = new System.Drawing.Size(331, 23);
             this.btnTest.TabIndex = 35;
             this.btnTest.Text = "Test Connection";
             this.btnTest.UseVisualStyleBackColor = true;
@@ -203,7 +203,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 389);
+            this.ClientSize = new System.Drawing.Size(623, 389);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.comDataBase);
             this.Controls.Add(this.label1);

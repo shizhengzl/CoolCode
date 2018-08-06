@@ -293,6 +293,7 @@ namespace @NameSpace
       WHERE SO.xtype = 'U'   AND  sm.text IS NOT NULL
       AND so.NAME = @tableName) b WHERE a.objectid = b.Object_Id AND a.ColumnName = b.ColumnName
 
+ 
       SELECT  *
       FROM    @table order by TableIndex" });
 
