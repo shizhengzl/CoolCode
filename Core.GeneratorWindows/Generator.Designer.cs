@@ -109,6 +109,8 @@
             this.btnSaveSystemSQL = new System.Windows.Forms.ToolStripButton();
             this.imageListcollection = new System.Windows.Forms.ImageList(this.components);
             this.CMS修改 = new System.Windows.Forms.ToolStripMenuItem();
+            this.gbColumns = new System.Windows.Forms.GroupBox();
+            this.gbGeneratorCode = new System.Windows.Forms.GroupBox();
             this.tabMain.SuspendLayout();
             this.tabPageGenerator.SuspendLayout();
             this.pGeneratorMain.SuspendLayout();
@@ -146,6 +148,8 @@
             this.gbSystemSQL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSystemSQL)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            this.gbColumns.SuspendLayout();
+            this.gbGeneratorCode.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMain
@@ -208,11 +212,11 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.GeneratorText);
+            this.panel5.Controls.Add(this.gbGeneratorCode);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(290, 383);
+            this.panel5.Location = new System.Drawing.Point(290, 303);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(750, 245);
+            this.panel5.Size = new System.Drawing.Size(750, 325);
             this.panel5.TabIndex = 2;
             // 
             // GeneratorText
@@ -223,21 +227,21 @@
     "Assemblies\\bx9irbc601\\csharp.xml";
             this.GeneratorText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GeneratorText.FilterAutoComplete = true;
-            this.GeneratorText.Location = new System.Drawing.Point(0, 0);
+            this.GeneratorText.Location = new System.Drawing.Point(3, 17);
             this.GeneratorText.MaxUndoRedoSteps = 50;
             this.GeneratorText.Name = "GeneratorText";
-            this.GeneratorText.Size = new System.Drawing.Size(750, 245);
+            this.GeneratorText.Size = new System.Drawing.Size(744, 305);
             this.GeneratorText.TabIndex = 0;
             this.GeneratorText.Text = "";
             this.GeneratorText.WordWrap = false;
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.dataSourceGrids);
+            this.panel4.Controls.Add(this.gbColumns);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(290, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(750, 380);
+            this.panel4.Size = new System.Drawing.Size(750, 300);
             this.panel4.TabIndex = 1;
             // 
             // dataSourceGrids
@@ -246,10 +250,10 @@
             this.dataSourceGrids.BackgroundColor = System.Drawing.Color.White;
             this.dataSourceGrids.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataSourceGrids.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataSourceGrids.Location = new System.Drawing.Point(0, 0);
+            this.dataSourceGrids.Location = new System.Drawing.Point(3, 17);
             this.dataSourceGrids.Name = "dataSourceGrids";
             this.dataSourceGrids.RowTemplate.Height = 23;
-            this.dataSourceGrids.Size = new System.Drawing.Size(750, 380);
+            this.dataSourceGrids.Size = new System.Drawing.Size(744, 280);
             this.dataSourceGrids.TabIndex = 0;
             // 
             // panel1
@@ -266,9 +270,9 @@
             // 
             this.panel3.Controls.Add(this.treesnippet);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 380);
+            this.panel3.Location = new System.Drawing.Point(0, 300);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(287, 245);
+            this.panel3.Size = new System.Drawing.Size(287, 325);
             this.panel3.TabIndex = 1;
             // 
             // treesnippet
@@ -277,7 +281,7 @@
             this.treesnippet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treesnippet.Location = new System.Drawing.Point(0, 0);
             this.treesnippet.Name = "treesnippet";
-            this.treesnippet.Size = new System.Drawing.Size(287, 245);
+            this.treesnippet.Size = new System.Drawing.Size(287, 325);
             this.treesnippet.TabIndex = 0;
             this.treesnippet.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treesnippet_NodeMouseDoubleClick);
             // 
@@ -331,7 +335,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(287, 380);
+            this.panel2.Size = new System.Drawing.Size(287, 300);
             this.panel2.TabIndex = 0;
             // 
             // groupBox1
@@ -340,7 +344,7 @@
             this.groupBox1.Controls.Add(this.textAlias);
             this.groupBox1.Controls.Add(this.textSql);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 283);
+            this.groupBox1.Location = new System.Drawing.Point(0, 203);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(287, 97);
             this.groupBox1.TabIndex = 2;
@@ -380,9 +384,10 @@
             // 
             // treeSource
             // 
+            this.treeSource.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeSource.Location = new System.Drawing.Point(0, 25);
             this.treeSource.Name = "treeSource";
-            this.treeSource.Size = new System.Drawing.Size(287, 258);
+            this.treeSource.Size = new System.Drawing.Size(287, 275);
             this.treeSource.TabIndex = 1;
             this.treeSource.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeSource_NodeMouseClick);
             // 
@@ -986,6 +991,28 @@
             this.CMS修改.Size = new System.Drawing.Size(152, 22);
             this.CMS修改.Text = "修改";
             // 
+            // gbColumns
+            // 
+            this.gbColumns.Controls.Add(this.dataSourceGrids);
+            this.gbColumns.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbColumns.Location = new System.Drawing.Point(0, 0);
+            this.gbColumns.Name = "gbColumns";
+            this.gbColumns.Size = new System.Drawing.Size(750, 300);
+            this.gbColumns.TabIndex = 1;
+            this.gbColumns.TabStop = false;
+            this.gbColumns.Text = "DataTableColumns";
+            // 
+            // gbGeneratorCode
+            // 
+            this.gbGeneratorCode.Controls.Add(this.GeneratorText);
+            this.gbGeneratorCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbGeneratorCode.Location = new System.Drawing.Point(0, 0);
+            this.gbGeneratorCode.Name = "gbGeneratorCode";
+            this.gbGeneratorCode.Size = new System.Drawing.Size(750, 325);
+            this.gbGeneratorCode.TabIndex = 1;
+            this.gbGeneratorCode.TabStop = false;
+            this.gbGeneratorCode.Text = "Geneorator Code";
+            // 
             // Geneartor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1047,6 +1074,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSystemSQL)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.gbColumns.ResumeLayout(false);
+            this.gbGeneratorCode.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1132,6 +1161,8 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnSaveSystemSQL;
         private System.Windows.Forms.DataGridView dataGridSystemSQL;
+        private System.Windows.Forms.GroupBox gbColumns;
+        private System.Windows.Forms.GroupBox gbGeneratorCode;
     }
 }
 
