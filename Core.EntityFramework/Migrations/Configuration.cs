@@ -87,6 +87,7 @@ namespace Core.EntityFramework.Migrations
            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = "!" + x, ReplaceDeclare = "@!" + x, UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.CsharpType }));
 
 
+            context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Controls.ToString(), ReplaceDeclare = "@" + ReplaceVariable.Controls.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.NameSpace.ToString(), ReplaceDeclare = "@" + ReplaceVariable.NameSpace.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.DataBaseName.ToString(), ReplaceDeclare = "@" + ReplaceVariable.DataBaseName.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.TableName.ToString(), ReplaceDeclare = "@" + ReplaceVariable.TableName.ToString(), UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Snippet });
@@ -104,7 +105,7 @@ namespace Core.EntityFramework.Migrations
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Starts.ToString(), ReplaceDeclare = "<%!", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });
             context.GeneratorReplace.Add(new GeneratorClass.GeneratorReplace() { ReplaceName = ReplaceVariable.Ends.ToString(), ReplaceDeclare = "!%>", UserDeclare = false, ReplaceType = GeneratorClass.ReplaceType.Brackets });
 
-            context.GeneratorSnippet.Add(new GeneratorClass.GeneratorSnippet() { IsFloder = false, Name = "Example", IsEnabled = true, IsSelectColumn = true, Context = @"using System; 
+            context.GeneratorSnippet.Add(new GeneratorClass.GeneratorSnippet() { IsFloder = false, Name = "Example", IsEnabled = true, IsSelectColumn = false, Context = @"using System; 
 namespace @NameSpace
 {
         public class @TableName
@@ -121,8 +122,17 @@ namespace @NameSpace
 			!%> 
      }
 }" });
+            context.GeneratorSQL.Add(new GeneratorClass.GeneratorSQL() {Name = SQLString.GetDB.ToStringExtension(), SQLContext= @"  DECLARE @TABLESQL VARCHAR(MAX) = 'SELECT ''@DataBase'' as DataBaseName,Name COLLATE Chinese_PRC_CI_AS as TableName,Type from [@DataBase].sys.objects where TYPE IN (''U'',''V'',''P'')'
+DECLARE @RESULT VARCHAR(MAX) = ''
 
-            context.GeneratorSQL.Add(new GeneratorClass.GeneratorSQL() { Name = "Columns", SQLContext = @" use [{0}]
+SELECT @RESULT = @RESULT + CASE WHEN @RESULT = '' 
+THEN   REPLACE(@TABLESQL,'@DataBase',NAME) + CHAR(13)
+ELSE  ' UNION ALL ' +  REPLACE(@TABLESQL,'@DataBase',NAME) + CHAR(13) END
+FROM sys.databases
+PRINT @RESULT
+SELECT Name as DataBaseName FROM   sys.databases
+EXEC (@RESULT)" });
+            context.GeneratorSQL.Add(new GeneratorClass.GeneratorSQL() { Name = SQLString.Columns.ToStringExtension(), SQLContext = @" use [{0}]
        DECLARE @databaseName VARCHAR(100)= '{0}'
       DECLARE @tableName VARCHAR(100)= '{1}'
       DECLARE @table TABLE

@@ -53,7 +53,7 @@
             this.textAlias = new System.Windows.Forms.TextBox();
             this.textSql = new Kevin.SyntaxTextBox.SyntaxTextBox();
             this.treeSource = new System.Windows.Forms.TreeView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripGenerator = new System.Windows.Forms.ToolStrip();
             this.tooldatasource = new System.Windows.Forms.ToolStripButton();
             this.toolSourceClear = new System.Windows.Forms.ToolStripButton();
             this.toolGenerator = new System.Windows.Forms.ToolStripButton();
@@ -94,14 +94,21 @@
             this.tabPageSetting = new System.Windows.Forms.TabPage();
             this.SysSettings = new System.Windows.Forms.TabControl();
             this.tabPageVariables = new System.Windows.Forms.TabPage();
+            this.gbVariables = new System.Windows.Forms.GroupBox();
+            this.toolStripVariables = new System.Windows.Forms.ToolStrip();
+            this.btnSaveVariables = new System.Windows.Forms.ToolStripButton();
             this.dataVariables = new System.Windows.Forms.DataGridView();
             this.tabPageDataType = new System.Windows.Forms.TabPage();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripDataType = new System.Windows.Forms.ToolStrip();
             this.tbldatatypesave = new System.Windows.Forms.ToolStripButton();
             this.datatypegrid = new System.Windows.Forms.DataGridView();
+            this.SystemSQL = new System.Windows.Forms.TabPage();
+            this.gbSystemSQL = new System.Windows.Forms.GroupBox();
+            this.dataGridSystemSQL = new System.Windows.Forms.DataGridView();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnSaveSystemSQL = new System.Windows.Forms.ToolStripButton();
             this.imageListcollection = new System.Windows.Forms.ImageList(this.components);
             this.CMS修改 = new System.Windows.Forms.ToolStripMenuItem();
-            this.SystemSQL = new System.Windows.Forms.TabPage();
             this.tabMain.SuspendLayout();
             this.tabPageGenerator.SuspendLayout();
             this.pGeneratorMain.SuspendLayout();
@@ -115,7 +122,7 @@
             this.ContentMenuSnippet.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.toolStripGenerator.SuspendLayout();
             this.tSnippet.SuspendLayout();
             this.pfrom.SuspendLayout();
             this.tform.SuspendLayout();
@@ -129,10 +136,16 @@
             this.tabPageSetting.SuspendLayout();
             this.SysSettings.SuspendLayout();
             this.tabPageVariables.SuspendLayout();
+            this.gbVariables.SuspendLayout();
+            this.toolStripVariables.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataVariables)).BeginInit();
             this.tabPageDataType.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
+            this.toolStripDataType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datatypegrid)).BeginInit();
+            this.SystemSQL.SuspendLayout();
+            this.gbSystemSQL.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridSystemSQL)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMain
@@ -207,7 +220,7 @@
             this.GeneratorText.AcceptsTab = true;
             this.GeneratorText.CaseSensitive = false;
             this.GeneratorText.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6a85e28e\\Project" +
-    "Assemblies\\luhiidvn01\\csharp.xml";
+    "Assemblies\\bx9irbc601\\csharp.xml";
             this.GeneratorText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GeneratorText.FilterAutoComplete = true;
             this.GeneratorText.Location = new System.Drawing.Point(0, 0);
@@ -229,7 +242,8 @@
             // 
             // dataSourceGrids
             // 
-            this.dataSourceGrids.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dataSourceGrids.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataSourceGrids.BackgroundColor = System.Drawing.Color.White;
             this.dataSourceGrids.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataSourceGrids.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataSourceGrids.Location = new System.Drawing.Point(0, 0);
@@ -313,7 +327,7 @@
             // 
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.treeSource);
-            this.panel2.Controls.Add(this.toolStrip1);
+            this.panel2.Controls.Add(this.toolStripGenerator);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -354,7 +368,7 @@
             this.textSql.AcceptsTab = true;
             this.textSql.CaseSensitive = false;
             this.textSql.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6a85e28e\\Project" +
-    "Assemblies\\luhiidvn01\\csharp.xml";
+    "Assemblies\\bx9irbc601\\csharp.xml";
             this.textSql.FilterAutoComplete = true;
             this.textSql.Location = new System.Drawing.Point(3, 17);
             this.textSql.MaxUndoRedoSteps = 50;
@@ -372,17 +386,17 @@
             this.treeSource.TabIndex = 1;
             this.treeSource.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeSource_NodeMouseClick);
             // 
-            // toolStrip1
+            // toolStripGenerator
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripGenerator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tooldatasource,
             this.toolSourceClear,
             this.toolGenerator});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(287, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStripGenerator.Location = new System.Drawing.Point(0, 0);
+            this.toolStripGenerator.Name = "toolStripGenerator";
+            this.toolStripGenerator.Size = new System.Drawing.Size(287, 25);
+            this.toolStripGenerator.TabIndex = 0;
+            this.toolStripGenerator.Text = "toolStrip1";
             // 
             // tooldatasource
             // 
@@ -514,7 +528,7 @@
             this.SnippetContext.AcceptsTab = true;
             this.SnippetContext.CaseSensitive = false;
             this.SnippetContext.ConfigFile = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\VisualStudio\\15.0_6a85e28e\\Project" +
-    "Assemblies\\luhiidvn01\\csharp.xml";
+    "Assemblies\\bx9irbc601\\csharp.xml";
             this.SnippetContext.FilterAutoComplete = true;
             this.SnippetContext.Location = new System.Drawing.Point(23, 176);
             this.SnippetContext.MaxUndoRedoSteps = 50;
@@ -655,9 +669,10 @@
             // 
             // datasnippet
             // 
-            this.datasnippet.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.datasnippet.BackgroundColor = System.Drawing.Color.White;
             this.datasnippet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datasnippet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.datasnippet.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.datasnippet.Location = new System.Drawing.Point(0, 25);
             this.datasnippet.Name = "datasnippet";
             this.datasnippet.RowTemplate.Height = 23;
@@ -797,7 +812,7 @@
             // 
             // tabPageVariables
             // 
-            this.tabPageVariables.Controls.Add(this.dataVariables);
+            this.tabPageVariables.Controls.Add(this.gbVariables);
             this.tabPageVariables.Location = new System.Drawing.Point(4, 22);
             this.tabPageVariables.Name = "tabPageVariables";
             this.tabPageVariables.Padding = new System.Windows.Forms.Padding(3);
@@ -806,21 +821,53 @@
             this.tabPageVariables.Text = "Variables";
             this.tabPageVariables.UseVisualStyleBackColor = true;
             // 
+            // gbVariables
+            // 
+            this.gbVariables.Controls.Add(this.toolStripVariables);
+            this.gbVariables.Controls.Add(this.dataVariables);
+            this.gbVariables.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbVariables.Location = new System.Drawing.Point(3, 3);
+            this.gbVariables.Name = "gbVariables";
+            this.gbVariables.Size = new System.Drawing.Size(1322, 625);
+            this.gbVariables.TabIndex = 2;
+            this.gbVariables.TabStop = false;
+            this.gbVariables.Text = "Variables Setting";
+            // 
+            // toolStripVariables
+            // 
+            this.toolStripVariables.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnSaveVariables});
+            this.toolStripVariables.Location = new System.Drawing.Point(3, 17);
+            this.toolStripVariables.Name = "toolStripVariables";
+            this.toolStripVariables.Size = new System.Drawing.Size(1316, 25);
+            this.toolStripVariables.TabIndex = 1;
+            this.toolStripVariables.Text = "toolStrip1";
+            // 
+            // btnSaveVariables
+            // 
+            this.btnSaveVariables.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveVariables.Image")));
+            this.btnSaveVariables.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSaveVariables.Name = "btnSaveVariables";
+            this.btnSaveVariables.Size = new System.Drawing.Size(55, 22);
+            this.btnSaveVariables.Text = "Save";
+            this.btnSaveVariables.Click += new System.EventHandler(this.btnSaveVariables_Click);
+            // 
             // dataVariables
             // 
-            this.dataVariables.AllowUserToAddRows = false;
             this.dataVariables.AllowUserToDeleteRows = false;
+            this.dataVariables.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataVariables.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataVariables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataVariables.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataVariables.Location = new System.Drawing.Point(3, 3);
+            this.dataVariables.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.dataVariables.Location = new System.Drawing.Point(3, 45);
             this.dataVariables.Name = "dataVariables";
             this.dataVariables.RowTemplate.Height = 23;
-            this.dataVariables.Size = new System.Drawing.Size(1322, 625);
+            this.dataVariables.Size = new System.Drawing.Size(1313, 574);
             this.dataVariables.TabIndex = 0;
             // 
             // tabPageDataType
             // 
-            this.tabPageDataType.Controls.Add(this.toolStrip2);
+            this.tabPageDataType.Controls.Add(this.toolStripDataType);
             this.tabPageDataType.Controls.Add(this.datatypegrid);
             this.tabPageDataType.Location = new System.Drawing.Point(4, 22);
             this.tabPageDataType.Name = "tabPageDataType";
@@ -830,35 +877,89 @@
             this.tabPageDataType.Text = "DataType";
             this.tabPageDataType.UseVisualStyleBackColor = true;
             // 
-            // toolStrip2
+            // toolStripDataType
             // 
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDataType.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbldatatypesave});
-            this.toolStrip2.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1322, 25);
-            this.toolStrip2.TabIndex = 1;
-            this.toolStrip2.Text = "toolStrip2";
+            this.toolStripDataType.Location = new System.Drawing.Point(3, 3);
+            this.toolStripDataType.Name = "toolStripDataType";
+            this.toolStripDataType.Size = new System.Drawing.Size(1322, 25);
+            this.toolStripDataType.TabIndex = 1;
+            this.toolStripDataType.Text = "toolStrip2";
             // 
             // tbldatatypesave
             // 
             this.tbldatatypesave.Image = ((System.Drawing.Image)(resources.GetObject("tbldatatypesave.Image")));
             this.tbldatatypesave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbldatatypesave.Name = "tbldatatypesave";
-            this.tbldatatypesave.Size = new System.Drawing.Size(54, 22);
-            this.tbldatatypesave.Text = "save";
+            this.tbldatatypesave.Size = new System.Drawing.Size(55, 22);
+            this.tbldatatypesave.Text = "Save";
             this.tbldatatypesave.Click += new System.EventHandler(this.tbldatatypesave_Click);
             // 
             // datatypegrid
             // 
+            this.datatypegrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.datatypegrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.datatypegrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.datatypegrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.datatypegrid.Location = new System.Drawing.Point(3, 32);
             this.datatypegrid.Name = "datatypegrid";
             this.datatypegrid.RowTemplate.Height = 23;
             this.datatypegrid.Size = new System.Drawing.Size(1322, 596);
             this.datatypegrid.TabIndex = 0;
             this.datatypegrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datatypegrid_CellContentDoubleClick);
+            // 
+            // SystemSQL
+            // 
+            this.SystemSQL.Controls.Add(this.gbSystemSQL);
+            this.SystemSQL.Location = new System.Drawing.Point(4, 22);
+            this.SystemSQL.Name = "SystemSQL";
+            this.SystemSQL.Padding = new System.Windows.Forms.Padding(3);
+            this.SystemSQL.Size = new System.Drawing.Size(1328, 631);
+            this.SystemSQL.TabIndex = 2;
+            this.SystemSQL.Text = "SystemSQL";
+            this.SystemSQL.UseVisualStyleBackColor = true;
+            // 
+            // gbSystemSQL
+            // 
+            this.gbSystemSQL.Controls.Add(this.dataGridSystemSQL);
+            this.gbSystemSQL.Controls.Add(this.toolStrip1);
+            this.gbSystemSQL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbSystemSQL.Location = new System.Drawing.Point(3, 3);
+            this.gbSystemSQL.Name = "gbSystemSQL";
+            this.gbSystemSQL.Size = new System.Drawing.Size(1322, 625);
+            this.gbSystemSQL.TabIndex = 0;
+            this.gbSystemSQL.TabStop = false;
+            this.gbSystemSQL.Text = "System SQL Setting";
+            // 
+            // dataGridSystemSQL
+            // 
+            this.dataGridSystemSQL.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridSystemSQL.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridSystemSQL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridSystemSQL.Location = new System.Drawing.Point(3, 45);
+            this.dataGridSystemSQL.Name = "dataGridSystemSQL";
+            this.dataGridSystemSQL.RowTemplate.Height = 23;
+            this.dataGridSystemSQL.Size = new System.Drawing.Size(1319, 577);
+            this.dataGridSystemSQL.TabIndex = 1;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnSaveSystemSQL});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 17);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1316, 25);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStripSystemSQL";
+            // 
+            // btnSaveSystemSQL
+            // 
+            this.btnSaveSystemSQL.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveSystemSQL.Image")));
+            this.btnSaveSystemSQL.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSaveSystemSQL.Name = "btnSaveSystemSQL";
+            this.btnSaveSystemSQL.Size = new System.Drawing.Size(55, 22);
+            this.btnSaveSystemSQL.Text = "Save";
+            this.btnSaveSystemSQL.Click += new System.EventHandler(this.btnSaveSystemSQL_Click);
             // 
             // imageListcollection
             // 
@@ -885,16 +986,6 @@
             this.CMS修改.Size = new System.Drawing.Size(152, 22);
             this.CMS修改.Text = "修改";
             // 
-            // SystemSQL
-            // 
-            this.SystemSQL.Location = new System.Drawing.Point(4, 22);
-            this.SystemSQL.Name = "SystemSQL";
-            this.SystemSQL.Padding = new System.Windows.Forms.Padding(3);
-            this.SystemSQL.Size = new System.Drawing.Size(1328, 631);
-            this.SystemSQL.TabIndex = 2;
-            this.SystemSQL.Text = "SystemSQL";
-            this.SystemSQL.UseVisualStyleBackColor = true;
-            // 
             // Geneartor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -920,8 +1011,8 @@
             this.panel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStripGenerator.ResumeLayout(false);
+            this.toolStripGenerator.PerformLayout();
             this.tSnippet.ResumeLayout(false);
             this.pfrom.ResumeLayout(false);
             this.tform.ResumeLayout(false);
@@ -940,12 +1031,22 @@
             this.tabPageSetting.ResumeLayout(false);
             this.SysSettings.ResumeLayout(false);
             this.tabPageVariables.ResumeLayout(false);
+            this.gbVariables.ResumeLayout(false);
+            this.gbVariables.PerformLayout();
+            this.toolStripVariables.ResumeLayout(false);
+            this.toolStripVariables.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataVariables)).EndInit();
             this.tabPageDataType.ResumeLayout(false);
             this.tabPageDataType.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
+            this.toolStripDataType.ResumeLayout(false);
+            this.toolStripDataType.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datatypegrid)).EndInit();
+            this.SystemSQL.ResumeLayout(false);
+            this.gbSystemSQL.ResumeLayout(false);
+            this.gbSystemSQL.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridSystemSQL)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1002,7 +1103,7 @@
         private System.Windows.Forms.ToolStripButton toolsnippetupdate;
         private System.Windows.Forms.ToolStripButton toolsnippetdelete;
         private System.Windows.Forms.ToolStripButton toolsnippetrefresh;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStripGenerator;
         private System.Windows.Forms.ToolStripButton tooldatasource;
         private System.Windows.Forms.TreeView treeSource;
         private System.Windows.Forms.ToolStripButton toolSourceClear;
@@ -1018,12 +1119,19 @@
         private System.Windows.Forms.Label lbltables;
         private System.Windows.Forms.TextBox textAlias;
         private System.Windows.Forms.DataGridView datatypegrid;
-        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStrip toolStripDataType;
         private System.Windows.Forms.ToolStripButton tbldatatypesave;
         private System.Windows.Forms.CheckBox ckIsFloder;
         private System.Windows.Forms.TextBox txtFatherId;
         private System.Windows.Forms.Label lblFatherId;
         private System.Windows.Forms.TabPage SystemSQL;
+        private System.Windows.Forms.ToolStrip toolStripVariables;
+        private System.Windows.Forms.ToolStripButton btnSaveVariables;
+        private System.Windows.Forms.GroupBox gbVariables;
+        private System.Windows.Forms.GroupBox gbSystemSQL;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnSaveSystemSQL;
+        private System.Windows.Forms.DataGridView dataGridSystemSQL;
     }
 }
 

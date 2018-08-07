@@ -32,6 +32,12 @@ namespace Core.EntityFramework
         Windows = 1
     }
 
+    public enum SQLString
+    { 
+        GetDB = 0,
+        Columns = 1
+    }
+
 
     public enum ReplaceVariable
     {
@@ -48,7 +54,8 @@ namespace Core.EntityFramework
         Length=10,
         Keys = 11,
         Delimiter = 12,
-        Where = 13
+        Where = 13,
+        Controls = 14
     }
 
     public enum CSharpDataType
