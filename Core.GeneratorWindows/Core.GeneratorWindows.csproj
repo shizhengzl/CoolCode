@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Core.GeneratorWindows</RootNamespace>
     <AssemblyName>Core.GeneratorWindows</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
@@ -52,6 +52,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Core.UsuallyCommon, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UsuallyCommon.1.0.0.2\lib\net452\Core.UsuallyCommon.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -197,10 +200,6 @@
       <Project>{c06b2395-fb08-49ce-ab7d-7e6504014345}</Project>
       <Name>Core.EntityFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.UsuallyCommon\Core.UsuallyCommon.csproj">
-      <Project>{7e628ceb-d723-4e02-8267-5fda53440334}</Project>
-      <Name>Core.UsuallyCommon</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Combobox\TreeCombox\bm.png" />
@@ -208,6 +207,7 @@
     <Content Include="csharp.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="NuGet.exe" />
     <Content Include="SyntaxTextBox\bin\Debug\Antlr3.Runtime.dll" />
     <Content Include="SyntaxTextBox\bin\Debug\Common.dll" />
     <Content Include="SyntaxTextBox\bin\Debug\Common.pdb" />

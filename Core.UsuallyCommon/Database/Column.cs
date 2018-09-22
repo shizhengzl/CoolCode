@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Core.UsuallyCommon.Database
 {
+    /// <summary>
+    /// 数据库表列
+    /// </summary>
     public class Column
     {
         public bool IsSelect { get; set; }
@@ -103,6 +106,12 @@ namespace Core.UsuallyCommon.Database
         /// 是否是主键
         /// </summary>
         public bool IsPrimaryKey { get; set; }
+
+        /// <summary>
+        /// 获取属性
+        /// </summary>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
         public object GetValue(string propertyName)
         {
             return this.GetType().GetProperty(propertyName).GetValue(this, null);
