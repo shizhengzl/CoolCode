@@ -29,13 +29,7 @@ namespace Core.UsuallyCommon
                 list.Add(item.Name.ToStringExtension());
             } 
             return list; 
-        }
-
-        public void GetClass()
-        {
-            var s = collector.classList;
-            var p  = s.FirstOrDefault().Protertys;
-        }
+        } 
     }
 
 
@@ -129,7 +123,15 @@ namespace Core.UsuallyCommon
                 if (item.GetType() == typeof(MethodDeclarationSyntax))
                 {
                     var methods = item as MethodDeclarationSyntax;
-                    var returnType = ((Microsoft.CodeAnalysis.CSharp.Syntax.PredefinedTypeSyntax)methods.ReturnType).Keyword.ValueText;
+                    var returnType = string.Empty;
+                    if (  methods.ReturnType.GetType()  == typeof (IdentifierNameSyntax))
+                    {
+                        returnType = (methods.ReturnType as IdentifierNameSyntax).Identifier.ValueText;
+                    }
+                    if (methods.ReturnType.GetType() == typeof(PredefinedTypeSyntax))
+                    {
+                        returnType = (methods.ReturnType as PredefinedTypeSyntax).Keyword.ValueText;
+                    }
                     var methodComment =   methods.GetLeadingTrivia().FirstOrDefault(x => x.Kind() == SyntaxKind.SingleLineDocumentationCommentTrivia
                     || x.Kind() == SyntaxKind.SingleLineCommentTrivia).Token.LeadingTrivia.ToStringExtension();
 

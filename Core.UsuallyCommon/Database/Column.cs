@@ -12,6 +12,7 @@ namespace Core.UsuallyCommon.Database
     /// </summary>
     public class Column
     {
+        //abdd
         public bool IsSelect { get; set; }
 
         /// <summary>

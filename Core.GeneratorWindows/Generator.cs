@@ -947,7 +947,7 @@ namespace Core.GeneratorWindows
                 MessageBox.Show("请选择数据库");
                 return;
             }
-
+             
             SQLParser parser = new SQLParser(sql);
             var list = parser.GetMyTables();
             List<Column> rs = new List<Column>();

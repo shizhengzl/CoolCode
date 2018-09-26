@@ -47,17 +47,28 @@ namespace TopLevel
 }";
         static void Main(string[] args)
         {
-            string path = @"C:\Users\Administrator\Source\Repos\CoolCode\Core.UsuallyCommon\Database\Column.cs";
+            string path = @"D:\code\中南建设\源代码\分支4\明源整体解决方案\Mysoft.Fygl.Services\Apply\ApplyService.cs";
             CSharpParserHelper parser = new CSharpParserHelper(UsuallyCommon.IoHelper.FileReader(path));
 
-            var s = parser.GetUsing();
+            //var s = parser.GetUsing();
 
-            foreach (var item in s)
+            //foreach (var item in s)
+            //{
+            //    Console.WriteLine(item);
+            //}
+             
+
+
+            var res = parser.collector.classList;
+
+            foreach (var item in res)
             {
-                Console.WriteLine(item);
+                foreach (var method in item.Methods)
+                {
+                    string Params = string.Join(",", method.MethodArguments.Select(x => x.Name).ToList<string>().ToArray());
+                    Console.WriteLine($"MethodName:{method.Name},Params:{Params}");
+                }
             }
-
-            parser.GetClass();
             //string key = "0123456789ABCDEF";
             //string message = "你是大傻b";
             Console.ReadLine();
